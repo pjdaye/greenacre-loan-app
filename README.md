@@ -1,3 +1,22 @@
 # The Greenacre Loan Application app #
 
-![Greenacre Loan Approval App](https://github.com/pjdaye/greenacre-loan-app/blob/master/docs/requirements/UI/Main-Page-Mobile.png)
+## Introduction ##
+
+The Greenacre Loan Application app is a reference application to be used in studying and practicing black box testing.
+
+This app was first presented in the talk "Optimizing Test Case Design with Domain Analysis," which was delivered to the Testingmind Test Automation & Digital QA Summit 2020 conference on April 29, 2020.
+
+## Greenacre Lending ##
+
+The Greenacre Lending Company needs an application that allows their customers to quickly get a pre-approval on home mortgages. A mockup of the applications main screen is shown below:
+
+![Greenacre Loan Approval App](./docs/images/main-page-mobile.png)
+
+**Further details can be found:**
+
+* [Requirements](./docs/requirements/requirements.md)
+* [UI Mockups](./docs/requirements/ui-mockups.md)
+
+## Future Work ##
+
+* The application doesn't currently exist. The goal is to implement it for actual testing practice.
