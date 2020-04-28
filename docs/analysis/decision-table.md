@@ -1,6 +1,7 @@
 # Decision Table #
 
 The values selected in this table were based upon:
+
 1. Domain Analysis
 2. Fault Modeling
     * Rules-based, leading to the use of a Decision Table
@@ -19,5 +20,10 @@ LTV | 79%, 80%, 81%, 101% | ... |
 Loan Amount | $49,999, $50,000, $50,001, $417,999, $418,000, $418,001, $999,999, $1,000,000, $1,000,001 | ... |
 Loan Type | Fixed, Adjustable | ... |
 Loan Period | 10, 15, 30, 40 | ... |
+| Effects | Possible Values | |
+| Loan Approved | true, false | |
+| Loan Program | Conventional, FHA, Jumbo | |
+| Interest Rate* | 2.25 - 5.25 | |
+\* Interest rate would typically vary with Prime, but for this example we've fixed prime at 4.000%
 
 After applying a pairwise algorithm to the input data and getting a smaller data set - 639 test cases here - the data could be brought back into the Decision Table as variants, with a much more manageable test set. This may make sense if the tests are going to be executed manually, without further specifying the individual steps. Using automation, the data should be formatted in a way to be consumed by those tests.
