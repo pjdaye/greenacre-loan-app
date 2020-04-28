@@ -1,6 +1,6 @@
-'''
+"""
 Oracle for the Greenacre project
-'''
+"""
 
 from rulengine.core import DataType, RuleOperator, ConditionOperator, Rule, Condition, ExecutableCondition
 from rulengine import execute

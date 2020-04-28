@@ -17,7 +17,6 @@ def read_csv(filename):
             row[3] = row[3].replace('~', '')
             data_table.append(row)
     
-    print(i)
     return data_table
 
 def build_output(data_table):
@@ -53,7 +52,6 @@ def build_output(data_table):
         test_case = [bfico, cfico, prop_type, price, down_pmt, loan_amt, loan_type, period, approval, program, rate]
         out_table.append(test_case)
     
-    print(i)
     return out_table
 
 def write_csv(data_out, filename):
@@ -70,11 +68,11 @@ def write_csv(data_out, filename):
             i += 1
             csv_writer.writerow(row)
     
-    print(i)
+    print('{} records created'.format(i))
 
 if __name__ == '__main__':
-    filename = 'input_data.csv'
-    output_file = 'test_data.csv'
+    filename = '..\\data\\input_data.csv'
+    output_file = '..\\data\\test_data.csv'
     data = read_csv(filename)
     output = build_output(data)
     write_csv(output, output_file)
