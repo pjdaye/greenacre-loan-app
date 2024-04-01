@@ -55,45 +55,90 @@ def rate(base, borrower_fico, coborrower_fico, type, program):
 
 def conventional_elligible(loan):
     # Conventional Mortgage Rules
-    conv_bfico_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 620, data_type = DataType.INTEGER)
+    conv_bfico_lbound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 620, data_type = DataType.INTEGER)
+    conv_bfico_ubound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.LESS_EQUAL, comparison_value = 850, data_type = DataType.INTEGER)
     conv_property_condition = Condition(value = loan.property_type, operator = ConditionOperator.CONTAINS, comparison_value = {'SFR', 'Condo', 'Townhouse', 'Multi-Family'}, data_type = DataType.STRING)
     conv_ltv_condition = Condition(value = loan.ltv, operator = ConditionOperator.LESS_EQUAL, comparison_value = 80, data_type = DataType.INTEGER)
     conv_amount_lbound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 50000, data_type = DataType.INTEGER)
     conv_amount_ubound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.LESS, comparison_value = 1000000, data_type = DataType.INTEGER)
 
     if loan.coborrower_fico is not None:
-        conv_cfico_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 520, data_type = DataType.INTEGER)
-        conventional_rules = Rule(operator = RuleOperator.AND, conditions = [conv_bfico_condition, conv_cfico_condition, conv_property_condition, conv_ltv_condition, conv_amount_lbound_condition, conv_amount_ubound_condition])
+        conv_cfico_lbound_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 520, data_type = DataType.INTEGER)
+        conv_cfico_ubound_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.LESS_EQUAL, comparison_value = 850, data_type = DataType.INTEGER)
+        conventional_rules = Rule(operator = RuleOperator.AND, conditions = [ conv_bfico_lbound_condition,
+                                                                              conv_bfico_ubound_condition,
+                                                                              conv_cfico_lbound_condition,
+                                                                              conv_cfico_ubound_condition,
+                                                                              conv_property_condition,
+                                                                              conv_ltv_condition,
+                                                                              conv_amount_lbound_condition,
+                                                                              conv_amount_ubound_condition ])
     else:
-        conventional_rules = Rule(operator = RuleOperator.AND, conditions = [conv_bfico_condition, conv_property_condition, conv_ltv_condition, conv_amount_lbound_condition, conv_amount_ubound_condition])
+        conventional_rules = Rule(operator = RuleOperator.AND, conditions = [ conv_bfico_lbound_condition,
+                                                                              conv_bfico_ubound_condition,
+                                                                              conv_property_condition,
+                                                                              conv_ltv_condition,
+                                                                              conv_amount_lbound_condition,
+                                                                              conv_amount_ubound_condition ])
     
     is_approved = execute([conventional_rules])
     return is_approved
 
 def fha_elligible(loan):
     # FHA Mortgage Rules
-    fha_bfico_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 300, data_type = DataType.INTEGER)
+    fha_bfico_lbound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 300, data_type = DataType.INTEGER)
+    fha_bfico_ubound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.LESS_EQUAL, comparison_value = 850, data_type = DataType.INTEGER)
     fha_property_condition = Condition(value = loan.property_type, operator = ConditionOperator.CONTAINS, comparison_value = {'SFR', 'Condo', 'Townhouse'}, data_type = DataType.STRING)
     fha_amount_lbound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 50000, data_type = DataType.INTEGER)
     fha_amount_ubound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.LESS, comparison_value = 418000, data_type = DataType.INTEGER)
-    fha_rules = Rule(operator = RuleOperator.AND, conditions = [fha_bfico_condition, fha_property_condition, fha_amount_lbound_condition, fha_amount_ubound_condition])
-    is_approved = execute([fha_rules])
 
+    if loan.coborrower_fico is not None:
+        fha_cfico_lbound_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 300, data_type = DataType.INTEGER)
+        fha_cfico_ubound_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.LESS_EQUAL, comparison_value = 850, data_type = DataType.INTEGER)
+        fha_rules = Rule(operator = RuleOperator.AND, conditions = [ fha_bfico_lbound_condition,
+                                                                     fha_bfico_ubound_condition,
+                                                                     fha_cfico_lbound_condition,
+                                                                     fha_cfico_ubound_condition,
+                                                                     fha_property_condition,
+                                                                     fha_amount_lbound_condition,
+                                                                     fha_amount_ubound_condition ])
+    else:
+        fha_rules = Rule(operator = RuleOperator.AND, conditions = [ fha_bfico_lbound_condition,
+                                                                     fha_bfico_ubound_condition,
+                                                                     fha_property_condition,
+                                                                     fha_amount_lbound_condition,
+                                                                     fha_amount_ubound_condition ])
+    
+    is_approved = execute([fha_rules])
     return is_approved
 
 def jumbo_elligible(loan):
     # Jumbo Mortgage Rules
-    jumbo_bfico_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 660, data_type = DataType.INTEGER)
+    jumbo_bfico_lbound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 660, data_type = DataType.INTEGER)
+    jumbo_bfico_ubound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.LESS_EQUAL, comparison_value = 850, data_type = DataType.INTEGER)
     jumbo_property_condition = Condition(value = loan.property_type, operator = ConditionOperator.CONTAINS, comparison_value = {'SFR', 'Condo', 'Townhouse', 'Multi-Family'}, data_type = DataType.STRING)
     jumbo_ltv_condition = Condition(value = loan.ltv, operator = ConditionOperator.LESS_EQUAL, comparison_value = 80, data_type = DataType.INTEGER)
     jumbo_amount_lbound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 418000, data_type = DataType.INTEGER)
     jumbo_amount_ubound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.LESS, comparison_value = 1000000, data_type = DataType.INTEGER)
     
     if loan.coborrower_fico is not None:
-        jumbo_cfico_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 620, data_type = DataType.INTEGER)
-        jumbo_rules = Rule(operator = RuleOperator.AND, conditions = [jumbo_bfico_condition, jumbo_cfico_condition, jumbo_property_condition, jumbo_ltv_condition, jumbo_amount_lbound_condition, jumbo_amount_ubound_condition])
+        jumbo_cfico_lbound_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 620, data_type = DataType.INTEGER)
+        jumbo_cfico_ubound_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.LESS_EQUAL, comparison_value = 850, data_type = DataType.INTEGER)
+        jumbo_rules = Rule(operator = RuleOperator.AND, conditions = [ jumbo_bfico_lbound_condition,
+                                                                       jumbo_bfico_ubound_condition,
+                                                                       jumbo_cfico_lbound_condition,
+                                                                       jumbo_cfico_ubound_condition,
+                                                                       jumbo_property_condition,
+                                                                       jumbo_ltv_condition,
+                                                                       jumbo_amount_lbound_condition,
+                                                                       jumbo_amount_ubound_condition ])
     else:
-        jumbo_rules = Rule(operator = RuleOperator.AND, conditions = [jumbo_bfico_condition, jumbo_property_condition, jumbo_ltv_condition, jumbo_amount_lbound_condition, jumbo_amount_ubound_condition])
+        jumbo_rules = Rule(operator = RuleOperator.AND, conditions = [ jumbo_bfico_lbound_condition,
+                                                                       jumbo_bfico_ubound_condition,
+                                                                       jumbo_property_condition,
+                                                                       jumbo_ltv_condition,
+                                                                       jumbo_amount_lbound_condition,
+                                                                       jumbo_amount_ubound_condition ])
 
     is_approved = execute([jumbo_rules])
     return is_approved

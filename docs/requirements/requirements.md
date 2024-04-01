@@ -85,7 +85,7 @@ Loans will be evaluated for approval according to the following rules:
 | Loan Information | Conventional | FHA | Jumbo |
 | :--- | :--- | :--- | :--- |
 | Borrower FICO | 620+ | 300+ | 660+ |
-| Co-Borrower FICO | None, or 520+ | None, or 300+ | None, or 660+ |
+| Co-Borrower FICO | None, or 520+ | None, or 300+ | None, or 620+ |
 | Property Type | Any Residential | SFR, Condo, Townhouse | Any Residential |
 | LTV (Loan-to-Value) | <=80% | <=100% | <=80% |
 | Loan Amount | $50,000 - $1,000,000 | $50,000 - $418,000 | $418,000 - $1,000,000 |

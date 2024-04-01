@@ -1,2 +1,5 @@
 
 test/utilities/__pycache__/rules_engine_oracle.cpython-38.pyc
+
+.fake
+.ionide
