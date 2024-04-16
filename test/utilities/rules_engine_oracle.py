@@ -5,7 +5,7 @@ Oracle for the Greenacre project
 from rulengine.core import DataType, RuleOperator, ConditionOperator, Rule, Condition, ExecutableCondition
 from rulengine import execute
 
-prime = 4.000
+prime = 7.000
 step = 0.125
 
 class Loan:

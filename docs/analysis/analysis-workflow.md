@@ -1,4 +1,4 @@
-# Test Design Analysis and Workflow #
+# Test Design Analysis and Workflow
 
 As presented in "Optimizing Test Case Design with Domain Analysis," which was delivered to the Testingmind Test Automation & Digital QA Summit 2020 conference on April 29, 2020, the following workflow was used for designing tests to exercise the Greenacre Loan Application app.
 
@@ -25,7 +25,7 @@ A state-transition diagram was prepared while analyzing the domain of the AUT, b
 
 ![State-Transition Diagram](../images/state-transition-diagram.png)
 
-## References ##
+## References
 
 The following tools were used:
 
