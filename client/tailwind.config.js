@@ -7,9 +7,9 @@ module.exports = {
     },
     extend: {
       colors: {
-        'money-green': '#658e86',
-        'cancel-red': '#9b514c',
-        'action-teal': '#192e38',
+        'money-green': '#70988B',
+        'cancel-red': '#AC5348',
+        'action-teal': '#061B23',
       }
     },
   },

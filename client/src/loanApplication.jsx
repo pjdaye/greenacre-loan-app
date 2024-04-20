@@ -9,16 +9,23 @@ const LoanApplication = () => {
         <h3 className="text-lg font-semibold">Borrower's Information</h3>
         <div className="flex space-x-4">
           <input
+            name="borrowerFirstName"
             className="border border-gray-300 rounded-md p-2 w-full"
             placeholder="First Name"
+            maxLength="50"
           />
           <input
+            name="borrowerLastName"
             className="border border-gray-300 rounded-md p-2 w-full"
             placeholder="Last Name"
+            maxLength="50"
           />
           <input
+            name="borrowerFico"
             className="border border-gray-300 rounded-md p-2 w-full"
             placeholder="FICO"
+            min="300"
+            max="850"
           />
         </div>
       </div>
@@ -26,16 +33,23 @@ const LoanApplication = () => {
         <h3 className="text-lg font-semibold">Co-Borrower's Information</h3>
         <div className="flex space-x-4">
           <input
+            name="coborrowerFirstName"
             className="border border-gray-300 rounded-md p-2 w-full"
             placeholder="First Name"
+            maxLength="50"
           />
           <input
+            name="coborrowerLastName"
             className="border border-gray-300 rounded-md p-2 w-full"
             placeholder="Last Name"
+            maxLength="50"
           />
           <input
+            name="coborrowerFico"
             className="border border-gray-300 rounded-md p-2 w-full"
             placeholder="FICO"
+            min="300"
+            max="850"
           />
         </div>
       </div>
@@ -51,6 +65,7 @@ const LoanApplication = () => {
               <option value="commercial">Commercial</option>
             </select>
             <input
+              name="purchasePrice"
               className="border border-gray-300 rounded-md p-2 w-full"
               placeholder="Purchase Price"
             />
@@ -59,6 +74,8 @@ const LoanApplication = () => {
             <input
               className="border border-gray-300 rounded-md p-2 w-full"
               placeholder="Zip Code"
+              minLength="5"
+              maxLength="10"
             />
             <input
               className="border border-gray-300 rounded-md p-2 w-full"
@@ -69,17 +86,20 @@ const LoanApplication = () => {
         <div>
           <h3 className="text-lg font-semibold">Loan Information</h3>
           <div className="flex space-x-4">
-            <select className="border border-gray-300 rounded-md p-2">
+            <select name="loanType" className="border border-gray-300 rounded-md p-2">
               <option value="fixed">Fixed</option>
               <option value="adjustable">Adjustable</option>
             </select>
             <input
+              name="loanAmount"
               className="border border-gray-300 rounded-md p-2 w-full"
               placeholder="Loan Amount"
+              min="50000"
+              max="1000000"
             />
           </div>
           <div className="mt-2">
-            <select className="border border-gray-300 rounded-md p-2 w-full">
+            <select name="loanTerm" className="border border-gray-300 rounded-md p-2 w-full">
               <option value="10yr">10 years</option>
               <option value="15yr">15 years</option>
               <option value="30yr">30 years</option>
