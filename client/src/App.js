@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import './index.css'
+import LoanApplication from './loanApplication';
+import HousePng from './images/house.png';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App max-w-3xl mx-auto p-4 bg-white shadow-md rounded-md">
+      <h2 className="text-4xl text-money-green font-bold font-sans mb-4">Greenacre Loan Application</h2>
+      <LoanApplication />
+      <div className="mt-4">
+        <img src={HousePng} alt="House" />
+      </div>
     </div>
   );
 }

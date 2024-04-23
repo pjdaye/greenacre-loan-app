@@ -4,6 +4,14 @@ import { Engine, Rule } from 'json-rules-engine';
 export default async function evaluateApplication(borrowerFico, coborrowerFico, propertyType, loanToValue, loanAmount, loanType, termYrs) {
     let engine = new Engine();
 
+    console.log(borrowerFico);
+    console.log(coborrowerFico);
+    console.log(propertyType);
+    console.log(loanToValue);
+    console.log(loanAmount);
+    console.log(loanType);
+    console.log(termYrs);
+
     let jumboRule = new Rule({
         conditions: {
             all: [{
@@ -181,6 +189,10 @@ export default async function evaluateApplication(borrowerFico, coborrowerFico, 
     let isJumboEligible = await results.almanac.factValue('jumboEligible');
     let isConventionalEligible = await results.almanac.factValue('conventionalEligible');
     let isFhaEligible = await results.almanac.factValue('fhaEligible');
+
+    console.log(isJumboEligible);
+    console.log(isConventionalEligible);
+    console.log(isFhaEligible);
 
     if (isJumboEligible) {
         return 'jumbo';
