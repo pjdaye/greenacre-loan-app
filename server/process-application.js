@@ -14,23 +14,14 @@ export default class Loan {
         this.coborrowerFicoAdjustment;
 
         this.borrowerFico = Number(borrowerFico);
-        console.log(this.borrowerFico);
         this.coborrowerFico = Number(coborrowerFico);
-        console.log(this.coborrowerFico);
         this.propertyType = propertyType;
-        console.log(this.propertyType);
         this.purchasePrice = Number(purchasePrice);
-        console.log(this.purchasePrice);
         this.downPayment = Number(downPayment);
-        console.log(this.downPayment);
         this.loanType = loanType;
-        console.log(this.loanType);
         this.loanAmount = Number(loanAmount);
-        console.log(this.loanAmount);
         this.term = term.replace('yr', '');
-        console.log(term);
         this.ltv = (loanAmount / purchasePrice) * 100;
-        console.log(this.ltv);
     }
 
     async processApplication() {

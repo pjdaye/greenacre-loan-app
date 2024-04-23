@@ -26,8 +26,6 @@ const LoanApplication = () => {
     event.preventDefault();
 
     const jsonFormData = JSON.stringify(formData);
-    console.log('formData:');
-    console.log(jsonFormData);
 
     fetch('/apply', {
       method: 'POST',

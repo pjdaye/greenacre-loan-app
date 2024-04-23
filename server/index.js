@@ -21,16 +21,6 @@ app.get('/health', (req, res) => {
 });
 
 app.post('/apply', async (req, res) => {
-    console.log(req.body);
-    console.log(req.body.borrowerFico);
-    console.log(req.body.coborrowerFico);
-    console.log(req.body.propertyType);
-    console.log(req.body.purchasePrice);
-    console.log(req.body.downPayment);
-    console.log(req.body.loanType);
-    console.log(req.body.loanAmount);
-    console.log(req.body.term);
-
     let loan = new Loan(req.body.borrowerFico,
                         req.body.coborrowerFico,
                         req.body.propertyType,
