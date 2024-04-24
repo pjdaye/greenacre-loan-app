@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
+import LoanApproval from './loanApproval';
 
 // const baseUrl = process.env.REACT_APP_API_URL;
 
 const LoanApplication = () => {
   const [formData, setFormData] = useState({
+    borrowerFirstName: '',
+    borrowerLastName: '',
     borrowerFico: '',
+    coborrowerFirstName: '',
+    coborrowerLastName: '',
     coborrowerFico: '',
     propertyType: 'sfr',
     purchasePrice: '',
+    zipCode: '',
     downPayment: '',
     loanType: 'fixed',
     loanAmount: '',
     term: '10yr',
   });
-  
+
+  const [approvalData, setApprovalData] = useState([]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -35,9 +43,31 @@ const LoanApplication = () => {
       body: jsonFormData
     })
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        setApprovalData(data);
+      })
       .catch(error => console.log('Error:', error)
-    );
+      );
+  };
+
+  const clearForm = async (event) => {
+    setFormData({
+      borrowerFirstName: '',
+      borrowerLastName: '',
+      borrowerFico: '',
+      coborrowerFirstName: '',
+      coborrowerLastName: '',
+      coborrowerFico: '',
+      propertyType: 'sfr',
+      purchasePrice: '',
+      zipCode: '',
+      downPayment: '',
+      loanType: 'fixed',
+      loanAmount: '',
+      term: '10yr'
+    });
+    setApprovalData({
+    });
   };
 
   return (
@@ -51,12 +81,16 @@ const LoanApplication = () => {
               className="border border-gray-300 rounded-md p-2 w-full"
               placeholder="First Name"
               maxLength="50"
+              value={formData.borrowerFirstName}
+              onChange={handleChange}
             />
             <input
               name="borrowerLastName"
               className="border border-gray-300 rounded-md p-2 w-full"
               placeholder="Last Name"
               maxLength="50"
+              value={formData.borrowerLastName}
+              onChange={handleChange}
             />
             <input
               name="borrowerFico"
@@ -77,12 +111,16 @@ const LoanApplication = () => {
               className="border border-gray-300 rounded-md p-2 w-full"
               placeholder="First Name"
               maxLength="50"
+              value={formData.coborrowerFirstName}
+              onChange={handleChange}
             />
             <input
               name="coborrowerLastName"
               className="border border-gray-300 rounded-md p-2 w-full"
               placeholder="Last Name"
               maxLength="50"
+              value={formData.coborrowerLastName}
+              onChange={handleChange}
             />
             <input
               name="coborrowerFico"
@@ -95,7 +133,7 @@ const LoanApplication = () => {
             />
           </div>
         </div>
-        <div className="flex justify-between mb-4">
+        <div className="flex justify-between mb-4 space-x-4">
           <div>
             <h3 className="text-lg font-semibold">Purchase Information</h3>
             <div className="flex space-x-4">
@@ -116,10 +154,13 @@ const LoanApplication = () => {
             </div>
             <div className="flex space-x-4 mt-2">
               <input
+                name="zipCode"
                 className="border border-gray-300 rounded-md p-2 w-full"
                 placeholder="Zip Code"
                 minLength="5"
                 maxLength="10"
+                value={formData.zipCode}
+                onChange={handleChange}
               />
               <input
                 name="downPayment"
@@ -161,46 +202,37 @@ const LoanApplication = () => {
           <button type="submit" name="submit" className="w-5/12 bg-money-green text-white py-2 px-4 rounded-md">
             Submit Loan
           </button>
-          <button name="cancel" className="w-5/12 bg-cancel-red text-white py-2 px-4 rounded-md">
+          <button type="button" name="cancel" className="w-5/12 bg-cancel-red text-white py-2 px-4 rounded-md" onClick={clearForm}>
             Cancel
           </button>
         </div>
-        <div className="grid grid-cols-10 bg-gray-200 p-4 rounded-md">
-          <div className="col-span-7">
-            <h3 className="text-2xl font-semibold mb-2">Loan Approval</h3>
-            <div className="grid grid-rows-3">
-              <div className="grid grid-cols-5">
-                <div className="col-span-2">
-                  <p className="text-lg font-bold">Your Loan Is:</p>
-                  <p className="text-lg font-bold">Your Interest Rate Is:</p>
-                  <p className="text-lg font-bold">Your Loan Program Is:</p>
-                </div>
-                <div className="col-span-3">
-                  <p className="text-lg text-money-green font-bold">APPROVED!</p>
-                  <p className="text-lg text-money-green font-bold">4.125%</p>
-                  <p className="text-lg text-money-green font-bold">FHA</p>
-                </div>
+        <div className="grid grid-cols-10 p-4 rounded-md">
+          {Object.keys(approvalData).length > 0 ? (
+            <LoanApproval data={approvalData} />
+          ) : (
+            <div className="col-span-7">
+              <div className="approvalData grid grid-rows-3 h-72">
               </div>
             </div>
-          </div>
+          )}
           <div className="col-span-3 grid grid-rows-4">
             <div>
-              <button className="w-full bg-action-teal text-white py-2 px-4 rounded-md">
+              <button className="w-full bg-action-teal text-white py-2 rounded-md" disabled>
                 Save Info
               </button>
             </div>
             <div>
-              <button className="w-full bg-action-teal text-white py-2 px-4 rounded-md">
+              <button className="w-full bg-action-teal text-white py-2 rounded-md" disabled>
                 Load Info
               </button>
             </div>
             <div>
-              <button className="w-full bg-action-teal text-white py-2 px-4 rounded-md">
+              <button className="w-full bg-action-teal text-white py-2 rounded-md" disabled>
                 Print
               </button>
             </div>
             <div>
-              <button className="w-full bg-action-teal text-white py-2 px-4 rounded-md">
+              <button className="w-full bg-action-teal text-white py-2 rounded-md" disabled>
                 Help?
               </button>
             </div>
