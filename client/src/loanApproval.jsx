@@ -20,7 +20,7 @@ const LoanApproval = (props) => {
     
     if (props.data.approval) {
         return (
-            <div className="col-span-7">
+            <div name="approvalPanel" className="col-span-7">
                 <h3 className="text-2xl font-semibold mb-2">Loan Approval</h3>
                 <div className="approvalData grid grid-rows-3">
                     <div className="grid grid-cols-5">
@@ -40,7 +40,7 @@ const LoanApproval = (props) => {
         )
     } else if (!props.data.approval) {
         return (
-            <div className="col-span-7">
+            <div name="approvalPanel" className="col-span-7">
                 <h3 className="text-2xl font-semibold mb-2">Loan Approval</h3>
                 <div className="approvalData grid grid-rows-3">
                     <div className="grid grid-cols-5">
