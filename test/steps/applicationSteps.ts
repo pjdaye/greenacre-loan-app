@@ -38,6 +38,11 @@ Then('the loan is approved', async ({ page }) => {
     await loanApplicationPage.verifyApproval();
 });
 
+Then('the loan is denied', async ({ page }) => {
+    const loanApplicationPage = new LoanApplicationPage(page);
+    await loanApplicationPage.verifyDenial();
+});
+
 Then('the loan program is {string}', async ({ page }, program: string) => {
     const loanApplicationPage = new LoanApplicationPage(page);
     await loanApplicationPage.verifyLoanProgram(program);

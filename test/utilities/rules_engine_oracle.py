@@ -58,9 +58,9 @@ def conventional_elligible(loan):
     conv_bfico_lbound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 620, data_type = DataType.INTEGER)
     conv_bfico_ubound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.LESS_EQUAL, comparison_value = 850, data_type = DataType.INTEGER)
     conv_property_condition = Condition(value = loan.property_type, operator = ConditionOperator.CONTAINS, comparison_value = {'SFR', 'Condo', 'Townhouse', 'Multi-Family'}, data_type = DataType.STRING)
-    conv_ltv_condition = Condition(value = loan.ltv, operator = ConditionOperator.LESS_EQUAL, comparison_value = 80, data_type = DataType.INTEGER)
+    conv_ltv_condition = Condition(value = loan.ltv, operator = ConditionOperator.LESS_EQUAL, comparison_value = 80, data_type = DataType.FLOAT)
     conv_amount_lbound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 50000, data_type = DataType.INTEGER)
-    conv_amount_ubound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.LESS, comparison_value = 1000000, data_type = DataType.INTEGER)
+    conv_amount_ubound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.LESS_EQUAL, comparison_value = 1000000, data_type = DataType.INTEGER)
 
     if loan.coborrower_fico is not None:
         conv_cfico_lbound_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 520, data_type = DataType.INTEGER)
@@ -89,8 +89,11 @@ def fha_elligible(loan):
     fha_bfico_lbound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 300, data_type = DataType.INTEGER)
     fha_bfico_ubound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.LESS_EQUAL, comparison_value = 850, data_type = DataType.INTEGER)
     fha_property_condition = Condition(value = loan.property_type, operator = ConditionOperator.CONTAINS, comparison_value = {'SFR', 'Condo', 'Townhouse'}, data_type = DataType.STRING)
+    fha_ltv_condition = Condition(value = loan.ltv, operator = ConditionOperator.LESS_EQUAL, comparison_value = 100, data_type = DataType.FLOAT)
     fha_amount_lbound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 50000, data_type = DataType.INTEGER)
-    fha_amount_ubound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.LESS, comparison_value = 418000, data_type = DataType.INTEGER)
+    fha_amount_ubound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.LESS_EQUAL, comparison_value = 418000, data_type = DataType.INTEGER)
+    fha_loan_type_condition = Condition(value = loan.loan_type, operator = ConditionOperator.CONTAINS, comparison_value = {'Fixed'}, data_type = DataType.STRING)
+    fha_term_condition = Condition(value = loan.loan_period, operator = ConditionOperator.CONTAINS, comparison_value = {'15', '30'}, data_type = DataType.STRING)
 
     if loan.coborrower_fico is not None:
         fha_cfico_lbound_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 300, data_type = DataType.INTEGER)
@@ -100,14 +103,20 @@ def fha_elligible(loan):
                                                                      fha_cfico_lbound_condition,
                                                                      fha_cfico_ubound_condition,
                                                                      fha_property_condition,
+                                                                     fha_ltv_condition,
                                                                      fha_amount_lbound_condition,
-                                                                     fha_amount_ubound_condition ])
+                                                                     fha_amount_ubound_condition,
+                                                                     fha_loan_type_condition,
+                                                                     fha_term_condition ])
     else:
         fha_rules = Rule(operator = RuleOperator.AND, conditions = [ fha_bfico_lbound_condition,
                                                                      fha_bfico_ubound_condition,
                                                                      fha_property_condition,
+                                                                     fha_ltv_condition,
                                                                      fha_amount_lbound_condition,
-                                                                     fha_amount_ubound_condition ])
+                                                                     fha_amount_ubound_condition,
+                                                                     fha_loan_type_condition,
+                                                                     fha_term_condition ])
     
     is_approved = execute([fha_rules])
     return is_approved
@@ -117,9 +126,10 @@ def jumbo_elligible(loan):
     jumbo_bfico_lbound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 660, data_type = DataType.INTEGER)
     jumbo_bfico_ubound_condition = Condition(value = loan.borrower_fico, operator = ConditionOperator.LESS_EQUAL, comparison_value = 850, data_type = DataType.INTEGER)
     jumbo_property_condition = Condition(value = loan.property_type, operator = ConditionOperator.CONTAINS, comparison_value = {'SFR', 'Condo', 'Townhouse', 'Multi-Family'}, data_type = DataType.STRING)
-    jumbo_ltv_condition = Condition(value = loan.ltv, operator = ConditionOperator.LESS_EQUAL, comparison_value = 80, data_type = DataType.INTEGER)
+    jumbo_ltv_condition = Condition(value = loan.ltv, operator = ConditionOperator.LESS_EQUAL, comparison_value = 80, data_type = DataType.FLOAT)
     jumbo_amount_lbound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 418000, data_type = DataType.INTEGER)
-    jumbo_amount_ubound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.LESS, comparison_value = 1000000, data_type = DataType.INTEGER)
+    jumbo_amount_ubound_condition = Condition(value = loan.loan_amount, operator = ConditionOperator.LESS_EQUAL, comparison_value = 1000000, data_type = DataType.INTEGER)
+    jumbo_term_condition = Condition(value = loan.loan_period, operator = ConditionOperator.CONTAINS, comparison_value = {'15', '30', '40'}, data_type = DataType.STRING)
     
     if loan.coborrower_fico is not None:
         jumbo_cfico_lbound_condition = Condition(value = loan.coborrower_fico, operator = ConditionOperator.GREATER_EQUAL, comparison_value = 620, data_type = DataType.INTEGER)
@@ -131,14 +141,16 @@ def jumbo_elligible(loan):
                                                                        jumbo_property_condition,
                                                                        jumbo_ltv_condition,
                                                                        jumbo_amount_lbound_condition,
-                                                                       jumbo_amount_ubound_condition ])
+                                                                       jumbo_amount_ubound_condition, 
+                                                                       jumbo_term_condition ])
     else:
         jumbo_rules = Rule(operator = RuleOperator.AND, conditions = [ jumbo_bfico_lbound_condition,
                                                                        jumbo_bfico_ubound_condition,
                                                                        jumbo_property_condition,
                                                                        jumbo_ltv_condition,
                                                                        jumbo_amount_lbound_condition,
-                                                                       jumbo_amount_ubound_condition ])
+                                                                       jumbo_amount_ubound_condition, 
+                                                                       jumbo_term_condition ])
 
     is_approved = execute([jumbo_rules])
     return is_approved
@@ -154,10 +166,10 @@ def mortgage_oracle(loan):
         base_rate = prime - (2 * step)
     elif conventional_elligible(loan):
         mortgage_program = 'Conventional'
-        base_rate = prime - (2 * step)
+        base_rate = prime - step
     elif fha_elligible(loan):
         mortgage_program = 'FHA'
-        base_rate = prime - step
+        base_rate = prime + step
     
     if mortgage_program is not None:
         is_approved = True

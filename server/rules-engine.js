@@ -7,51 +7,63 @@ export default async function evaluateApplication(borrowerFico, coborrowerFico, 
     let jumboRule = new Rule({
         conditions: {
             all: [{
+                all: [{
                     fact: 'bfico',
                     operator: 'greaterThanInclusive',
                     value: 660
                 }, {
-                    any: [{
+                    fact: 'bfico',
+                    operator: 'lessThanInclusive',
+                    value: 850
+                }]
+            }, {
+                any: [{
+                    all: [{
                         fact: 'cfico',
                         operator: 'greaterThanInclusive',
                         value: 620
                     }, {
                         fact: 'cfico',
-                        operator: 'equal',
-                        value: null
-                    }]
-                }, {
-                    fact: 'proptype',
-                    operator: 'in',
-                    value: ['sfr', 'condo', 'townhouse', 'multi']
-                }, {
-                    fact: 'ltv',
-                    operator: 'lessThanInclusive',
-                    value: 80
-                }, {
-                    all: [{
-                        fact: 'loanamount',
-                        operator: 'greaterThanInclusive',
-                        value: 418000
-                    }, {
-                        fact: 'loanamount',
                         operator: 'lessThanInclusive',
-                        value: 1000000
+                        value: 850
                     }]
                 }, {
-                    fact: 'loantype',
-                    operator: 'in',
-                    value: ['fixed', 'adjustable']
+                    fact: 'cfico',
+                    operator: 'equal',
+                    value: null
+                }]
+            }, {
+                fact: 'proptype',
+                operator: 'in',
+                value: ['sfr', 'condo', 'townhouse', 'multi']
+            }, {
+                fact: 'ltv',
+                operator: 'lessThanInclusive',
+                value: 80
+            }, {
+                all: [{
+                    fact: 'loanamount',
+                    operator: 'greaterThanInclusive',
+                    value: 418000
                 }, {
-                    fact: 'term',
-                    operator: 'in',
-                    value: ['15', '30', '40']
+                    fact: 'loanamount',
+                    operator: 'lessThanInclusive',
+                    value: 1000000
+                }]
+            }, {
+                fact: 'loantype',
+                operator: 'in',
+                value: ['fixed', 'adjustable']
+            }, {
+                fact: 'term',
+                operator: 'in',
+                value: ['15', '30', '40']
             }]
         },
-        onSuccess: async function (event, almanac) { 
+        onSuccess: async function (event, almanac) {
             almanac.addFact('jumboEligible', true);
         },
-        onFailure: async function (event, almanac) { 
+        onFailure: async function (event, almanac) {
             almanac.addFact('jumboEligible', false);
         },
     });
@@ -61,45 +73,57 @@ export default async function evaluateApplication(borrowerFico, coborrowerFico, 
     let conventionalRule = new Rule({
         conditions: {
             all: [{
+                all: [{
                     fact: 'bfico',
                     operator: 'greaterThanInclusive',
                     value: 620
                 }, {
-                    any: [{
+                    fact: 'bfico',
+                    operator: 'lessThanInclusive',
+                    value: 850
+                }]
+            }, {
+                any: [{
+                    all: [{
                         fact: 'cfico',
                         operator: 'greaterThanInclusive',
                         value: 520
                     }, {
                         fact: 'cfico',
-                        operator: 'equal',
-                        value: null
-                    }]
-                }, {
-                    fact: 'proptype',
-                    operator: 'in',
-                    value: ['sfr', 'condo', 'townhouse', 'multi']
-                }, {
-                    fact: 'ltv',
-                    operator: 'lessThanInclusive',
-                    value: 80
-                }, {
-                    all: [{
-                        fact: 'loanamount',
-                        operator: 'greaterThanInclusive',
-                        value: 50000
-                    }, {
-                        fact: 'loanamount',
                         operator: 'lessThanInclusive',
-                        value: 1000000
+                        value: 850
                     }]
                 }, {
-                    fact: 'loantype',
-                    operator: 'in',
-                    value: ['fixed', 'adjustable']
+                    fact: 'cfico',
+                    operator: 'equal',
+                    value: null
+                }]
+            }, {
+                fact: 'proptype',
+                operator: 'in',
+                value: ['sfr', 'condo', 'townhouse', 'multi']
+            }, {
+                fact: 'ltv',
+                operator: 'lessThanInclusive',
+                value: 80
+            }, {
+                all: [{
+                    fact: 'loanamount',
+                    operator: 'greaterThanInclusive',
+                    value: 50000
                 }, {
-                    fact: 'term',
-                    operator: 'in',
-                    value: ['10', '15', '30', '40']
+                    fact: 'loanamount',
+                    operator: 'lessThanInclusive',
+                    value: 1000000
+                }]
+            }, {
+                fact: 'loantype',
+                operator: 'in',
+                value: ['fixed', 'adjustable']
+            }, {
+                fact: 'term',
+                operator: 'in',
+                value: ['10', '15', '30', '40']
             }]
         },
         onSuccess: async function (event, almanc) {
@@ -115,45 +139,57 @@ export default async function evaluateApplication(borrowerFico, coborrowerFico, 
     let FhaRule = new Rule({
         conditions: {
             all: [{
+                all: [{
                     fact: 'bfico',
                     operator: 'greaterThanInclusive',
                     value: 300
                 }, {
-                    any: [{
+                    fact: 'bfico',
+                    operator: 'lessThanInclusive',
+                    value: 850
+                }]
+            }, {
+                any: [{
+                    all: [{
                         fact: 'cfico',
                         operator: 'greaterThanInclusive',
                         value: 300
                     }, {
                         fact: 'cfico',
-                        operator: 'equal',
-                        value: null
-                    }]
-                }, {
-                    fact: 'proptype',
-                    operator: 'in',
-                    value: ['sfr', 'condo', 'townhouse']
-                }, {
-                    fact: 'ltv',
-                    operator: 'lessThanInclusive',
-                    value: 100
-                }, {
-                    all: [{
-                        fact: 'loanamount',
-                        operator: 'greaterThanInclusive',
-                        value: 50000
-                    }, {
-                        fact: 'loanamount',
                         operator: 'lessThanInclusive',
-                        value: 418000
+                        value: 850
                     }]
                 }, {
-                    fact: 'loantype',
+                    fact: 'cfico',
                     operator: 'equal',
-                    value: 'fixed'
+                    value: null
+                }]
+            }, {
+                fact: 'proptype',
+                operator: 'in',
+                value: ['sfr', 'condo', 'townhouse']
+            }, {
+                fact: 'ltv',
+                operator: 'lessThanInclusive',
+                value: 100
+            }, {
+                all: [{
+                    fact: 'loanamount',
+                    operator: 'greaterThanInclusive',
+                    value: 50000
                 }, {
-                    fact: 'term',
-                    operator: 'in',
-                    value: ['15', '30']
+                    fact: 'loanamount',
+                    operator: 'lessThanInclusive',
+                    value: 418000
+                }]
+            }, {
+                fact: 'loantype',
+                operator: 'equal',
+                value: 'fixed'
+            }, {
+                fact: 'term',
+                operator: 'in',
+                value: ['15', '30']
             }]
         },
         onSuccess: async function (event, almanac) {

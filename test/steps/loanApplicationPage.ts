@@ -102,6 +102,10 @@ export class LoanApplicationPage {
         await expect(this.approvalLabel).toBeVisible();
     }
 
+    async verifyDenial() {
+        await expect(this.denialLabel).toBeVisible();
+    }
+
     async verifyInterestRate(interestRate: string) {
         await expect(this.interestRateLabel).toContainText(interestRate);
     }

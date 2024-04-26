@@ -39,7 +39,7 @@ export default class Loan {
             this.borrowerFicoAdjustment = this.getBorrowerFicoAdjustment();
             this.coborrowerFicoAdjustment = this.getCoborrowerFicoAdjustment();
 
-            this.rate = this.prime + ((this.programAdjustment + this.loanTypeAdjustment + this.borrowerFicoAdjustment + this.coborrowerFicoAdjustment) * this.step);
+            this.rate = this.prime + this.loanTypeAdjustment + ((this.programAdjustment + this.borrowerFicoAdjustment + this.coborrowerFicoAdjustment) * this.step);
             return {
                 approval: true,
                 program: this.mortgageProgram,
@@ -62,7 +62,7 @@ export default class Loan {
     }
 
     getLoanTypeAdjustment() {
-        if (this.loantype === 'adjustable') {
+        if (this.loanType === 'adjustable') {
             return -1.5;
         } else {
             return 0;

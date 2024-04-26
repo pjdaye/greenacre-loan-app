@@ -15,6 +15,7 @@ bfico	cfico	prop_type	price	down_pmt	loan_amt	loan_type	period	approval	program	
 850	520	Multi-Family	61727	11728	49999	Fixed	30	FALSE	none	0
 699	321	Condo	1265824	265823	1000001	Fixed	10	FALSE	none	0
 759	301	Multi-Family	1234569	234568	1000001	Fixed	40	FALSE	none	0
+619	0	SFR	63289	13290	49999	Fixed	15	FALSE	none	0
 659	620	Multi-Family	1234569	234568	1000001	Fixed	10	FALSE	none	0
 701	419	SFR	61727	11728	49999	Fixed	15	FALSE	none	0
 681	319	Condo	1250001	250000	1000001	Adjustable	15	FALSE	none	0
@@ -24,6 +25,8 @@ bfico	cfico	prop_type	price	down_pmt	loan_amt	loan_type	period	approval	program	
 680	619	Townhouse	1234569	234568	1000001	Adjustable	40	FALSE	none	0
 700	421	Multi-Family	61727	11728	49999	Adjustable	30	FALSE	none	0
 761	521	Multi-Family	62498	12499	49999	Fixed	15	FALSE	none	0
+761	0	Condo	1265824	265823	1000001	Fixed	15	FALSE	none	0
+660	0	Multi-Family	61727	11728	49999	Adjustable	30	FALSE	none	0
 640	319	Multi-Family	62498	12499	49999	Adjustable	10	FALSE	none	0
 661	419	SFR	61727	11728	49999	Adjustable	30	FALSE	none	0
 660	519	Townhouse	63289	13290	49999	Adjustable	10	FALSE	none	0
@@ -68,13 +71,16 @@ bfico	cfico	prop_type	price	down_pmt	loan_amt	loan_type	period	approval	program	
 701	321	Condo	61727	11728	49999	Fixed	40	FALSE	none	0
 850	321	SFR	61727	11728	49999	Fixed	30	FALSE	none	0
 641	300	SFR	1250001	250000	1000001	Adjustable	10	FALSE	none	0
+659	0	SFR	63289	13290	49999	Adjustable	10	FALSE	none	0
 701	420	Multi-Family	62498	12499	49999	Fixed	10	FALSE	none	0
 700	321	Condo	1234569	234568	1000001	Fixed	30	FALSE	none	0
 849	519	Townhouse	61727	11728	49999	Fixed	10	FALSE	none	0
 301	301	SFR	62498	12499	49999	Fixed	10	FALSE	none	0
+641	0	Condo	62498	12499	49999	Fixed	15	FALSE	none	0
 701	320	SFR	62498	12499	49999	Fixed	15	FALSE	none	0
 699	849	Condo	1234569	234568	1000001	Fixed	40	FALSE	none	0
 849	621	Townhouse	61727	11728	49999	Fixed	15	FALSE	none	0
+621	0	Multi-Family	1250001	250000	1000001	Fixed	15	FALSE	none	0
 681	849	Townhouse	61727	11728	49999	Adjustable	10	FALSE	none	0
 301	420	SFR	62498	12499	49999	Adjustable	40	FALSE	none	0
 700	420	SFR	63289	13290	49999	Adjustable	30	FALSE	none	0
@@ -88,6 +94,7 @@ bfico	cfico	prop_type	price	down_pmt	loan_amt	loan_type	period	approval	program	
 619	620	Townhouse	63289	13290	49999	Fixed	40	FALSE	none	0
 620	519	SFR	62498	12499	49999	Fixed	15	FALSE	none	0
 849	320	Condo	61727	11728	49999	Adjustable	15	FALSE	none	0
+301	0	Condo	1265824	265823	1000001	Adjustable	10	FALSE	none	0
 620	850	Multi-Family	61727	11728	49999	Adjustable	40	FALSE	none	0
 660	320	SFR	61727	11728	49999	Adjustable	15	FALSE	none	0
 761	520	Multi-Family	62498	12499	49999	Fixed	15	FALSE	none	0
