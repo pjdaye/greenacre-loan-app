@@ -1,0 +1,9 @@
+bfico	cfico	prop_type	price	down_pmt	loan_amt	loan_type	period	approval	program	rate
+850	621	Condo	1265822	265822	1000000	Fixed	40	TRUE	Jumbo	6.75
+759	850	Condo	1250000	250000	1000000	Fixed	30	TRUE	Jumbo	6.875
+699	621	Townhouse	1265822	265822	1000000	Fixed	15	TRUE	Jumbo	7
+660	621	Condo	1265822	265822	1000000	Adjustable	15	TRUE	Jumbo	5.625
+680	620	Multi-Family	1265821	265822	999999	Adjustable	15	TRUE	Jumbo	5.5
+850	849	Multi-Family	529113	111113	418000	Adjustable	15	TRUE	Jumbo	5.25
+679	621	Townhouse	529113	111113	418000	Adjustable	40	TRUE	Jumbo	5.625
+700	621	Condo	522500	104500	418000	Fixed	15	TRUE	Jumbo	6.875

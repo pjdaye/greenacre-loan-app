@@ -1,9 +1,9 @@
-# Greenacre Loan Application App UI Mockups #
+# Greenacre Loan Application App UI Mockups
 
-## Web UI ##
+## Web UI
 
-![Main Page: Web](../images/main-page-web.png)
+![Main Page: Web](C:\Users\pjday\OneDrive\Documents\projects\greenacre-loan-app\docs\images\greenacre-desktop.png)
 
-## Mobile UI ##
+## Mobile UI
 
-![Main Page: Mobile](../images/main-page-mobile.png)
+![Main Page: Mobile](C:\Users\pjday\OneDrive\Documents\projects\greenacre-loan-app\docs\images\greenacre-mobile-app.png)
