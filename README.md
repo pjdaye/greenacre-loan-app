@@ -8,7 +8,7 @@ The Greenacre Loan Application facilitates quick pre-approvals for home mortgage
 
 This application was featured in the **Crafting Excellence: Optimizing Test Case Design with Domain Analysis** talk at the STAREAST 2024 conference.
 
-![Greenacre Loan Approval App](C:\Users\pjday\OneDrive\Documents\projects\greenacre-loan-app\docs\images\greenacre-desktop.png)
+![Greenacre Loan Approval App](./docs/images/greenacre-desktop.png)
 
 ## Prerequisites
 
