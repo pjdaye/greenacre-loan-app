@@ -38,7 +38,7 @@ This application was featured in the **Crafting Excellence: Optimizing Test Case
 ### Automated Tests
 
 * **Framework**: Playwright (TypeScript)
-* **Running Tests**: ```NODE_OPTIONS='--loader ts-node/esm --no-warnings' npx bddgen && npx playwright test```
+* **Running Tests**: ```npx bddgen && npx playwright test```
 * **BDD Tests**: Tests are crafted using BDD principles with the playwright-bdd package. See the [Playwright-BDD Documentation](https://vitalets.github.io/playwright-bdd/#) for more details.
 
 > **NOTE**:
