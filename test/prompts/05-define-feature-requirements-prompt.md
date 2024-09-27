@@ -1,15 +1,13 @@
-# **Title:** Generate Test Automation Code
+# **Title:** Set the Business Context
 
 ## **Overview:**
 
-Create skeleton code for the automated tests in the desired language and framework.
+Provide the Generative AI with information about the business context of the application, its users, the feature to be tested, and the requirement(s) of the new feature.
 
-* **Discipline:** Generate Test Cases
-* **Task:** Generate Code
+* **Discipline:** Domain Analysis
+* **Task:** Business Context
 * **Goals:**
-  * Generate Test Input Data
-  * Generate Test Oracle
-  * Generate Test Automation
+  * Review Requirements
 
 ---
 

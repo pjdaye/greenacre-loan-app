@@ -1,5 +1,5 @@
 import { createBdd } from "playwright-bdd";
-import { LoanApplicationPage } from "./loanApplicationPage.ts";
+import { LoanApplicationPage } from "../models/loanApplicationPage.ts";
 
 const { Given, When, Then } = createBdd();
 
