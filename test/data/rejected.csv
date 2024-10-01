@@ -1,0 +1,114 @@
+Borrower_FICO,Co_Borrower_FICO,Property_Type,Loan_Amount,LTV,Loan_Type,Loan_Period,Approval,Program,Rate
+299,None,Single Family,49999,0,Fixed,10,False,NA,NA
+300,299,Condo,50000,1,Adjustable,10,False,NA,NA
+301,300,Townhouse,50001,2,Adjustable,15,False,NA,NA
+619,301,Multi-Family,417999,79,Fixed,15,False,NA,NA
+620,519,Commercial,418000,80,Fixed,30,False,NA,NA
+621,520,Commercial,418001,81,Adjustable,40,False,NA,NA
+659,521,Multi-Family,999999,99,Adjustable,30,False,NA,NA
+660,619,Townhouse,1000000,100,Fixed,40,False,NA,NA
+661,620,Condo,1000001,101,Fixed,40,False,NA,NA
+849,621,Single Family,1000001,100,Adjustable,30,False,NA,NA
+850,849,Single Family,1000000,99,Adjustable,15,False,NA,NA
+851,850,Condo,999999,81,Fixed,15,False,NA,NA
+851,851,Townhouse,418001,80,Adjustable,10,False,NA,NA
+850,851,Multi-Family,418000,0,Adjustable,40,False,NA,NA
+849,620,Commercial,49999,1,Adjustable,15,False,NA,NA
+661,619,Commercial,50000,2,Adjustable,10,False,NA,NA
+660,521,Single Family,50001,79,Adjustable,40,False,NA,NA
+621,519,Townhouse,50000,101,Adjustable,15,False,NA,NA
+620,301,Townhouse,49999,99,Adjustable,40,False,NA,NA
+619,300,Condo,418001,99,Fixed,30,False,NA,NA
+301,299,Multi-Family,1000000,101,Fixed,30,False,NA,NA
+300,None,Multi-Family,50001,80,Fixed,15,False,NA,NA
+299,850,Commercial,417999,100,Adjustable,40,False,NA,NA
+619,849,Townhouse,1000001,1,Fixed,40,False,NA,NA
+621,621,Multi-Family,49999,2,Fixed,10,False,NA,NA
+659,851,Single Family,50000,81,Fixed,30,False,NA,NA
+660,None,Commercial,999999,101,Adjustable,10,False,NA,NA
+849,521,Condo,418000,100,Fixed,10,False,NA,NA
+299,299,Townhouse,418000,81,Fixed,15,False,NA,NA
+300,301,Single Family,999999,2,Fixed,40,False,NA,NA
+301,519,Single Family,418001,1,Fixed,40,False,NA,NA
+620,520,Multi-Family,1000001,0,Fixed,15,False,NA,NA
+851,849,Commercial,50001,0,Fixed,30,False,NA,NA
+659,300,Commercial,1000000,79,Fixed,10,False,NA,NA
+849,619,Multi-Family,418001,81,Fixed,15,False,NA,NA
+660,620,Multi-Family,50000,99,Fixed,30,False,NA,NA
+619,None,Condo,1000000,81,Adjustable,10,False,NA,NA
+851,301,Condo,50001,1,Fixed,30,False,NA,NA
+661,299,Single Family,49999,80,Fixed,30,False,NA,NA
+301,850,Condo,49999,0,Fixed,10,False,NA,NA
+300,851,Commercial,1000001,99,Fixed,10,False,NA,NA
+299,849,Multi-Family,418001,100,Fixed,30,False,NA,NA
+850,620,Single Family,417999,81,Fixed,10,False,NA,NA
+621,619,Single Family,418000,99,Fixed,30,False,NA,NA
+851,300,Multi-Family,50000,100,Fixed,40,False,NA,NA
+659,519,Multi-Family,50001,100,Fixed,10,False,NA,NA
+850,621,Condo,418001,101,Fixed,40,False,NA,NA
+299,521,Condo,1000001,2,Fixed,15,False,NA,NA
+300,520,Single Family,49999,101,Fixed,30,False,NA,NA
+620,None,Single Family,418001,2,Fixed,30,False,NA,NA
+619,850,Single Family,418000,2,Fixed,30,False,NA,NA
+660,851,Condo,49999,79,Fixed,15,False,NA,NA
+621,299,Condo,999999,100,Fixed,15,False,NA,NA
+301,849,Condo,999999,79,Fixed,10,False,NA,NA
+661,301,Multi-Family,1000000,1,Fixed,10,False,NA,NA
+659,620,Townhouse,418000,101,Fixed,15,False,NA,NA
+851,621,Single Family,1000000,2,Fixed,30,False,NA,NA
+301,619,Condo,1000001,80,Fixed,30,False,NA,NA
+619,621,Commercial,50001,99,Fixed,30,False,NA,NA
+620,300,Single Family,999999,1,Fixed,30,False,NA,NA
+300,521,Townhouse,418001,0,Fixed,30,False,NA,NA
+299,301,Commercial,50000,80,Fixed,30,False,NA,NA
+850,299,Commercial,1000001,2,Fixed,40,False,NA,NA
+849,None,Townhouse,417999,99,Fixed,40,False,NA,NA
+661,850,Multi-Family,418001,99,Fixed,30,False,NA,NA
+849,300,Condo,50001,101,Fixed,30,False,NA,NA
+299,520,Condo,1000000,99,Fixed,10,False,NA,NA
+620,851,Condo,1000000,101,Fixed,30,False,NA,NA
+619,619,Condo,49999,101,Fixed,30,False,NA,NA
+301,621,Commercial,418000,1,Fixed,30,False,NA,NA
+851,519,Condo,49999,99,Fixed,30,False,NA,NA
+659,301,Condo,1000001,81,Fixed,40,False,NA,NA
+621,521,Commercial,1000000,1,Fixed,30,False,NA,NA
+300,620,Condo,1000000,100,Fixed,30,False,NA,NA
+659,619,Condo,49999,1,Fixed,30,False,NA,NA
+851,299,Condo,417999,101,Fixed,30,False,NA,NA
+660,850,Condo,1000001,1,Fixed,30,False,NA,NA
+619,851,Condo,999999,100,Fixed,30,False,NA,NA
+299,519,Condo,999999,0,Fixed,30,False,NA,NA
+849,299,Condo,1000000,0,Fixed,30,False,NA,NA
+850,619,Condo,999999,100,Fixed,30,False,NA,NA
+661,519,Condo,1000000,79,Fixed,30,False,NA,NA
+621,300,Condo,1000001,0,Fixed,30,False,NA,NA
+299,620,Condo,418001,79,Fixed,30,False,NA,NA
+661,851,Condo,50001,1,Fixed,30,False,NA,NA
+620,299,Condo,50001,79,Fixed,30,False,NA,NA
+660,301,Condo,418001,100,Fixed,30,False,NA,NA
+301,521,Condo,49999,81,Fixed,30,False,NA,NA
+851,None,Condo,1000001,79,Fixed,30,False,NA,NA
+299,619,Condo,50001,1,Fixed,30,False,NA,NA
+850,300,Condo,49999,80,Fixed,30,False,NA,NA
+660,621,Condo,999999,81,Fixed,30,False,NA,NA
+849,851,Condo,417999,2,Fixed,30,False,NA,NA
+300,849,Condo,49999,100,Fixed,30,False,NA,NA
+661,None,Condo,999999,100,Fixed,30,False,NA,NA
+300,519,Condo,1000001,81,Fixed,30,False,NA,NA
+851,619,Condo,418000,79,Fixed,30,False,NA,NA
+620,620,Condo,999999,100,Fixed,30,False,NA,NA
+660,299,Condo,418001,99,Fixed,30,False,NA,NA
+299,300,Condo,417999,101,Fixed,30,False,NA,NA
+300,850,Condo,418000,101,Fixed,30,False,NA,NA
+850,521,Condo,50001,101,Fixed,30,False,NA,NA
+851,620,Condo,50001,100,Fixed,30,False,NA,NA
+621,301,Condo,50001,101,Fixed,30,False,NA,NA
+851,521,Condo,50001,100,Fixed,30,False,NA,NA
+619,299,Condo,50001,100,Fixed,30,False,NA,NA
+299,621,Condo,50001,100,Fixed,30,False,NA,NA
+659,849,Condo,50001,101,Fixed,30,False,NA,NA
+301,851,Condo,50001,100,Fixed,30,False,NA,NA
+659,299,Condo,50001,100,Fixed,30,False,NA,NA
+299,851,Condo,50001,100,Fixed,30,False,NA,NA
+851,520,Condo,50001,100,Fixed,30,False,NA,NA
+621,851,Condo,50001,100,Fixed,30,False,NA,NA
