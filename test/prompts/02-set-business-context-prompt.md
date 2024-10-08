@@ -4,33 +4,32 @@
 
 Provide the Generative AI with information about the business context of the application, its users, the feature to be tested, and the requirement(s) of the new feature.
 
-* **Discipline:** Domain Analysis
-* **Task:** Business Context
+* **Task:** Set Business Context
 * **Goals:**
   * Set User Persona
   * Set Application Context
   * Set Feature Context
-  * Review Requirements
 
 ---
 
 ## **Prompt Structure:**
 
-Copy the full prompt text here, with placeholders for any parameters that can be customized. Use clear and consistent notation for parameters (e.g., `{{parameter_name}}`).
+"When prompted, you will be generating test cases to test the `{{product_feature}}` feature of the `{{product_under_test}}`. This app is used by `{{user_personas}}` to `{{product_purpose}}`. `{{product_feature_purpose}}`."
 
-Example:  
-`"Write a summary of the product {{product_name}} focusing on its features, such as {{feature_1}}, {{feature_2}}, and {{feature_3}}."`
+**Example:**
+"When prompted, you will be generating test cases to test the Loan Application feature of the Greenacre Loan Application app. This app is used by borrowers and loan officers to collect information about the borrower(s), the property, the proposed purchase, and the requested mortgage. The app processes this information and provides a decision on whether to approve or deny the loan application."
 
 ---
 
 ## **Parameters:**
 
-| **Parameter Name** | **Description**                               | **Type**     | **Example Values**                    |
-|--------------------|-----------------------------------------------|--------------|---------------------------------------|
-| `{{parameter_name}}`| Describe the purpose of this parameter        | Text/Number/Other | Example input for this parameter      |
-| `{{feature_1}}`    | First feature of the product                  | Text         | "User-friendly interface"             |
-| `{{feature_2}}`    | Second feature of the product                 | Text         | "Cross-platform compatibility"        |
-| `{{feature_3}}`    | Third feature of the product                  | Text         | "Advanced analytics capabilities"     |
+| **Parameter Name**            | **Description**                                       | **Type** | **Example Values**                                   |
+|-------------------------------|-------------------------------------------------------|----------|------------------------------------------------------|
+| `{{product_feature}}`         | The name of the feature (usually the Epic Title)      | Text     | "Loan Application Processing"                        |
+| `{{product_under_test}}`      | The name of the product under test                    | Text     | "the Greenacre Loan Application app"                 |
+| `{{user_personas}}`           | The one or more intended user profiles of the feature | Text     | "borrowers and loan officers"                        |
+| `{{product_purpose}}`         | The overall purpose of the product under test         | Text     | "collect borrower information for processing"        |
+| `{{product_feature_purpose}}` | The purpose / problem solved by the proposed feature  | Text     | "provide a decision on approval of loan application" |
 
 ---
 
@@ -42,17 +41,6 @@ Example:
 
 ---
 
-## **Sample Customization:**
-
-### Customized Prompt Example
-
-If you want to summarize a product named "SmartWatch X" with the features "Heart rate monitoring," "GPS tracking," and "Water resistance," the customized prompt would look like this:
-
-`"Write a summary of the product SmartWatch X focusing on its features, such as Heart rate monitoring, GPS tracking, and Water resistance."`
-
----
-
 ## **Additional Notes:**
 
-* Include any additional tips, common pitfalls, or suggestions for getting the best results with this prompt.
-* You can mention variations or enhancements that can be made to the prompt for different contexts.
+* Different user personas may require multiple descriptions of the product's and/or feature's purpose

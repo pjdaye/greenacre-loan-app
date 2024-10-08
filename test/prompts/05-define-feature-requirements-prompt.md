@@ -4,30 +4,134 @@
 
 Provide the Generative AI with information about the business context of the application, its users, the feature to be tested, and the requirement(s) of the new feature.
 
-* **Discipline:** Domain Analysis
-* **Task:** Business Context
+* **Task:** Review Feature Requirements
 * **Goals:**
-  * Review Requirements
+  * Input Epic
+  * Input User Stories
+  * Update Error Hypotheses
 
 ---
 
 ## **Prompt Structure:**
 
-Copy the full prompt text here, with placeholders for any parameters that can be customized. Use clear and consistent notation for parameters (e.g., `{{parameter_name}}`).
+"Review the feature requirements for the Loan Application feature delimited by triple quotes and begin to assess the appropriate error hypotheses:
 
-Example:  
-`"Write a summary of the product {{product_name}} focusing on its features, such as {{feature_1}}, {{feature_2}}, and {{feature_3}}."`
+"""
+**Epic**:
+
+* `{{epic}}`
+
+**User Stories**:
+
+* `{{user_stories}}`
+"""
+
+
+**Example:**
+"Review the feature requirements for the Loan Application feature delimited by triple quotes and begin to assess the appropriate error hypotheses:
+
+
+"""
+
+## Epic
+
+* As a loan applicant, I want to submit the necessary data so that I can get a loan approval.
+
+## User Stories
+
+### Submit for Approval (Back-end)
+
+* As a borrower, I want to submit my data so that I can get a loan approval.
+
+#### Acceptance Criteria
+
+* The following data points are used to determine approval, program, and interest rate:
+  * Borrower FICO (valid values: 300-850)
+  * Co-Borrower FICO (valid values: 300-850, or none)
+  * Property Type (SFR, Condo, Townhouse, Multi-Family, Commercial)
+  * Loan-to-Value (LTV), expressed as a percentage calculated from the Loan Amount divided by the Purchase Price (valid values: 0%-100%)
+  * Loan Amount (valid values: USD 50,000 - 1,000,000)
+  * Loan Type (Fixed, Adjustable)
+  * Loan Period (10, 15, 30, 40)
+* Backend API will return three values:
+  * Approval
+  * Program
+  * Rate
+* Applications will be evaluated against rulesets for each Loan Program:
+  * Conventional
+  * FHA
+  * Jumbo
+* If the loan is passes the ruleset for more than one program, it will be approved based on the following order of precedence:
+  1. Jumbo
+  2. Conventional
+  3. FHA
+
+#### Loan Program Rulesets
+
+* Conventional Loan:
+  * Borrower FICO: 620-850
+  * Co-Borrower FICO: None, or 520-850
+  * Property Type: SFR, Condo, Townhouse, Multi-Family
+  * Loan-to-Value (LTV): <= 80%
+  * Loan Amount (USD): 50,000 - 1,000,000
+  * Loan Type: Fixed, Adjustable
+  * Loan Period: 10, 15, 30, 40 years
+* FHA Loan:
+  * Borrower FICO: 300-850
+  * Co-Borrower FICO: None, or 300-850
+  * Property Type: SFR, Condo, Townhouse
+  * Loan-to-Value (LTV): <= 100%
+  * Loan Amount (USD): 50,000 - 418,000
+  * Loan Type: Fixed
+  * Loan Period: 15, 30 years
+* Jumbo Loan:
+  * Borrower FICO: 660-850
+  * Co-Borrower FICO: None, or 620-850
+  * Property Type: SFR, Condo, Townhouse, Multi-Family
+  * Loan-to-Value (LTV): <= 80%
+  * Loan Amount (USD): 418,000 - 1,000,000
+  * Loan Type: Fixed, Adjustable
+  * Loan Period: 15, 30, 40 years
+
+### Display Approval (Front-end)
+
+As a borrower, I want to see the results of my loan application so that I can make decisions on purchasing a property.
+
+#### Acceptance Criteria
+
+* Return values are parsed
+* Return values are displayed in a newly rendered component on the page
+* The display consists of three sections:
+  * Loan Approval
+    * Left-column text: "Your Loan Is:"
+    * On approval, the right-column will display "APPROVED!"
+    * Approval text is displayed in green
+    * On denial, the right-column will display "Not Approved"
+    * Denial text is displayed in red
+  * Interest Rate
+    * Displayed only if the loan is approved
+    * Left-column text: "Your Interest Rate Is:"
+    * Right-column text is the interest rate that is returned
+    * Right-column text is displayed in green
+  * Loan Program
+    * Displayed only if the loan is approved
+    * Left-column text: "Your Loan Program Is:"
+    * Right-column text displays the returned loan program, which will be from the following list:
+      * Conventional
+      * FHA
+      * Jumbo
+    * Right-column text is displayed in green
+
+"""
 
 ---
 
 ## **Parameters:**
 
-| **Parameter Name** | **Description**                               | **Type**     | **Example Values**                    |
-|--------------------|-----------------------------------------------|--------------|---------------------------------------|
-| `{{parameter_name}}`| Describe the purpose of this parameter        | Text/Number/Other | Example input for this parameter      |
-| `{{feature_1}}`    | First feature of the product                  | Text         | "User-friendly interface"             |
-| `{{feature_2}}`    | Second feature of the product                 | Text         | "Cross-platform compatibility"        |
-| `{{feature_3}}`    | Third feature of the product                  | Text         | "Advanced analytics capabilities"     |
+| **Parameter Name** | **Description**                                | **Type** | **Example Values**                 |
+|--------------------|------------------------------------------------|----------|------------------------------------|
+| `{{epic}}`         | Describe the feature under test                | Text     | "As a ... I want ... so that ... " |
+| `{{user_stories}}` | Describe the user stories that define the epic | Text     | "As a ... I want ... so that ... " |
 
 ---
 
@@ -39,17 +143,6 @@ Example:
 
 ---
 
-## **Sample Customization:**
-
-### Customized Prompt Example
-
-If you want to summarize a product named "SmartWatch X" with the features "Heart rate monitoring," "GPS tracking," and "Water resistance," the customized prompt would look like this:
-
-`"Write a summary of the product SmartWatch X focusing on its features, such as Heart rate monitoring, GPS tracking, and Water resistance."`
-
----
-
 ## **Additional Notes:**
 
-* Include any additional tips, common pitfalls, or suggestions for getting the best results with this prompt.
-* You can mention variations or enhancements that can be made to the prompt for different contexts.
+* If the model accepts file attachments, attach a visual of the GUI.

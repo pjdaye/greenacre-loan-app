@@ -4,7 +4,6 @@
 
 Provide the Generative AI with information regarding tech stacks and operational deployment.
 
-* **Discipline:** Domain Analysis
 * **Task:** Set Operations Context
 * **Goals:**
   * Set Web Context
@@ -16,21 +15,21 @@ Provide the Generative AI with information regarding tech stacks and operational
 
 ## **Prompt Structure:**
 
-Copy the full prompt text here, with placeholders for any parameters that can be customized. Use clear and consistent notation for parameters (e.g., `{{parameter_name}}`).
+"The `{{product_under_test}}` is a `{{application_type}}` with `{{technical_stack}}`. The application `{{deployment_details}}`."
 
 Example:  
-`"Write a summary of the product {{product_name}} focusing on its features, such as {{feature_1}}, {{feature_2}}, and {{feature_3}}."`
+"The Greenacre Loan Application app is a web-based application with a React front end and a Node.js/Express back end. The application uses Docker containers for deployment, and both the front and back ends can run either on a single machine or in a distributed environment. The app currently has no backend database."
 
 ---
 
 ## **Parameters:**
 
-| **Parameter Name** | **Description**                               | **Type**     | **Example Values**                    |
-|--------------------|-----------------------------------------------|--------------|---------------------------------------|
-| `{{parameter_name}}`| Describe the purpose of this parameter        | Text/Number/Other | Example input for this parameter      |
-| `{{feature_1}}`    | First feature of the product                  | Text         | "User-friendly interface"             |
-| `{{feature_2}}`    | Second feature of the product                 | Text         | "Cross-platform compatibility"        |
-| `{{feature_3}}`    | Third feature of the product                  | Text         | "Advanced analytics capabilities"     |
+| **Parameter Name**       | **Description**                                    | **Type** | **Example Values**                    |
+|--------------------------|----------------------------------------------------|----------|---------------------------------------|
+| `{{product_under_test}}` | The name of the product under test                 | Text     | "The Greenacres Loan Application app" |
+| `{{application_type}}`   | Desktop, Web, Mobile, Hybrid                       | Text     | "a web-based application"             |
+| `{{technical_stack}}`    | Languages and Frameworks used to develop solution  | Text     | "React front-end and Express backend" |
+| `{{deployment_details}}` | Who deploys, where and how the product is deployed | Text     | "Docker containers on Google Cloud"   |
 
 ---
 
@@ -42,17 +41,6 @@ Example:
 
 ---
 
-## **Sample Customization:**
-
-### Customized Prompt Example
-
-If you want to summarize a product named "SmartWatch X" with the features "Heart rate monitoring," "GPS tracking," and "Water resistance," the customized prompt would look like this:
-
-`"Write a summary of the product SmartWatch X focusing on its features, such as Heart rate monitoring, GPS tracking, and Water resistance."`
-
----
-
 ## **Additional Notes:**
 
-* Include any additional tips, common pitfalls, or suggestions for getting the best results with this prompt.
-* You can mention variations or enhancements that can be made to the prompt for different contexts.
+* Separate platforms may need to be defined separately (mobile vs. web).

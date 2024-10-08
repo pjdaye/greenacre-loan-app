@@ -47,16 +47,6 @@ Example:
 
 ---
 
-## **Sample Customization:**
-
-### Customized Prompt Example
-
-If you want to summarize a product named "SmartWatch X" with the features "Heart rate monitoring," "GPS tracking," and "Water resistance," the customized prompt would look like this:
-
-`"Write a summary of the product SmartWatch X focusing on its features, such as Heart rate monitoring, GPS tracking, and Water resistance."`
-
----
-
 ## **Additional Notes:**
 
 * Include any additional tips, common pitfalls, or suggestions for getting the best results with this prompt.
