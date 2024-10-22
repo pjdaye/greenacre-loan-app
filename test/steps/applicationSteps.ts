@@ -11,13 +11,13 @@ Given('I am on the loan application page', async ({ page }) => {
 When('I submit a loan application with the following details:', async ({ page }, data: DataTable) => {
     const loanApplicationPage = new LoanApplicationPage(page);
     const values = data.rowsHash();
-    const purchasePrice = String(Math.round(Number(values['Loan Amount']) / (Number(values['LTV']) / 100)));
-    const downPayment = String(Number(purchasePrice) - Number(values['Loan Amount']));
-    const loanTerm = values['Loan Period'] + ' years';
-    await loanApplicationPage.inputBorrowerInformation(values['Borrower First Name'], values['Borrower Last Name'], values['Borrower FICO']);
-    await loanApplicationPage.inputCoborrowerInformation(values['Co-Borrower First Name'], values['Co-Borrower Last Name'], values['Co-Borrower FICO']);
-    await loanApplicationPage.inputPurchaseInformation(values['Property Type'], values['Zip Code'], purchasePrice, downPayment);
-    await loanApplicationPage.inputLoanInformation(values['Loan Type'], values['Loan Amount'], loanTerm);
+    const purchasePrice = String(Math.round(Number(values['loanAmount']) / (Number(values['ltv']) / 100)));
+    const downPayment = String(Number(purchasePrice) - Number(values['loanAmount']));
+    const loanTerm = values['loanPeriod'] + ' years';
+    await loanApplicationPage.inputBorrowerInformation(values['borrowerFirstName'], values['borrowerLastName'], values['borrowerFICO']);
+    await loanApplicationPage.inputCoborrowerInformation(values['coBorrowerFirstName'], values['coBorrowerLastName'], values['coBorrowerFICO']);
+    await loanApplicationPage.inputPurchaseInformation(values['propertyType'], values['zipCode'], purchasePrice, downPayment);
+    await loanApplicationPage.inputLoanInformation(values['loanType'], values['loanAmount'], loanTerm);
     await loanApplicationPage.submitForApproval();
 });
 
@@ -26,7 +26,7 @@ Then('the loan application should be approved', async ({ page }) => {
     await loanApplicationPage.verifyApproval();
 });
 
-Then('the loan program should be {string}', async ({ page }, program : string) => {
+Then('the loan program should be {string}', async ({ page }, program: string) => {
     const loanApplicationPage = new LoanApplicationPage(page);
     await loanApplicationPage.verifyLoanProgram(program);
 });
