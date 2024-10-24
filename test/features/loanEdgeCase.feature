@@ -1,20 +1,132 @@
 Feature: Loan Application Submission and Approval
 
-    Scenario: Loan application approval at boundary value for Loan Amount
+    Scenario Outline: Loan application approval at boundary value for Loan Amount
         Given I am on the loan application page
         When I submit a loan application with the following details:
-            | Borrower First Name    | John          |
-            | Borrower Last Name     | Doe           |
-            | Borrower FICO          | 660           |
-            | Co-Borrower First Name | Jane          |
-            | Co-Borrower Last Name  | Doe           |
-            | Co-Borrower FICO       | 620           |
-            | Property Type          | Single Family |
-            | Zip Code               | 95123         |
-            | Loan Amount            | 418000        |
-            | LTV                    | 80            |
-            | Loan Type              | Adjustable    |
-            | Loan Period            | 30            |
-        Then the loan application should be approved
-        And the loan program should be "Jumbo"
-        And the interest rate should be "5.625%"
+            | borrowerFirstName   | <BorrowerFirstName>   |
+            | borrowerLastName    | <BorrowerLastName>    |
+            | borrowerFICO        | <BorrowerFICO>        |
+            | coBorrowerFirstName | <CoBorrowerFirstName> |
+            | coBorrowerLastName  | <CoBorrowerLastName>  |
+            | coBorrowerFICO      | <CoBorrowerFICO>      |
+            | propertyType        | <PropertyType>        |
+            | zipCode             | <ZipCode>             |
+            | loanAmount          | <LoanAmount>          |
+            | ltv                 | <Ltv>                 |
+            | loanType            | <LoanType>            |
+            | loanPeriod          | <LoanPeriod>          |
+        Then the loan application should be denied
+        And the loan program should be "<LoanProgram>"
+        And the interest rate should be "<InterestRate>"
+
+        Examples:
+            | BorrowerFirstName | BorrowerLastName  | BorrowerFICO | CoBorrowerFirstName | CoBorrowerLastName | CoBorrowerFICO | PropertyType      | ZipCode | LoanAmount | Ltv | LoanType   | LoanPeriod | LoanProgram | InterestRate |
+            | Reject_BFName_001 | Reject_BLName_001 | 299          |                     |                    |                | Single Family     | 951001  | 49999      | 0   | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_002 | Reject_BLName_002 | 300          | Reject_CFName_002   | Reject_CLName_002  | 299            | Condominium       | 951002  | 50000      | 1   | Adjustable | 10         | NA          | NA           |
+            | Reject_BFName_003 | Reject_BLName_003 | 301          | Reject_CFName_003   | Reject_CLName_003  | 300            | Townhouse         | 951003  | 50001      | 2   | Adjustable | 15         | NA          | NA           |
+            | Reject_BFName_004 | Reject_BLName_004 | 619          | Reject_CFName_004   | Reject_CLName_004  | 301            | Multi-Family Unit | 951004  | 417999     | 79  | Fixed      | 15         | NA          | NA           |
+            | Reject_BFName_005 | Reject_BLName_005 | 620          | Reject_CFName_005   | Reject_CLName_005  | 519            | Commercial        | 951005  | 418000     | 80  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_006 | Reject_BLName_006 | 621          | Reject_CFName_006   | Reject_CLName_006  | 520            | Commercial        | 951006  | 418001     | 81  | Adjustable | 40         | NA          | NA           |
+            | Reject_BFName_007 | Reject_BLName_007 | 659          | Reject_CFName_007   | Reject_CLName_007  | 521            | Multi-Family Unit | 951007  | 999999     | 99  | Adjustable | 30         | NA          | NA           |
+            | Reject_BFName_008 | Reject_BLName_008 | 660          | Reject_CFName_008   | Reject_CLName_008  | 619            | Townhouse         | 951008  | 1000000    | 100 | Fixed      | 40         | NA          | NA           |
+            | Reject_BFName_009 | Reject_BLName_009 | 661          | Reject_CFName_009   | Reject_CLName_009  | 620            | Condominium       | 951009  | 1000001    | 101 | Fixed      | 40         | NA          | NA           |
+            | Reject_BFName_010 | Reject_BLName_010 | 849          | Reject_CFName_010   | Reject_CLName_010  | 621            | Single Family     | 951010  | 1000001    | 100 | Adjustable | 30         | NA          | NA           |
+            | Reject_BFName_011 | Reject_BLName_011 | 850          | Reject_CFName_011   | Reject_CLName_011  | 849            | Single Family     | 951011  | 1000000    | 99  | Adjustable | 15         | NA          | NA           |
+            | Reject_BFName_012 | Reject_BLName_012 | 851          | Reject_CFName_012   | Reject_CLName_012  | 850            | Condominium       | 951012  | 999999     | 81  | Fixed      | 15         | NA          | NA           |
+            | Reject_BFName_013 | Reject_BLName_013 | 851          | Reject_CFName_013   | Reject_CLName_013  | 851            | Townhouse         | 951013  | 418001     | 80  | Adjustable | 10         | NA          | NA           |
+            | Reject_BFName_014 | Reject_BLName_014 | 850          | Reject_CFName_014   | Reject_CLName_014  | 851            | Multi-Family Unit | 951014  | 418000     | 0   | Adjustable | 40         | NA          | NA           |
+            | Reject_BFName_015 | Reject_BLName_015 | 849          | Reject_CFName_015   | Reject_CLName_015  | 620            | Commercial        | 951015  | 49999      | 1   | Adjustable | 15         | NA          | NA           |
+            | Reject_BFName_016 | Reject_BLName_016 | 661          | Reject_CFName_016   | Reject_CLName_016  | 619            | Commercial        | 951016  | 50000      | 2   | Adjustable | 10         | NA          | NA           |
+            | Reject_BFName_018 | Reject_BLName_018 | 621          | Reject_CFName_018   | Reject_CLName_018  | 519            | Townhouse         | 951018  | 50000      | 101 | Adjustable | 15         | NA          | NA           |
+            | Reject_BFName_019 | Reject_BLName_019 | 620          | Reject_CFName_019   | Reject_CLName_019  | 301            | Townhouse         | 951019  | 49999      | 99  | Adjustable | 40         | NA          | NA           |
+            | Reject_BFName_020 | Reject_BLName_020 | 619          | Reject_CFName_020   | Reject_CLName_020  | 300            | Condominium       | 951020  | 418001     | 99  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_021 | Reject_BLName_021 | 301          | Reject_CFName_021   | Reject_CLName_021  | 299            | Multi-Family Unit | 951021  | 1000000    | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_022 | Reject_BLName_022 | 300          |                     |                    |                | Multi-Family Unit | 951022  | 50001      | 80  | Fixed      | 15         | NA          | NA           |
+            | Reject_BFName_023 | Reject_BLName_023 | 299          | Reject_CFName_023   | Reject_CLName_023  | 850            | Commercial        | 951023  | 417999     | 100 | Adjustable | 40         | NA          | NA           |
+            | Reject_BFName_024 | Reject_BLName_024 | 619          | Reject_CFName_024   | Reject_CLName_024  | 849            | Townhouse         | 951024  | 1000001    | 1   | Fixed      | 40         | NA          | NA           |
+            | Reject_BFName_025 | Reject_BLName_025 | 621          | Reject_CFName_025   | Reject_CLName_025  | 621            | Multi-Family Unit | 951025  | 49999      | 2   | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_026 | Reject_BLName_026 | 659          | Reject_CFName_026   | Reject_CLName_026  | 851            | Single Family     | 951026  | 50000      | 81  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_027 | Reject_BLName_027 | 660          |                     |                    |                | Commercial        | 951027  | 999999     | 101 | Adjustable | 10         | NA          | NA           |
+            | Reject_BFName_028 | Reject_BLName_028 | 849          | Reject_CFName_028   | Reject_CLName_028  | 521            | Condominium       | 951028  | 418000     | 100 | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_029 | Reject_BLName_029 | 299          | Reject_CFName_029   | Reject_CLName_029  | 299            | Townhouse         | 951029  | 418000     | 81  | Fixed      | 15         | NA          | NA           |
+            | Reject_BFName_030 | Reject_BLName_030 | 300          | Reject_CFName_030   | Reject_CLName_030  | 301            | Single Family     | 951030  | 999999     | 2   | Fixed      | 40         | NA          | NA           |
+            | Reject_BFName_031 | Reject_BLName_031 | 301          | Reject_CFName_031   | Reject_CLName_031  | 519            | Single Family     | 951031  | 418001     | 1   | Fixed      | 40         | NA          | NA           |
+            | Reject_BFName_032 | Reject_BLName_032 | 620          | Reject_CFName_032   | Reject_CLName_032  | 520            | Multi-Family Unit | 951032  | 1000001    | 0   | Fixed      | 15         | NA          | NA           |
+            | Reject_BFName_033 | Reject_BLName_033 | 851          | Reject_CFName_033   | Reject_CLName_033  | 849            | Commercial        | 951033  | 50001      | 0   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_034 | Reject_BLName_034 | 659          | Reject_CFName_034   | Reject_CLName_034  | 300            | Commercial        | 951034  | 1000000    | 79  | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_035 | Reject_BLName_035 | 849          | Reject_CFName_035   | Reject_CLName_035  | 619            | Multi-Family Unit | 951035  | 418001     | 81  | Fixed      | 15         | NA          | NA           |
+            | Reject_BFName_036 | Reject_BLName_036 | 660          | Reject_CFName_036   | Reject_CLName_036  | 620            | Multi-Family Unit | 951036  | 50000      | 99  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_037 | Reject_BLName_037 | 619          |                     |                    |                | Condominium       | 951037  | 1000000    | 81  | Adjustable | 10         | NA          | NA           |
+            | Reject_BFName_038 | Reject_BLName_038 | 851          | Reject_CFName_038   | Reject_CLName_038  | 301            | Condominium       | 951038  | 50001      | 1   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_039 | Reject_BLName_039 | 661          | Reject_CFName_039   | Reject_CLName_039  | 299            | Single Family     | 951039  | 49999      | 80  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_040 | Reject_BLName_040 | 301          | Reject_CFName_040   | Reject_CLName_040  | 850            | Condominium       | 951040  | 49999      | 0   | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_041 | Reject_BLName_041 | 300          | Reject_CFName_041   | Reject_CLName_041  | 851            | Commercial        | 951041  | 1000001    | 99  | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_042 | Reject_BLName_042 | 299          | Reject_CFName_042   | Reject_CLName_042  | 849            | Multi-Family Unit | 951042  | 418001     | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_043 | Reject_BLName_043 | 850          | Reject_CFName_043   | Reject_CLName_043  | 620            | Single Family     | 951043  | 417999     | 81  | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_045 | Reject_BLName_045 | 851          | Reject_CFName_045   | Reject_CLName_045  | 300            | Multi-Family Unit | 951045  | 50000      | 100 | Fixed      | 40         | NA          | NA           |
+            | Reject_BFName_046 | Reject_BLName_046 | 659          | Reject_CFName_046   | Reject_CLName_046  | 519            | Multi-Family Unit | 951046  | 50001      | 100 | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_047 | Reject_BLName_047 | 850          | Reject_CFName_047   | Reject_CLName_047  | 621            | Condominium       | 951047  | 418001     | 101 | Fixed      | 40         | NA          | NA           |
+            | Reject_BFName_048 | Reject_BLName_048 | 299          | Reject_CFName_048   | Reject_CLName_048  | 521            | Condominium       | 951048  | 1000001    | 2   | Fixed      | 15         | NA          | NA           |
+            | Reject_BFName_049 | Reject_BLName_049 | 300          | Reject_CFName_049   | Reject_CLName_049  | 520            | Single Family     | 951049  | 49999      | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_052 | Reject_BLName_052 | 660          | Reject_CFName_052   | Reject_CLName_052  | 851            | Condominium       | 951052  | 49999      | 79  | Fixed      | 15         | NA          | NA           |
+            | Reject_BFName_053 | Reject_BLName_053 | 621          | Reject_CFName_053   | Reject_CLName_053  | 299            | Condominium       | 951053  | 999999     | 100 | Fixed      | 15         | NA          | NA           |
+            | Reject_BFName_054 | Reject_BLName_054 | 301          | Reject_CFName_054   | Reject_CLName_054  | 849            | Condominium       | 951054  | 999999     | 79  | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_055 | Reject_BLName_055 | 661          | Reject_CFName_055   | Reject_CLName_055  | 301            | Multi-Family Unit | 951055  | 1000000    | 1   | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_056 | Reject_BLName_056 | 659          | Reject_CFName_056   | Reject_CLName_056  | 620            | Townhouse         | 951056  | 418000     | 101 | Fixed      | 15         | NA          | NA           |
+            | Reject_BFName_057 | Reject_BLName_057 | 851          | Reject_CFName_057   | Reject_CLName_057  | 621            | Single Family     | 951057  | 1000000    | 2   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_058 | Reject_BLName_058 | 301          | Reject_CFName_058   | Reject_CLName_058  | 619            | Condominium       | 951058  | 1000001    | 80  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_059 | Reject_BLName_059 | 619          | Reject_CFName_059   | Reject_CLName_059  | 621            | Commercial        | 951059  | 50001      | 99  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_060 | Reject_BLName_060 | 620          | Reject_CFName_060   | Reject_CLName_060  | 300            | Single Family     | 951060  | 999999     | 1   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_061 | Reject_BLName_061 | 300          | Reject_CFName_061   | Reject_CLName_061  | 521            | Townhouse         | 951061  | 418001     | 0   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_062 | Reject_BLName_062 | 299          | Reject_CFName_062   | Reject_CLName_062  | 301            | Commercial        | 951062  | 50000      | 80  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_063 | Reject_BLName_063 | 850          | Reject_CFName_063   | Reject_CLName_063  | 299            | Commercial        | 951063  | 1000001    | 2   | Fixed      | 40         | NA          | NA           |
+            | Reject_BFName_064 | Reject_BLName_064 | 849          |                     |                    |                | Townhouse         | 951064  | 417999     | 99  | Fixed      | 40         | NA          | NA           |
+            | Reject_BFName_065 | Reject_BLName_065 | 661          | Reject_CFName_065   | Reject_CLName_065  | 850            | Multi-Family Unit | 951065  | 418001     | 99  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_066 | Reject_BLName_066 | 849          | Reject_CFName_066   | Reject_CLName_066  | 300            | Condominium       | 951066  | 50001      | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_067 | Reject_BLName_067 | 299          | Reject_CFName_067   | Reject_CLName_067  | 520            | Condominium       | 951067  | 1000000    | 99  | Fixed      | 10         | NA          | NA           |
+            | Reject_BFName_068 | Reject_BLName_068 | 620          | Reject_CFName_068   | Reject_CLName_068  | 851            | Condominium       | 951068  | 1000000    | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_069 | Reject_BLName_069 | 619          | Reject_CFName_069   | Reject_CLName_069  | 619            | Condominium       | 951069  | 49999      | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_070 | Reject_BLName_070 | 301          | Reject_CFName_070   | Reject_CLName_070  | 621            | Commercial        | 951070  | 418000     | 1   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_071 | Reject_BLName_071 | 851          | Reject_CFName_071   | Reject_CLName_071  | 519            | Condominium       | 951071  | 49999      | 99  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_072 | Reject_BLName_072 | 659          | Reject_CFName_072   | Reject_CLName_072  | 301            | Condominium       | 951072  | 1000001    | 81  | Fixed      | 40         | NA          | NA           |
+            | Reject_BFName_073 | Reject_BLName_073 | 621          | Reject_CFName_073   | Reject_CLName_073  | 521            | Commercial        | 951073  | 1000000    | 1   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_074 | Reject_BLName_074 | 300          | Reject_CFName_074   | Reject_CLName_074  | 620            | Condominium       | 951074  | 1000000    | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_075 | Reject_BLName_075 | 659          | Reject_CFName_075   | Reject_CLName_075  | 619            | Condominium       | 951075  | 49999      | 1   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_076 | Reject_BLName_076 | 851          | Reject_CFName_076   | Reject_CLName_076  | 299            | Condominium       | 951076  | 417999     | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_077 | Reject_BLName_077 | 660          | Reject_CFName_077   | Reject_CLName_077  | 850            | Condominium       | 951077  | 1000001    | 1   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_078 | Reject_BLName_078 | 619          | Reject_CFName_078   | Reject_CLName_078  | 851            | Condominium       | 951078  | 999999     | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_079 | Reject_BLName_079 | 299          | Reject_CFName_079   | Reject_CLName_079  | 519            | Condominium       | 951079  | 999999     | 0   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_080 | Reject_BLName_080 | 849          | Reject_CFName_080   | Reject_CLName_080  | 299            | Condominium       | 951080  | 1000000    | 0   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_081 | Reject_BLName_081 | 850          | Reject_CFName_081   | Reject_CLName_081  | 619            | Condominium       | 951081  | 999999     | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_082 | Reject_BLName_082 | 661          | Reject_CFName_082   | Reject_CLName_082  | 519            | Condominium       | 951082  | 1000000    | 79  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_083 | Reject_BLName_083 | 621          | Reject_CFName_083   | Reject_CLName_083  | 300            | Condominium       | 951083  | 1000001    | 0   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_084 | Reject_BLName_084 | 299          | Reject_CFName_084   | Reject_CLName_084  | 620            | Condominium       | 951084  | 418001     | 79  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_085 | Reject_BLName_085 | 661          | Reject_CFName_085   | Reject_CLName_085  | 851            | Condominium       | 951085  | 50001      | 1   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_086 | Reject_BLName_086 | 620          | Reject_CFName_086   | Reject_CLName_086  | 299            | Condominium       | 951086  | 50001      | 79  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_087 | Reject_BLName_087 | 660          | Reject_CFName_087   | Reject_CLName_087  | 301            | Condominium       | 951087  | 418001     | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_088 | Reject_BLName_088 | 301          | Reject_CFName_088   | Reject_CLName_088  | 521            | Condominium       | 951088  | 49999      | 81  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_089 | Reject_BLName_089 | 851          |                     |                    |                | Condominium       | 951089  | 1000001    | 79  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_090 | Reject_BLName_090 | 299          | Reject_CFName_090   | Reject_CLName_090  | 619            | Condominium       | 951090  | 50001      | 1   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_091 | Reject_BLName_091 | 850          | Reject_CFName_091   | Reject_CLName_091  | 300            | Condominium       | 951091  | 49999      | 80  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_092 | Reject_BLName_092 | 660          | Reject_CFName_092   | Reject_CLName_092  | 621            | Condominium       | 951092  | 999999     | 81  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_093 | Reject_BLName_093 | 849          | Reject_CFName_093   | Reject_CLName_093  | 851            | Condominium       | 951093  | 417999     | 2   | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_094 | Reject_BLName_094 | 300          | Reject_CFName_094   | Reject_CLName_094  | 849            | Condominium       | 951094  | 49999      | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_095 | Reject_BLName_095 | 661          |                     |                    |                | Condominium       | 951095  | 999999     | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_096 | Reject_BLName_096 | 300          | Reject_CFName_096   | Reject_CLName_096  | 519            | Condominium       | 951096  | 1000001    | 81  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_097 | Reject_BLName_097 | 851          | Reject_CFName_097   | Reject_CLName_097  | 619            | Condominium       | 951097  | 418000     | 79  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_098 | Reject_BLName_098 | 620          | Reject_CFName_098   | Reject_CLName_098  | 620            | Condominium       | 951098  | 999999     | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_099 | Reject_BLName_099 | 660          | Reject_CFName_099   | Reject_CLName_099  | 299            | Condominium       | 951099  | 418001     | 99  | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_100 | Reject_BLName_100 | 299          | Reject_CFName_100   | Reject_CLName_100  | 300            | Condominium       | 951100  | 417999     | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_101 | Reject_BLName_101 | 300          | Reject_CFName_101   | Reject_CLName_101  | 850            | Condominium       | 951101  | 418000     | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_102 | Reject_BLName_102 | 850          | Reject_CFName_102   | Reject_CLName_102  | 521            | Condominium       | 951102  | 50001      | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_103 | Reject_BLName_103 | 851          | Reject_CFName_103   | Reject_CLName_103  | 620            | Condominium       | 951103  | 50001      | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_104 | Reject_BLName_104 | 621          | Reject_CFName_104   | Reject_CLName_104  | 301            | Condominium       | 951104  | 50001      | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_105 | Reject_BLName_105 | 851          | Reject_CFName_105   | Reject_CLName_105  | 521            | Condominium       | 951105  | 50001      | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_106 | Reject_BLName_106 | 619          | Reject_CFName_106   | Reject_CLName_106  | 299            | Condominium       | 951106  | 50001      | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_107 | Reject_BLName_107 | 299          | Reject_CFName_107   | Reject_CLName_107  | 621            | Condominium       | 951107  | 50001      | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_108 | Reject_BLName_108 | 659          | Reject_CFName_108   | Reject_CLName_108  | 849            | Condominium       | 951108  | 50001      | 101 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_109 | Reject_BLName_109 | 301          | Reject_CFName_109   | Reject_CLName_109  | 851            | Condominium       | 951109  | 50001      | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_110 | Reject_BLName_110 | 659          | Reject_CFName_110   | Reject_CLName_110  | 299            | Condominium       | 951110  | 50001      | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_111 | Reject_BLName_111 | 299          | Reject_CFName_111   | Reject_CLName_111  | 851            | Condominium       | 951111  | 50001      | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_112 | Reject_BLName_112 | 851          | Reject_CFName_112   | Reject_CLName_112  | 520            | Condominium       | 951112  | 50001      | 100 | Fixed      | 30         | NA          | NA           |
+            | Reject_BFName_113 | Reject_BLName_113 | 621          | Reject_CFName_113   | Reject_CLName_113  | 851            | Condominium       | 951113  | 50001      | 100 | Fixed      | 30         | NA          | NA           |

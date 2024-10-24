@@ -49,8 +49,7 @@ Generate `{{number_and_type_of_cases}}` test cases that represent broad categori
 
 * `{{overall_goals}}`"
 
-
-Example:  
+**Example:**
 "## Goal
 
 Generate a comprehensive and efficient set of test assets for the Loan Application feature of the Greenacre Loan Application app. The output should include a manageable number of BDD Gherkin test cases, test data generated using pairwise combinatorial techniques (e.g., PICT), and an automated oracle for validating test results.

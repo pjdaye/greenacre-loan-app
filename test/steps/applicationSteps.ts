@@ -11,7 +11,7 @@ Given('I am on the loan application page', async ({ page }) => {
 When('I submit a loan application with the following details:', async ({ page }, data: DataTable) => {
     const loanApplicationPage = new LoanApplicationPage(page);
     const values = data.rowsHash();
-    const purchasePrice = String(Math.round(Number(values['loanAmount']) / (Number(values['ltv']) / 100)));
+    const purchasePrice = String((Math.round((Number(values['loanAmount']) / (Number(values['ltv']) / 100)) * 100) / 100).toFixed(2));
     const downPayment = String(Number(purchasePrice) - Number(values['loanAmount']));
     const loanTerm = values['loanPeriod'] + ' years';
     await loanApplicationPage.inputBorrowerInformation(values['borrowerFirstName'], values['borrowerLastName'], values['borrowerFICO']);

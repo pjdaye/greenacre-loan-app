@@ -1,20 +1,24 @@
 Feature: Loan Application Submission and Approval
 
-    Scenario: Loan application rejection due to low Borrower FICO score
+    Scenario Outline: Loan application rejection due to low Borrower FICO score
         Given I am on the loan application page
         When I submit a loan application with the following details:
-            | Borrower First Name    | John          |
-            | Borrower Last Name     | Doe           |
-            | Borrower FICO          | 590           |
-            | Co-Borrower First Name | Jane          |
-            | Co-Borrower Last Name  | Doe           |
-            | Co-Borrower FICO       | None          |
-            | Property Type          | Single Family |
-            | Zip Code               | 95123         |
-            | Loan Amount            | 150000        |
-            | LTV                    | 85            |
-            | Loan Type              | Adjustable    |
-            | Loan Period            | 30            |
+            | borrowerFirstName   | <BorrowerFirstName>   |
+            | borrowerLastName    | <BorrowerLastName>    |
+            | borrowerFICO        | <BorrowerFICO>        |
+            | coBorrowerFirstName | <CoBorrowerFirstName> |
+            | coBorrowerLastName  | <CoBorrowerLastName>  |
+            | coBorrowerFICO      | <CoBorrowerFICO>      |
+            | propertyType        | <PropertyType>        |
+            | zipCode             | <ZipCode>             |
+            | loanAmount          | <LoanAmount>          |
+            | ltv                 | <Ltv>                 |
+            | loanType            | <LoanType>            |
+            | loanPeriod          | <LoanPeriod>          |
         Then the loan application should be denied
-        And the loan program should be "NA"
-        And the interest rate should be "NA"
+        And the loan program should be "<LoanProgram>"
+        And the interest rate should be "<InterestRate>"
+
+        Examples:
+            | BorrowerFirstName | BorrowerLastName | BorrowerFICO | CoBorrowerFirstName | CoBorrowerLastName | CoBorrowerFICO | PropertyType  | ZipCode | LoanAmount | Ltv | LoanType   | LoanPeriod | LoanProgram | InterestRate |
+            | John              | Doe              | 590          | Jane                | Doe                | None           | Single Family | 95123   | 150000     | 85  | Adjustable | 30         | NA          | NA           |

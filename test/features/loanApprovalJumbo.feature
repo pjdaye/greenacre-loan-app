@@ -1,6 +1,6 @@
 Feature: Loan Application Submission and Approval
 
-    Scenario Outline: Loan application rejection due to high Loan-to-Value (LTV) ratio
+    Scenario Outline: Successful loan approval for Jumbo Loan
         Given I am on the loan application page
         When I submit a loan application with the following details:
             | borrowerFirstName   | <BorrowerFirstName>   |
@@ -15,10 +15,11 @@ Feature: Loan Application Submission and Approval
             | ltv                 | <Ltv>                 |
             | loanType            | <LoanType>            |
             | loanPeriod          | <LoanPeriod>          |
-        Then the loan application should be denied
+        Then the loan application should be approved
         And the loan program should be "<LoanProgram>"
         And the interest rate should be "<InterestRate>"
 
         Examples:
-            | BorrowerFirstName | BorrowerLastName | BorrowerFICO | CoBorrowerFirstName | CoBorrowerLastName | CoBorrowerFICO | PropertyType      | ZipCode | LoanAmount | Ltv | LoanType | LoanPeriod | LoanProgram | InterestRate |
-            | John              | Doe              | 720          | Jane                | Doe                | 700            | Multi-Family Unit | 95123   | 900000     | 85  | Fixed    | 30         | NA          | NA           |
+            | BorrowerFirstName | BorrowerLastName | BorrowerFICO | CoBorrowerFirstName | CoBorrowerLastName | CoBorrowerFICO | PropertyType  | ZipCode | LoanAmount | Ltv | LoanType   | LoanPeriod | LoanProgram | InterestRate |
+            | John              | Doe              | 660          | Jane                | Doe                | 620            | Single Family | 95123   | 418000     | 80  | Adjustable | 30         | Jumbo       | 5.625%       |
+            | Jumbo_BFName_01   | Jumbo_BLName_01  | 660          | Jumbo_CFName_01     | Jumbo_CLName_01    | 849            | Condominium   | 95101   | 418000     | 80  | Fixed      | 30         | Jumbo       | 7.125%       |
