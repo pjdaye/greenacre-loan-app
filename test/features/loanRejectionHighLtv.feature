@@ -19,6 +19,7 @@ Feature: Loan Application Submission and Approval
         And the loan program should be "<LoanProgram>"
         And the interest rate should be "<InterestRate>"
 
+        # title-format: High LTV Loan Rejection - Test <testId>
         Examples:
-            | BorrowerFirstName | BorrowerLastName | BorrowerFICO | CoBorrowerFirstName | CoBorrowerLastName | CoBorrowerFICO | PropertyType      | ZipCode | LoanAmount | Ltv | LoanType | LoanPeriod | LoanProgram | InterestRate |
-            | John              | Doe              | 720          | Jane                | Doe                | 700            | Multi-Family Unit | 95123   | 900000     | 85  | Fixed    | 30         | NA          | NA           |
+            | testId | BorrowerFirstName | BorrowerLastName | BorrowerFICO | CoBorrowerFirstName | CoBorrowerLastName | CoBorrowerFICO | PropertyType      | ZipCode | LoanAmount | Ltv | LoanType | LoanPeriod | LoanProgram | InterestRate |
+            | 01     | John              | Doe              | 720          | Jane                | Doe                | 700            | Multi-Family Unit | 95123   | 900000     | 85  | Fixed    | 30         | NA          | NA           |
