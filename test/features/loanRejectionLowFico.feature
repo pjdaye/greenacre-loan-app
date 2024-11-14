@@ -19,6 +19,7 @@ Feature: Loan Application Submission and Approval
         And the loan program should be "<LoanProgram>"
         And the interest rate should be "<InterestRate>"
 
+        # title-format: Low FICO Loan Rejection - Test <testId>
         Examples:
-            | BorrowerFirstName | BorrowerLastName | BorrowerFICO | CoBorrowerFirstName | CoBorrowerLastName | CoBorrowerFICO | PropertyType  | ZipCode | LoanAmount | Ltv | LoanType   | LoanPeriod | LoanProgram | InterestRate |
-            | John              | Doe              | 590          | Jane                | Doe                | None           | Single Family | 95123   | 150000     | 85  | Adjustable | 30         | NA          | NA           |
+            | testId | BorrowerFirstName | BorrowerLastName | BorrowerFICO | CoBorrowerFirstName | CoBorrowerLastName | CoBorrowerFICO | PropertyType  | ZipCode | LoanAmount | Ltv | LoanType   | LoanPeriod | LoanProgram | InterestRate |
+            | 01     | John              | Doe              | 590          | Jane                | Doe                | None           | Single Family | 95123   | 150000     | 85  | Adjustable | 30         | NA          | NA           |
