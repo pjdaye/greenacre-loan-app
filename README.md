@@ -6,13 +6,19 @@ The Greenacre Loan Application facilitates quick pre-approvals for home mortgage
 
 ## Background
 
-This application was featured in the **Crafting Excellence: Optimizing Test Case Design with Domain Analysis** talk at the STAREAST 2024 conference.
+This application was the featured example for the following conference presentations:
+
+* **Crafting Excellence: Optimizing Test Case Design with Domain Analysis** (STAREAST 2024)
+  * Test data was scripted and test cases developed using Black Box testing techniques
+* **Vision to Velocity: Accelerating Agile Testing with Generative AI** (Agile + DevOps USA 2024)
+  * Test case generation was done using Generative AI (ChatGPT)
+  * Added a folder with the prompt templates used
 
 ![Greenacre Loan Approval App](./docs/images/greenacre-desktop.png)
 
 ## Prerequisites
 
-* Node.js (v21.x or higher)
+* Node.js (v22.x or higher)
 * npm (v10.x or higher)
 
 ## Installation
@@ -38,11 +44,8 @@ This application was featured in the **Crafting Excellence: Optimizing Test Case
 ### Automated Tests
 
 * **Framework**: Playwright (TypeScript)
-* **Running Tests**: ```NODE_OPTIONS='--loader ts-node/esm --no-warnings' npx bddgen && npx playwright test```
+* **Running Tests**: ```npx bddgen && npx playwright test```
 * **BDD Tests**: Tests are crafted using BDD principles with the playwright-bdd package. See the [Playwright-BDD Documentation](https://vitalets.github.io/playwright-bdd/#) for more details.
-
-> **NOTE**:
-> If you are running the tests on a Windows machine, setting the NODE_OPTIONS environment variables and the bddgen process cannot be run in a single command. From _PowerShell_, run ```build-pwsh.ps1``` and then ```playwright test```.
 
 #### More Information
 
