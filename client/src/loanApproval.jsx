@@ -46,13 +46,13 @@ const LoanApproval = (props) => {
                     <div className="grid grid-cols-5">
                         <div className="col-span-2">
                             <p className="text-lg font-bold">Your Loan Is:</p>
-                            <p className="text-lg font-bold">Your Interest Rate Is:</p>
-                            <p className="text-lg font-bold">Your Loan Program Is:</p>
+                            {/* <p className="text-lg font-bold">Your Interest Rate Is:</p>
+                            <p className="text-lg font-bold">Your Loan Program Is:</p> */}
                         </div>
                         <div className="col-span-3">
                             <p className="text-lg text-cancel-red font-bold">DENIED</p>
-                            <p className="text-lg text-cancel-red font-bold">N/A</p>
-                            <p className="text-lg text-cancel-red font-bold">No matching programs</p>
+                            {/* <p className="text-lg text-cancel-red font-bold">N/A</p>
+                            <p className="text-lg text-cancel-red font-bold">No matching programs</p> */}
                         </div>
                     </div>
                 </div>
