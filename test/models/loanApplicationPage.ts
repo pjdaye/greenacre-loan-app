@@ -20,6 +20,7 @@ export class LoanApplicationPage {
     readonly approvalLabel: Locator;
     readonly denialLabel: Locator;
     readonly interestRateLabel: Locator;
+    readonly loanProgramTitleLabel: Locator;
     readonly pageTitle: string;
 
     constructor(page: Page) {
@@ -42,6 +43,7 @@ export class LoanApplicationPage {
         this.approvalLabel = page.getByText('APPROVED!');
         this.denialLabel = page.getByText('DENIED');
         this.interestRateLabel = page.getByText('%');
+        this.loanProgramTitleLabel = page.getByText('Your Loan Program Is:');
         this.pageTitle = 'Greenacre Loans';
     }
 
@@ -62,6 +64,10 @@ export class LoanApplicationPage {
     }
 
     async inputCoborrowerInformation(coborrowerFName: string, coborrowerLName: string, coborrowerFico: string) {
+        if (coborrowerFico === 'None') {
+            return
+        }
+        
         await this.coborrowerFirstName.click();
         await this.coborrowerFirstName.fill(coborrowerFName);
         
@@ -107,10 +113,20 @@ export class LoanApplicationPage {
     }
 
     async verifyInterestRate(interestRate: string) {
+        if (interestRate === 'NA') {
+            await expect(this.interestRateLabel).not.toBeVisible();
+            return
+        }
+        
         await expect(this.interestRateLabel).toContainText(interestRate);
     }
 
     async verifyLoanProgram(loanProgram: string) {
+        if (loanProgram === 'NA') {
+            await expect(this.loanProgramTitleLabel).not.toBeVisible();
+            return
+        }
+        
         await expect(this.page.getByText(`${loanProgram}`)).toBeVisible();
     }
 }
