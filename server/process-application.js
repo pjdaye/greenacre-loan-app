@@ -14,7 +14,11 @@ export default class Loan {
         this.coborrowerFicoAdjustment;
 
         this.borrowerFico = Number(borrowerFico);
-        this.coborrowerFico = Number(coborrowerFico);
+        if (coborrowerFico === '') {
+            this.coborrowerFico = null;
+        } else {
+            this.coborrowerFico = Number(coborrowerFico);
+        }
         this.propertyType = propertyType;
         this.purchasePrice = Number(purchasePrice);
         this.downPayment = Number(downPayment);
@@ -100,6 +104,8 @@ export default class Loan {
             } else {
                 return 0;
             }
+        } else {
+            return 0;
         }
     }
 }
