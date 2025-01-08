@@ -15,8 +15,9 @@
   },
   "dependencies": {
     "dotenv": "^16.4.5",
+    "greenacre-loan-app": "file:",
     "playwright": "^1.47.1",
-    "playwright-bdd": "^7.4.0",
+    "playwright-bdd": "^8.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
   }

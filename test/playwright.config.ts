@@ -5,9 +5,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const testDir = defineBddConfig({
-  paths: ['features/*.feature'],
-  import: ['steps/*.ts'],
-  featuresRoot: './features',
+  featuresRoot: 'features',
 });
 
 /**
