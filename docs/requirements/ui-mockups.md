@@ -2,8 +2,8 @@
 
 ## Web UI
 
-![Main Page: Web](..\images\greenacre-desktop.png)
+![Main Page: Web](.\images\greenacre-desktop.png)
 
 ## Mobile UI
 
-![Main Page: Mobile](..\docs\images\greenacre-mobile-app.png)
+![Main Page: Mobile](.\docs\images\greenacre-mobile-app.png)
