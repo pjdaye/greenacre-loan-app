@@ -2,8 +2,8 @@
 
 ## Web UI
 
-![Main Page: Web](C:\Users\pjday\OneDrive\Documents\projects\greenacre-loan-app\docs\images\greenacre-desktop.png)
+![Main Page: Web](../images/greenacre-desktop.png)
 
 ## Mobile UI
 
-![Main Page: Mobile](C:\Users\pjday\OneDrive\Documents\projects\greenacre-loan-app\docs\images\greenacre-mobile-app.png)
+![Main Page: Mobile](../images/greenacre-mobile-app.png)

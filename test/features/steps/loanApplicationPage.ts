@@ -1,6 +1,8 @@
 import { Page, Locator, expect } from '@playwright/test';
+import { DataTable } from 'playwright-bdd';
+import { Fixture, Given, When, Then } from 'playwright-bdd/decorators';
 
-export class LoanApplicationPage {
+export @Fixture('loanApplicationPage') class LoanApplicationPage {
     readonly page: Page;
     readonly borrowerFirstName: Locator;
     readonly borrowerLastName: Locator;
@@ -47,9 +49,23 @@ export class LoanApplicationPage {
         this.pageTitle = 'Greenacre Loans';
     }
 
+    @Given('I am on the loan application page')
     async goto() {
         await this.page.goto('/');
         await expect(this.page).toHaveTitle(this.pageTitle);
+    }
+
+    @When('I submit a loan application with the following details:')
+    async fillLoanApplication(data: DataTable) {
+        const values = data.rowsHash();
+        const purchasePrice = String((Math.round((Number(values['loanAmount']) / (Number(values['ltv']) / 100)) * 100) / 100).toFixed(2));
+        const downPayment = String(Number(purchasePrice) - Number(values['loanAmount']));
+        const loanTerm = values['loanPeriod'] + ' years';
+        await this.inputBorrowerInformation(values['borrowerFirstName'], values['borrowerLastName'], values['borrowerFICO']);
+        await this.inputCoborrowerInformation(values['coBorrowerFirstName'], values['coBorrowerLastName'], values['coBorrowerFICO']);
+        await this.inputPurchaseInformation(values['propertyType'], values['zipCode'], purchasePrice, downPayment);
+        await this.inputLoanInformation(values['loanType'], values['loanAmount'], loanTerm);
+        await this.submitForApproval();
     }
 
     async inputBorrowerInformation(borrowerFName: string, borrowerLName: string, borrowerFico: string) {
@@ -104,14 +120,17 @@ export class LoanApplicationPage {
         await this.submitButton.click();
     }
 
+    @Then('the loan application should be approved')
     async verifyApproval() {
         await expect(this.approvalLabel).toBeVisible();
     }
 
+    @Then('the loan application should be denied')
     async verifyDenial() {
         await expect(this.denialLabel).toBeVisible();
     }
 
+    @Then('the interest rate should be {string}')
     async verifyInterestRate(interestRate: string) {
         if (interestRate === 'NA') {
             await expect(this.interestRateLabel).not.toBeVisible();
@@ -121,6 +140,7 @@ export class LoanApplicationPage {
         await expect(this.interestRateLabel).toContainText(interestRate);
     }
 
+    @Then('the loan program should be {string}')
     async verifyLoanProgram(loanProgram: string) {
         if (loanProgram === 'NA') {
             await expect(this.loanProgramTitleLabel).not.toBeVisible();
@@ -128,5 +148,11 @@ export class LoanApplicationPage {
         }
         
         await expect(this.page.getByText(`${loanProgram}`)).toBeVisible();
+    }
+
+    @Then('the interest rate should be a valid percentage')
+    async verifyInterestRateValidPercentage() {
+        let interestRateValue = await this.interestRateLabel.innerText();
+        await expect(interestRateValue).toMatch(/^[0-9]+(\.[0-9]{1,2})?%$/);
     }
 }
