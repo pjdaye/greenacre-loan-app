@@ -155,4 +155,9 @@ export @Fixture('loanApplicationPage') class LoanApplicationPage {
         let interestRateValue = await this.interestRateLabel.innerText();
         await expect(interestRateValue).toMatch(/^[0-9]+(\.[0-9]{1,2})?%$/);
     }
+    
+    @Then('an alert is displayed with message {string}')
+    async verifyAlertMessage(alertMessage: string) {
+        await expect(this.page).toHaveScreenshot(alertMessage);
+    }
 }
