@@ -1,7 +1,7 @@
 import React from 'react';
 
 const LoanApproval = (props) => {
-    
+
     let loanProgram;
 
     switch (props.data.program) {
@@ -17,44 +17,34 @@ const LoanApproval = (props) => {
         default:
             loanProgram = '';
     }
-    
-    if (props.data.approval) {
+
+    if (props.data && props.data.approval) {
         return (
-            <div name="approvalPanel" className="col-span-7">
-                <h3 className="text-2xl font-semibold mb-2">Loan Approval</h3>
-                <div className="approvalData grid grid-rows-3">
-                    <div className="grid grid-cols-5">
-                        <div className="col-span-2">
-                            <p className="text-lg font-bold">Your Loan Is:</p>
-                            <p className="text-lg font-bold">Your Interest Rate Is:</p>
-                            <p className="text-lg font-bold">Your Loan Program Is:</p>
-                        </div>
-                        <div className="col-span-3">
-                            <p className="text-lg text-money-green font-bold">APPROVED!</p>
-                            <p className="text-lg text-money-green font-bold">{props.data.rate}%</p>
-                            <p className="text-lg text-money-green font-bold">{loanProgram}</p>
-                        </div>
-                    </div>
+            <div name="approvalPanel" class="container" style={{ "fontFamily": 'Segoe UI' }}>
+                <h3 className="fs-1 fw-semibold mb-1">Loan Approval</h3>
+                <div class="row my-3">
+                    <div class="col-sm-6 fs-4 fw-semibold">Your Loan Is:</div>
+                    <div class="col-sm-4 fs-4 text-money-green fw-bold">APPROVED!</div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-sm-6 fs-4 fw-semibold">Your Interest Rate Is:</div>
+                    <div class="col-sm-4 fs-4 text-money-green fw-bold">{props.data.rate}%</div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-sm-6 fs-4 fw-semibold">Your Loan Program Is:</div>
+                    <div class="col-sm-4 fs-4 text-money-green fw-bold">{loanProgram}</div>
                 </div>
             </div>
         )
-    } else if (!props.data.approval) {
+    } else if (props.data && !props.data.approval) {
         return (
-            <div name="approvalPanel" className="col-span-7">
-                <h3 className="text-2xl font-semibold mb-2">Loan Approval</h3>
-                <div className="approvalData grid grid-rows-3">
-                    <div className="grid grid-cols-5">
-                        <div className="col-span-2">
-                            <p className="text-lg font-bold">Your Loan Is:</p>
-                            {/* <p className="text-lg font-bold">Your Interest Rate Is:</p>
-                            <p className="text-lg font-bold">Your Loan Program Is:</p> */}
-                        </div>
-                        <div className="col-span-3">
-                            <p className="text-lg text-cancel-red font-bold">DENIED</p>
-                            {/* <p className="text-lg text-cancel-red font-bold">N/A</p>
-                            <p className="text-lg text-cancel-red font-bold">No matching programs</p> */}
-                        </div>
-                    </div>
+            <div name="approvalPanel" class="container" style={{ "fontFamily": 'Segoe UI' }}>
+                <div class="row">
+                    <h3 className="fs-1 fw-semibold mb-1">Loan Approval</h3>
+                </div>
+                <div className="approvalData row">
+                    <div className="col-4 fs-4">Your Loan Is:</div>
+                    <div className="col-4 fs-4 text-cancel-red fw-bold">DENIED</div>
                 </div>
             </div>
         )

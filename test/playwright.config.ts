@@ -13,6 +13,7 @@ const testDir = defineBddConfig({
  */
 export default defineConfig({
   testDir,
+  snapshotPathTemplate: 'screenshots/{projectName}/{arg}.png',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
