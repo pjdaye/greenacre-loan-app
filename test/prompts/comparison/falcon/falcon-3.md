@@ -1,13 +1,13 @@
 # Falcon 3
 
-## 1. Set the Session Context
+## 1. Context Setup and Objective
 
-## 2. Set the Business Context
+## 2. Define Error Hypothesis
 
-## 3. Set the Operations Context
+## 3. Define Feature Requirements
 
-## 4. Define Error Hypothesis
+## 4. Initial Test Case Generation
 
-## 5. Define the Feature Requirements
+## 5. Coverage Review and Augmentation
 
-## 6. Generate Test Cases
+## 6. Final Consolation and Self-Review
