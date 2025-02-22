@@ -1,4 +1,4 @@
-# Claude
+# ChatGPT o3-mini-high
 
 ## 1. Set the Session Context
 

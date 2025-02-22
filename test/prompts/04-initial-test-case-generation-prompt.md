@@ -32,7 +32,7 @@ Example:
 1. **BDD Gherkin Test Cases:** For example:
     * Given valid input data for a conventional loan, when the applicant submits the application, then the system should approve the loan with the appropriate loan program.
     * Given an invalid Borrower FICO score (e.g., 299), when the applicant submits the application, then the system should reject the application with an error message.
-    
+
 2. **Test Data Generation Instructions:** Outline how to select or generate test data using techniques such as equivalence partitioning and boundary value analysis. For instance, describe creating input sets for Borrower FICO scores, Loan Amounts, and LTV percentages, including constraints (e.g., FICO between 300 and 850).
 
 3. **Oracle for Expected Results:** Describe an approach—for example, a Python script—that accepts key inputs (FICO score, Loan Amount, etc.) and outputs the expected Loan Approval, Loan Program, and Interest Rate.
