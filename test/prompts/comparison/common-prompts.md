@@ -26,15 +26,15 @@ Review the following feature requirements for the Loan Application feature of th
 
 * As a loan applicant, I want to submit the necessary data so that I can get a loan approval.
 
-## User Stories
+## User Story
 
-### Submit for Approval (Back-end)
+### Submit for Loan Approval
 
 * As a borrower, I want to submit my data so that I can get a loan approval.
 
-#### Acceptance Criteria (Story 1)
+#### Acceptance Criteria
 
-* The following data points are used to determine approval, program, and interest rate:
+* Valid values for determining loan application approval, program, and interest rate are:
   * Borrower FICO (valid values: 300-850)
   * Co-Borrower FICO (valid values: 300-850, or none)
   * Property Type (SFR, Condo, Townhouse, Multi-Family, Commercial)
@@ -42,29 +42,8 @@ Review the following feature requirements for the Loan Application feature of th
   * Loan Amount (valid values: USD 50,000 - 1,000,000)
   * Loan Type (Fixed, Adjustable)
   * Loan Period (10, 15, 30, 40)
-* Backend API will return three values: Approval, Program, and Rate.
-* Rules for evaluating applications and determining approval based on multiple loan programs (Conventional, FHA, Jumbo) are provided.
-* Loan programs are approved based on the order of precedence: Jumbo, Conventional, FHA
-
-#### Loan Program Rulesets
-
-* Conventional Loan:
-  * Borrower FICO: 620-850
-  * Co-Borrower FICO: None, or 520-850
-  * Property Type: SFR, Condo, Townhouse, Multi-Family
-  * Loan-to-Value (LTV): <= 80%
-  * Loan Amount (USD): 50,000 - 1,000,000
-  * Loan Type: Fixed, Adjustable
-  * Loan Period: 10, 15, 30, 40 years
-* FHA Loan:
-  * Borrower FICO: 300-850
-  * Co-Borrower FICO: None, or 300-850
-  * Property Type: SFR, Condo, Townhouse
-  * Loan-to-Value (LTV): <= 100%
-  * Loan Amount (USD): 50,000 - 418,000
-  * Loan Type: Fixed
-  * Loan Period: 15, 30 years
-* Jumbo Loan:
+* A loan application can be approved for one or more of three loan programs: Jumbo, Conventional, or FHA
+* A loan is approved for a Jumbo loan program if it meets the following criteria:
   * Borrower FICO: 660-850
   * Co-Borrower FICO: None, or 620-850
   * Property Type: SFR, Condo, Townhouse, Multi-Family
@@ -72,20 +51,25 @@ Review the following feature requirements for the Loan Application feature of th
   * Loan Amount (USD): 418,000 - 1,000,000
   * Loan Type: Fixed, Adjustable
   * Loan Period: 15, 30, 40 years
-
-### Display Approval (Front-end)
-
-* As a borrower, I want to see the results of my loan application so that I can make purchasing decisions.
-
-#### Acceptance Criteria (Story 2)
-
-* Return values must be parsed and displayed correctly with specified UI components and formatting.
-* Approved loans display:
-  * "Your Loan Is: APPROVED!"
-  * "Your Interest Rate Is:" and the interest rate as a percentage
-  * "Your Loan Program Is:" and the approved program (Jumbo, Conventional, FHA)
-* Denied loans display: "Your Loan Is: Not Approved"
-
+* A loan is approved for a Conventional loan program if it meets the following criteria:
+  * Borrower FICO: 620-850
+  * Co-Borrower FICO: None, or 520-850
+  * Property Type: SFR, Condo, Townhouse, Multi-Family
+  * Loan-to-Value (LTV): <= 80%
+  * Loan Amount (USD): 50,000 - 1,000,000
+  * Loan Type: Fixed, Adjustable
+  * Loan Period: 10, 15, 30, 40 years
+* A loan is approved for a FHA loan program if it meets the following criteria:
+  * Borrower FICO: 300-850
+  * Co-Borrower FICO: None, or 300-850
+  * Property Type: SFR, Condo, Townhouse
+  * Loan-to-Value (LTV): <= 100%
+  * Loan Amount (USD): 50,000 - 418,000
+  * Loan Type: Fixed
+  * Loan Period: 15, 30 years
+* If a loan is approved for more than one Loan program, the value returned is based on the order of precedence: Jumbo, Conventional, FHA
+* The return values for a loan that is approved will be: Approval, Program, and Rate
+* The return values for a loan that is denied will be: Denial, "NA", and "NA".
 """
 
 ## 4. Initial Test Case Generation
@@ -94,9 +78,9 @@ Using the provided context, error hypotheses, and detailed feature requirements 
 
 1. **BDD Gherkin Test Cases:** Generate 3–5 test cases covering key scenarios—including valid flows, edge cases, and error conditions—in the Given/When/Then format. Ensure these cases reference test design techniques where applicable.
 
-2. **Test Data Generation Instructions:** Outline a process for selecting or generating test data inputs. Include techniques such as equivalence partitioning, boundary value analysis, and pairwise combinatorial testing. Mention any constraints or assumptions that guide the data selection.
+2. **Test Data Generation Instructions:** Provide a script or code outline that generates test data using techniques such as equivalence partitioning, boundary value analysis, and pairwise combinatorial testing. The script should account for constraints (e.g., only whole, positive numbers) and output a reduced, manageable test data set.
 
-3. **Oracle for Expected Results:** Describe a mechanism (e.g., a script outline or logical rules) that determines the expected outcomes for each test case.
+3. **Oracle for Expected Results:** Describe and include a code snippet or pseudocode that acts as an oracle. This script should either pre-compute expected results based on input parameters (e.g., FICO score, Loan Amount) or dynamically validate the outputs of the test cases during execution.
 
 4. **Exploratory Testing Charter:** Provide 2–3 exploratory testing charters focused on areas where manual investigation may uncover additional risks or gaps in automated testing.
 
@@ -170,14 +154,15 @@ Epic
 
 * As a loan applicant, I want to submit the necessary data so that I can get a loan approval.
 
-User Stories
-Submit for Approval (Back-end)
+User Story
+
+Submit for Loan Approval
 
 * As a borrower, I want to submit my data so that I can get a loan approval.
 
-Acceptance Criteria (Story 1)
+Acceptance Criteria
 
-* The following data points are used to determine approval, program, and interest rate:
+* Valid values for determining loan application approval, program, and interest rate are:
   * Borrower FICO (valid values: 300-850)
   * Co-Borrower FICO (valid values: 300-850, or none)
   * Property Type (SFR, Condo, Townhouse, Multi-Family, Commercial)
@@ -185,29 +170,8 @@ Acceptance Criteria (Story 1)
   * Loan Amount (valid values: USD 50,000 - 1,000,000)
   * Loan Type (Fixed, Adjustable)
   * Loan Period (10, 15, 30, 40)
-* Backend API will return three values: Approval, Program, and Rate.
-* Rules for evaluating applications and determining approval based on multiple loan programs (Conventional, FHA, Jumbo) are provided.
-* Loan programs are approved based on the order of precedence: Jumbo, Conventional, FHA
-
-Loan Program Rulesets
-
-* Conventional Loan:
-  * Borrower FICO: 620-850
-  * Co-Borrower FICO: None, or 520-850
-  * Property Type: SFR, Condo, Townhouse, Multi-Family
-  * Loan-to-Value (LTV): <= 80%
-  * Loan Amount (USD): 50,000 - 1,000,000
-  * Loan Type: Fixed, Adjustable
-  * Loan Period: 10, 15, 30, 40 years
-* FHA Loan:
-  * Borrower FICO: 300-850
-  * Co-Borrower FICO: None, or 300-850
-  * Property Type: SFR, Condo, Townhouse
-  * Loan-to-Value (LTV): <= 100%
-  * Loan Amount (USD): 50,000 - 418,000
-  * Loan Type: Fixed
-  * Loan Period: 15, 30 years
-* Jumbo Loan:
+* A loan application can be approved for one or more of three loan programs: Jumbo, Conventional, or FHA
+* A loan is approved for a Jumbo loan program if it meets the following criteria:
   * Borrower FICO: 660-850
   * Co-Borrower FICO: None, or 620-850
   * Property Type: SFR, Condo, Townhouse, Multi-Family
@@ -215,16 +179,22 @@ Loan Program Rulesets
   * Loan Amount (USD): 418,000 - 1,000,000
   * Loan Type: Fixed, Adjustable
   * Loan Period: 15, 30, 40 years
-
-Display Approval (Front-end)
-
-* As a borrower, I want to see the results of my loan application so that I can make purchasing decisions.
-
-Acceptance Criteria (Story 2)
-
-* Return values must be parsed and displayed correctly with specified UI components and formatting.
-* Approved loans display:
-  * "Your Loan Is: APPROVED!"
-  * "Your Interest Rate Is:" and the interest rate as a percentage
-  * "Your Loan Program Is:" and the approved program (Jumbo, Conventional, FHA)
-* Denied loans display: "Your Loan Is: Not Approved"
+* A loan is approved for a Conventional loan program if it meets the following criteria:
+  * Borrower FICO: 620-850
+  * Co-Borrower FICO: None, or 520-850
+  * Property Type: SFR, Condo, Townhouse, Multi-Family
+  * Loan-to-Value (LTV): <= 80%
+  * Loan Amount (USD): 50,000 - 1,000,000
+  * Loan Type: Fixed, Adjustable
+  * Loan Period: 10, 15, 30, 40 years
+* A loan is approved for a FHA loan program if it meets the following criteria:
+  * Borrower FICO: 300-850
+  * Co-Borrower FICO: None, or 300-850
+  * Property Type: SFR, Condo, Townhouse
+  * Loan-to-Value (LTV): <= 100%
+  * Loan Amount (USD): 50,000 - 418,000
+  * Loan Type: Fixed
+  * Loan Period: 15, 30 years
+* If a loan is approved for more than one Loan program, the value returned is based on the order of precedence: Jumbo, Conventional, FHA
+* The return values for a loan that is approved will be: Approval, Program, and Rate
+* The return values for a loan that is denied will be: Denial, "NA", and "NA".
