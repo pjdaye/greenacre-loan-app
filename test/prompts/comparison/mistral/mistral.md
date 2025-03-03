@@ -24,10 +24,3 @@
 
 
 ---
-
-## Notes
-
-
----
-
-_Music for the evening by []()_

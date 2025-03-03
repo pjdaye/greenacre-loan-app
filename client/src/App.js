@@ -4,7 +4,7 @@ import HousePng from './images/house.png';
 
 function App() {
   return (
-    <div className="App w-75 mx-auto p-3 bg-white shadow-sm rounded">
+    <div className="App w-50 mx-auto p-3 bg-white shadow rounded">
       <div className="pt-1 pb-1 bg-cancel-red">
         <div>
         <p className="align-middle text-center text-white italic">
