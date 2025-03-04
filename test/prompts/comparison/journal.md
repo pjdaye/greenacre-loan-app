@@ -67,12 +67,22 @@ _Music for this experiment by:_
 
 ## Model: mistral (via Le Chat)
 
+* The error hypothesis was well reasoned and didn't simply parrot the hypothesis supplied as guides.
+* Follow up questioning of the tests (prompt 5) mentions a need to focus on co-borrower FICO. Let's see what kind of tests we get.
+* A really interesting note is that there should be tests around the $418,000 threshold! The way the feature was designed so that it would be a critical point. That it recognizes this point is a key find.
+* Interestingly, no updates to the Python script for data generation. Is the script that good?
+* Prompt 6 includes updates to tests, test data generation scripts, and Exploratory Testing charters.
+  * These were just restatements of the original charters. Keeping all of the final product under one response, which is nice.
+  * The charters are good, sound statements of what to explore, although in the future I may feed it a template, like Elizabeth Hendrikson's (Explore ... with .. to discover ....).
+* An initial pass with the first test cases (prompt 4) resulted in runnable, and mostly passing tests.
+  * Two tests hit UI validations that aren't built out yet.
+  * Coverage, using only five tests, was clearly low.
 
 ---
 
 _Music for this experiment by:_
 
-* _[]()_
+* _[Rory Gallagher: Irish Tour '74 (Live/Remastered 2017)](https://open.spotify.com/album/0OpKEThWe2Evxk6zwixWZU?si=zLKxhkzEQT2fvCqmdCCerg)_
 
 ## Model: Claude
 

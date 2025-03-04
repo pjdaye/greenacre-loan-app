@@ -5,7 +5,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const testDir = defineBddConfig({
-  featuresRoot: 'features',
+  // featuresRoot: 'features',
+  featuresRoot: 'prompts/comparison/mistral/features',
 });
 
 /**
