@@ -77,6 +77,17 @@ _Music for this experiment by:_
 * An initial pass with the first test cases (prompt 4) resulted in runnable, and mostly passing tests.
   * Two tests hit UI validations that aren't built out yet.
   * Coverage, using only five tests, was clearly low.
+* The initial data generation script creates 1,200 test cases, and uses a pairwise technique.
+  * There is a hole in the tests in that they do not include co-borrower data.
+  * The initial run of these tests (crafted by data driving two of the oringial Gherking tests) was very positive.
+  * The only failures (four) were run on Firefox. The same tests passed on Chromium and Webkit. I have observed similar behavior in the past.
+* In the first round of refinement (prompt 5), tests were added for Co-Borrower, invalid (but available) property type, and more boundary coverage.
+  * Two of the tests failed, because they incorrectly calculated that the loans would be denied. Once I adjusted them to return a given loan type, they passed.
+  * This will be something to look at--how much massaging of the tests and data generation code will be needed?
+* The final round of refinement (prompt 6) started with the original and added Gherkin-syntax tests, no changes.
+  * In fact, prompt 6 returned no new material. It did add the additional test cases to the set of tests written in Gherkin.
+  * With no additional explanation, it's unclear if the prompt thought it was just supposed to recap everything, or if it determined there were no other tests to run.
+  * It still leaves holes in coverage.
 
 ---
 
