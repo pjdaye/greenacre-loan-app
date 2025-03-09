@@ -1,4 +1,4 @@
-# ChatGPT 4o
+# ChatGPT 4.5
 
 ## 1. [Context Setup and Objective](../../01-context-setup-and-objectives.md)
 

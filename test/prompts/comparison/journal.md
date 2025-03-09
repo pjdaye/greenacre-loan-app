@@ -97,14 +97,25 @@ _Music for this experiment by:_
 
 ## Model: Claude
 
+* The good news: Running on upgraded Claude 3.7 Sonnet!
+* Setting the context got a set of test cases in return.
+  * It was good to see the consideration for things like edge cases and techniques like BVA and ECP.
+  * The tests are clearly not useful since the model doesn't yet know what the rules are for the feature.
+* Error hypothesis opens with 15 identified potential risks. They are a solid mix of business risks and technology risks. Not all are particularly deep, but they are well reasoned.
+* The top three risks are decently chosen. I might have chosen differently, but that doesn't make these wrong!
+* Moving into the requirements, it correctly identified areas of focus, and even appropriate test techniques, including for the first time in this set, Decision Tables.
+* First impression of the test cases is positive! The test cases themselves already use data tables and examples tables. There are also scripts for data generation and an oracle.
+* On the downside, because this isn't a paid account, I hit the limit of the chat window in the middle of the Exploratory Testing charters. I hope that the experiment doesn't end here as the model is appearing to be strong.
+* Interesting, the data generation and oracle scripts are written in JavaScript.
+* I had to wire up the two scripts to properly generate the data, but that was a trivial effort. They created 15 test cases.
+* Interestingly, the oracle returned an interest rate for some of the test cases - despite no information being provided on the interest rate calculation!
+* Unfortunately, on the free account, this reached the limit for the chart and I (sadly) couldn't continue the experiment.
+* Claude was performing well and a future iteration with a paid account should be tried.
 
 ---
 
-_Music for this experiment by:_
-
-* _[]()_
-
 ## Model: GPT o3-mini-high
+
 
 
 ---
@@ -130,3 +141,7 @@ _Music for this experiment by:_
 _Music for this experiment by:_
 
 * _[]()_
+
+## Conclusion
+
+One thing I did not do through each of these experiments was to interact with the model. Where some responses were close, but not right, it might have benefitted from refinement and clarification. Although I want the prompts to stand on their own, they'll only be as good as the data I put into them - and if I'm not clear, I should be prepared to provide clarification.

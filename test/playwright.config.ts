@@ -6,7 +6,7 @@ dotenv.config();
 
 const testDir = defineBddConfig({
   // featuresRoot: 'features',
-  featuresRoot: 'prompts/comparison/mistral/features',
+  featuresRoot: 'prompts/comparison/chatGPT-o3/features',
 });
 
 /**
