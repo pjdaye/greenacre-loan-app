@@ -116,7 +116,21 @@ _Music for this experiment by:_
 
 ## Model: GPT o3-mini-high
 
-
+* And, we're off! o3 wastes no time getting to work with a set of high-level test cases with rationale.
+  * And, starting with valid test design techniques.
+* On risk analysis (prompt 2), it returned only the top three. While it was nice to see other models return additional risks, and then a top three, this model delivered exactly what was asked.
+* It did a nice job of identifying potential risks and which testing approaches would target them. (This is the purpose behind using the Error Hypothesis.)
+* On reviewing the requirements, it started by recapping the requirements, then stated potential edge cases and special conditions, then wrapped up with areas requiring special attention (risk-based focus). This looks like the right approach.
+* Test case generation (prompt 4) returned four test cases, which at fist glance appear appropriate. They are not data-driven, but could be easily converted with the appropriate data.
+  * The test cases contain a note as to which test design techniques were used in crafting the given test.
+  * The validation (THEN step) for the test includes the approval/denial, loan program, and a placeholder for the interest rate. This is appropriate since I have not defined how interest rates will be calculated. (When I move to the final selection and application, I will introduce that as well.)
+  * One of the test cases tests error handling on the UI. Since I haven't added that to the code, this test won't be useful - yet.
+* There are scripts for data generation and the oracle, but they are not necessarily designed to be final. Pulling into VS Code with Copilot, or further prompting with ChatGPT should get a complete result (apart from a little simple programming on my part...).
+  * The data generation script includes a brief note explaining the pairwise technique used to create the data. This is a nice touch. In the future, instruction could be given as to which pairwise technique to use.
+  * While valid as is, the boundary values chosen represented only valid selections. In the future, it might be better to explicitly instruct it to use outside/invalid values as well.
+  * The oracle uses a simple cascade to decide which, if any, of the loan programs applies and according to proper precedence. I probably overcomplicated it with a rules engine...?
+* It also returned three Exploratory Testing Charters, which appear to addres the top three risks previously identified - a nice touch.
+  * However, all of these charters might be better represented in code. Especially the one concerned with conccurency. It is hard for a solo testers doing exploratory testing to submit multiple applications simultaneouly using manual techniques.
 
 ---
 
