@@ -131,21 +131,23 @@ _Music for this experiment by:_
   * The oracle uses a simple cascade to decide which, if any, of the loan programs applies and according to proper precedence. I probably overcomplicated it with a rules engine...?
 * It also returned three Exploratory Testing Charters, which appear to addres the top three risks previously identified - a nice touch.
   * However, all of these charters might be better represented in code. Especially the one concerned with conccurency. It is hard for a solo testers doing exploratory testing to submit multiple applications simultaneouly using manual techniques.
+* The first few prompts returned quickly, but as the experiment went further on, the model took more time to "reason." Regardless, the amount of time spent thinking would still represent a savings over manual work.
+* Coverage review and refinement (prompt 5) returned a list of gaps and new test cases designed to address them.
+* It also returned a reference to what should be updated in the data generation script, but unfortunately no code. Still the work should be straightforward.
+* The oracle did return additional pseudo code that would need to be integrated.
+* Finally, it gave some additional recommendations to increase coverage.
+* The final prompt, to make any last changes and bring eveyrthing together (prompt 6), returned good recommendations and expanded the scope of testing. However, it still avoided outside boundaries that would more efficiently test off-by-one errors. Again, something to consider going forward.
+* In comparing the final Exploratory Testing Charters with the original, they were similar, but the latter were less verbose. Either were acceptable, although for the experiment I kept the final ones. Here's a place where the tester's knowledge might help chose or merge them together.
+  * Of note: the charter dealing with concurrency recommends using load tools. We get into the interesting blend of using tools and automation in support of exploratory testing. I didn't expect that input.
+* By modifying the code slightly to change the size of the reduces set, I was able to generate 100 test cases. In fact, the lever allows me to continue to increase the number of tests. The difficulty is knowing which are valuable and which are not.
 
 ---
-
-_Music for this experiment by:_
-
-* _[]()_
 
 ## Model: GPT o1
 
+For the sake of available time, I'm skipping the o1 model. If I have time later, I may return to it for completeness sake.
 
 ---
-
-_Music for this experiment by:_
-
-* _[]()_
 
 ## Model: GPT 4o
 
@@ -159,3 +161,5 @@ _Music for this experiment by:_
 ## Conclusion
 
 One thing I did not do through each of these experiments was to interact with the model. Where some responses were close, but not right, it might have benefitted from refinement and clarification. Although I want the prompts to stand on their own, they'll only be as good as the data I put into them - and if I'm not clear, I should be prepared to provide clarification.
+
+**Future Experiment:** A valuable follow up would be to run mutation tests to see how effective the test suite is against the application. This could then be compared against the golden set.

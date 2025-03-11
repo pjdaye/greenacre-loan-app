@@ -516,14 +516,423 @@ This initial draft provides a comprehensive test asset suite to cover core funct
 
 ## 5. [Coverage Review and Augmentation](../../05-coverage-review-and-augmentation-prompt.md)
 
-(Reasoned for  seconds)
+(Reasoned for 29 seconds)
 
+Below is an analysis of the initial test assets along with identified gaps and recommendations for additional test cases and improvements:
 
+---
+
+### Identified Gaps & Recommendations
+
+1. **FHA-Specific Scenarios:**  
+   - **Gap:** The initial suite does not include a dedicated test case for a valid FHA loan application, nor one that specifically tests FHA rejection conditions (e.g., using an invalid loan type or property type for FHA).  
+   - **Recommendation:** Add separate BDD scenarios that validate both a successful FHA application and a rejection when FHA-specific constraints (like fixed loan type) are not met.
+
+2. **Multiple Invalid Inputs:**  
+   - **Gap:** There is no explicit scenario where several inputs are simultaneously out-of-range (e.g., Borrower FICO too low, loan amount too high, invalid LTV).  
+   - **Recommendation:** Include a test case that covers multiple error conditions at once. This will help ensure that the system correctly aggregates errors and returns a denial.
+
+3. **Property Type “Commercial” Handling:**  
+   - **Gap:** Although “Commercial” is listed as a valid property type in the requirements, none of the loan programs accept it. This edge case isn’t directly addressed.  
+   - **Recommendation:** Add a scenario where the property type is “Commercial” to ensure that applications using this value are denied.
+
+4. **Additional Negative Scenarios with Non-Numeric and Missing Data:**  
+   - **Gap:** While there is one test case for missing mandatory fields, the handling of non-numeric or incorrectly formatted inputs (e.g., alphabetic characters in numeric fields) isn’t explicitly tested.  
+   - **Recommendation:** Consider expanding negative tests to cover such cases. (This may be integrated into exploratory charters if not fully automated.)
+
+5. **Oracle and Test Data Enhancements:**  
+   - **Modification:** Update the oracle instructions to also check that the property type and loan type are valid for the chosen program. In addition, extend the test data generation script to include values like “Commercial” and non-numeric edge cases (if applicable).
+
+---
+
+### Additional BDD Test Cases
+
+#### **Test Case 5: Valid FHA Loan Application**
+
+```gherkin
+Scenario: Borrower submits a valid FHA loan application
+  Given a borrower with a Borrower FICO of "500" and no Co-Borrower FICO
+  And the property type is "Condo"
+  And the Loan-to-Value is "95%"
+  And the Loan Amount is "300000"
+  And the Loan Type is "Fixed"
+  And the Loan Period is "30"
+  When the borrower submits the loan application form
+  Then the system should return "Approval", "FHA", and the appropriate rate
+```
+
+*This case ensures FHA-specific criteria are met (e.g., fixed loan type, property type within FHA allowed values).*
+
+---
+
+#### **Test Case 6: Denied FHA Loan Application Due to Invalid Loan Type**
+
+```gherkin
+Scenario: FHA loan application denied due to invalid loan type
+  Given a borrower with a Borrower FICO of "550" and a Co-Borrower FICO of "550"
+  And the property type is "SFR"
+  And the Loan-to-Value is "90%"
+  And the Loan Amount is "200000"
+  And the Loan Type is "Adjustable"
+  And the Loan Period is "15"
+  When the borrower submits the loan application form
+  Then the system should return "Denial", "NA", and "NA"
+```
+
+*This scenario tests that an FHA application fails when an invalid loan type is used (FHA requires "Fixed").*
+
+---
+
+#### **Test Case 7: Denial Due to Multiple Out-of-Range Inputs Including Commercial Property**
+
+```gherkin
+Scenario: Loan application denied due to multiple invalid inputs
+  Given a borrower with a Borrower FICO of "290" and a Co-Borrower FICO of "860"
+  And the property type is "Commercial"
+  And the Loan-to-Value is "105%"
+  And the Loan Amount is "1200000"
+  And the Loan Type is "Adjustable"
+  And the Loan Period is "50"
+  When the borrower submits the loan application form
+  Then the system should return "Denial", "NA", and "NA"
+```
+
+*This scenario combines several errors—invalid FICO values, LTV, loan amount, loan period, and property type—to verify that the system properly denies the application.*
+
+---
+
+### Modifications to Test Data and Oracle Instructions
+
+- **Test Data Generation:**  
+  Update the data generation script to include additional values for property type ("Commercial") and ensure that scenarios cover non-numeric or malformed inputs where applicable. For instance, you might include a sample set that deliberately injects string values into numeric fields to test validation routines.
+
+- **Oracle Adjustments:**  
+  Enhance the oracle pseudocode to check for additional conditions, for example:
+  - Validate that if the property type is "Commercial," none of the loan programs should be approved.
+  - Ensure that the loan type is exactly "Fixed" for FHA, and return "Denial" if not.
+  
+  A modified snippet might include:
+
+  ```python
+  def determine_loan_program(...):
+      # Additional check for invalid property type across all programs
+      valid_property_for_programs = {
+          "Jumbo": ["SFR", "Condo", "Townhouse", "Multi-Family"],
+          "Conventional": ["SFR", "Condo", "Townhouse", "Multi-Family"],
+          "FHA": ["SFR", "Condo", "Townhouse"]
+      }
+      # Check if property type is acceptable for any program
+      if property_type not in set(valid_property_for_programs["Jumbo"] + valid_property_for_programs["FHA"]):
+          return ("Denial", "NA", "NA")
+      
+      # Existing program-specific eligibility checks...
+  ```
+  
+---
+
+### Overall Recommendations for Comprehensive Coverage
+
+- **Pairwise and Boundary Analysis:**  
+  Ensure that all combinations of edge values are included in your test data generation script. The added negative cases (such as out-of-bound FICO, LTV, and loan amounts) should be integrated.
+  
+- **Risk-Based Prioritization:**  
+  Focus additional tests on areas with high risk—particularly the decision logic for loan program precedence and data consistency in distributed processing.
+
+- **Extend Exploratory Charters:**  
+  Encourage manual testing to cover non-standard inputs (e.g., special characters in numeric fields) and integration points between the front end and back end.
+
+By incorporating these additional test cases and enhancements to the test data and oracle logic, you can achieve more comprehensive coverage of the critical functional flows and potential risk areas in the Greenacre Loan Application app.
 
 ## 6. [Final Consolation and Self-Review](../../06-final-consolidation-and-self-review-prompt.md)
 
-(Reasoned for  seconds)
+(Reasoned for 13 seconds)
 
+Below is the final, consolidated test suite for the Loan Application feature of the Greenacre Loan Application app. This suite has been organized to cover all key scenarios, edge cases, and risk areas using established test design techniques such as equivalence partitioning, boundary value analysis, pairwise testing, and risk-based prioritization.
 
+---
+
+### 1. BDD Gherkin Test Cases (final)
+
+#### Test Case 1: Valid Conventional Loan Application
+
+```gherkin
+Feature: Loan Application Submission
+
+  Scenario: Borrower submits a valid application for a Conventional loan
+    Given a borrower with a Borrower FICO of "700" and a Co-Borrower FICO of "600"
+    And the property type is "SFR"
+    And the Loan-to-Value is "75%"
+    And the Loan Amount is "200000"
+    And the Loan Type is "Fixed"
+    And the Loan Period is "30"
+    When the borrower submits the loan application form
+    Then the system should return "Approval", "Conventional", and the appropriate rate
+```
+
+*Techniques Applied: Equivalence Partitioning and Boundary Value Analysis (for numeric ranges).*
+
+---
+
+#### Test Case 2: Valid FHA Loan Application
+
+```gherkin
+Scenario: Borrower submits a valid FHA loan application
+  Given a borrower with a Borrower FICO of "500" and no Co-Borrower FICO
+  And the property type is "Condo"
+  And the Loan-to-Value is "95%"
+  And the Loan Amount is "300000"
+  And the Loan Type is "Fixed"
+  And the Loan Period is "30"
+  When the borrower submits the loan application form
+  Then the system should return "Approval", "FHA", and the appropriate rate
+```
+
+*Techniques Applied: Equivalence Partitioning (selecting FHA-specific valid values) and risk-based prioritization.*
+
+---
+
+#### Test Case 3: Multiple Eligibility with Program Precedence (Jumbo)
+
+```gherkin
+Scenario: Loan application qualifies for more than one program and applies precedence
+  Given a borrower with a Borrower FICO of "700" and a Co-Borrower FICO of "650"
+  And the property type is "Townhouse"
+  And the Loan-to-Value is "75%"
+  And the Loan Amount is "500000"
+  And the Loan Type is "Adjustable"
+  And the Loan Period is "40"
+  When the borrower submits the loan application form
+  Then the system should return "Approval", "Jumbo", and the appropriate rate
+```
+
+*Techniques Applied: Pairwise Testing (combining valid inputs) and Decision Logic Validation for precedence (Jumbo > Conventional > FHA).*
+
+---
+
+#### Test Case 4: Edge Case for Boundary Values (FICO and Loan Amount)
+
+```gherkin
+Scenario: Loan application with boundary values for FICO scores and Loan Amount
+  Given a borrower with a Borrower FICO of "300" and a Co-Borrower FICO of "300"
+  And the property type is "Condo"
+  And the Loan-to-Value is "80%"
+  And the Loan Amount is "50000"
+  And the Loan Type is "Fixed"
+  And the Loan Period is "15"
+  When the borrower submits the loan application form
+  Then the system should return "Approval", "Conventional", and the appropriate rate
+```
+
+*Techniques Applied: Boundary Value Analysis (testing lower boundaries for FICO and Loan Amount).*
+
+---
+
+#### Test Case 5: Error Condition – Missing Mandatory Fields
+
+```gherkin
+Scenario: Loan application submission with missing required fields
+  Given a borrower accesses the loan application form
+  When the borrower submits the form without entering Borrower FICO and Loan Amount
+  Then the system should display error messages for missing Borrower FICO and Loan Amount
+  And the application should not be processed
+```
+
+*Techniques Applied: Negative Testing to validate required field enforcement.*
+
+---
+
+#### Test Case 6: Denied FHA Loan Application Due to Invalid Loan Type
+
+```gherkin
+Scenario: FHA loan application denied due to invalid loan type
+  Given a borrower with a Borrower FICO of "550" and a Co-Borrower FICO of "550"
+  And the property type is "SFR"
+  And the Loan-to-Value is "90%"
+  And the Loan Amount is "200000"
+  And the Loan Type is "Adjustable"
+  And the Loan Period is "15"
+  When the borrower submits the loan application form
+  Then the system should return "Denial", "NA", and "NA"
+```
+
+*Techniques Applied: Negative Testing and risk-based prioritization (FHA requires "Fixed" loan type).*
+
+---
+
+#### Test Case 7: Denial Due to Multiple Invalid Inputs Including Commercial Property
+
+```gherkin
+Scenario: Loan application denied due to multiple invalid inputs
+  Given a borrower with a Borrower FICO of "290" and a Co-Borrower FICO of "860"
+  And the property type is "Commercial"
+  And the Loan-to-Value is "105%"
+  And the Loan Amount is "1200000"
+  And the Loan Type is "Adjustable"
+  And the Loan Period is "50"
+  When the borrower submits the loan application form
+  Then the system should return "Denial", "NA", and "NA"
+```
+
+*Techniques Applied: Combination of Equivalence Partitioning, Boundary Value Analysis, and Negative Testing for multiple error conditions.*
+
+---
+
+### 2. Test Data Generation Instructions (final)
+
+Below is a Python script outline that generates test data using a combination of equivalence partitioning, boundary value analysis, and pairwise combinatorial testing. The script ensures that constraints (such as only whole, positive numbers) are enforced and produces a reduced, manageable dataset.
+
+```python
+import itertools
+
+# Define valid ranges and values
+borrower_fico_values = [300, 600, 850]       # Lower boundary, mid-range, and upper boundary
+co_borrower_fico_options = [None, 300, 850]
+property_types = ["SFR", "Condo", "Townhouse", "Multi-Family", "Commercial"]
+ltv_values = [50, 75, 80, 95, 100]             # Representative LTV percentages
+loan_amounts = [50000, 100000, 418000, 500000, 1000000]  # Boundary and mid-range values
+loan_types = ["Fixed", "Adjustable"]
+loan_periods = [10, 15, 30, 40, 50]            # Including an out-of-range value for negative tests
+
+# Use pairwise-like combination for select parameters to reduce total combinations
+parameters = {
+    "borrower_fico": borrower_fico_values,
+    "co_borrower_fico": co_borrower_fico_options,
+    "property_type": property_types,
+    "ltv": ltv_values,
+    "loan_amount": loan_amounts,
+    "loan_type": loan_types,
+    "loan_period": loan_periods
+}
+
+# Generate a reduced dataset using Cartesian product and sampling
+keys = list(parameters.keys())
+all_combinations = list(itertools.product(*[parameters[k] for k in keys]))
+# Reduce dataset: sample every nth combination based on desired size
+n = max(1, len(all_combinations) // 20)
+reduced_test_data = all_combinations[::n]
+
+print("Generated Test Data Set:")
+for test_case in reduced_test_data:
+    test_input = dict(zip(keys, test_case))
+    print(test_input)
+```
+
+*This script leverages pairwise techniques via Cartesian products (with reduction) while ensuring boundary and equivalence classes are included.*
+
+---
+
+### 3. Oracle for Expected Results (final)
+
+Below is a pseudocode snippet that acts as an oracle, pre-computing the expected outcome based on the input parameters and program eligibility rules. This oracle validates that the correct loan program and response are returned.
+
+```python
+def determine_loan_program(borrower_fico, co_borrower_fico, property_type, ltv, loan_amount, loan_type, loan_period):
+    # Check if the property type is valid for any loan program
+    if property_type not in ["SFR", "Condo", "Townhouse", "Multi-Family"]:
+        return ("Denial", "NA", "NA")
+    
+    def is_jumbo():
+        return (660 <= borrower_fico <= 850 and 
+                (co_borrower_fico is None or 620 <= co_borrower_fico <= 850) and 
+                property_type in ["SFR", "Condo", "Townhouse", "Multi-Family"] and 
+                ltv <= 80 and 
+                418000 <= loan_amount <= 1000000 and 
+                loan_type in ["Fixed", "Adjustable"] and 
+                loan_period in [15, 30, 40])
+                
+    def is_conventional():
+        return (620 <= borrower_fico <= 850 and 
+                (co_borrower_fico is None or 520 <= co_borrower_fico <= 850) and 
+                property_type in ["SFR", "Condo", "Townhouse", "Multi-Family"] and 
+                ltv <= 80 and 
+                50000 <= loan_amount <= 1000000 and 
+                loan_type in ["Fixed", "Adjustable"] and 
+                loan_period in [10, 15, 30, 40])
+                
+    def is_fha():
+        return (300 <= borrower_fico <= 850 and 
+                (co_borrower_fico is None or 300 <= co_borrower_fico <= 850) and 
+                property_type in ["SFR", "Condo", "Townhouse"] and 
+                ltv <= 100 and 
+                50000 <= loan_amount <= 418000 and 
+                loan_type == "Fixed" and 
+                loan_period in [15, 30])
+    
+    # Determine program based on precedence: Jumbo > Conventional > FHA
+    if is_jumbo():
+        return ("Approval", "Jumbo", "Calculated_Rate")
+    elif is_conventional():
+        return ("Approval", "Conventional", "Calculated_Rate")
+    elif is_fha():
+        return ("Approval", "FHA", "Calculated_Rate")
+    else:
+        return ("Denial", "NA", "NA")
+
+# Example usage:
+result = determine_loan_program(borrower_fico=700, co_borrower_fico=650, property_type="Townhouse",
+                                ltv=75, loan_amount=500000, loan_type="Adjustable", loan_period=40)
+print(result)
+```
+
+*This oracle ensures that the decision logic (including program precedence) is dynamically validated against the input parameters.*
+
+---
+
+### 4. Exploratory Testing Charters
+
+#### Charter 1: Input Field & Boundary Exploration
+
+- **Objective:** Manually test the form by entering extreme values, invalid formats, and special characters.
+- **Focus Areas:**  
+  - Boundary conditions for FICO scores and Loan Amount.
+  - Non-numeric input in numeric fields.
+  - Incorrect formatting for percentage inputs (LTV).
+- **Approach:**  
+  - Use manual data entry and observe error handling and messaging.
+
+---
+
+#### Charter 2: API & Data Transformation Investigation
+
+- **Objective:** Validate the integrity of data flow between the front end and the back end.
+- **Focus Areas:**  
+  - Data serialization/deserialization.
+  - API responses for invalid input.
+  - Consistency of error messaging.
+- **Approach:**  
+  - Use developer tools to inspect network requests and logs.
+  - Cross-check UI inputs with back-end validations.
+
+---
+
+#### Charter 3: Distributed Environment and Concurrency Analysis (final)
+
+- **Objective:** Explore system behavior under load and container failure scenarios.
+- **Focus Areas:**  
+  - Concurrency of loan application submissions.
+  - System recovery when a Docker container fails.
+- **Approach:**  
+  - Simulate concurrent submissions using load tools.
+  - Manually trigger container failures and observe recovery and data consistency.
+
+---
+
+## Final Recommendations for Further Improvements
+
+- **Extend Negative Testing:**  
+  Enhance tests for non-numeric inputs, special characters, and malformed data to ensure robustness.
+  
+- **Automated Regression Suite:**  
+  Integrate the above BDD scenarios into a CI/CD pipeline to run automated regression tests on every build.
+  
+- **Performance and Stress Testing:**  
+  Complement these functional tests with performance tests, especially focusing on distributed environment stability and concurrency.
+  
+- **Monitoring and Logging Validation:**  
+  Add checks for audit logs and data consistency across system components in production-like environments.
+
+---
+
+This final consolidated test suite is designed to provide comprehensive coverage for the Loan Application feature. It addresses core functional flows, edge cases, and high-risk areas while applying established test design techniques. The suite is ready for team review and integration into your CI/CD pipeline.
 
 ---
