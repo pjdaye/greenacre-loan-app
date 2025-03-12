@@ -149,16 +149,28 @@ For the sake of available time, I'm skipping the o1 model. If I have time later,
 
 ---
 
-## Model: GPT 4o
+## Model: GPT 4.5
 
+* A good start - showing the model's domain expertise. Obviously, with no knowledge of our actual requirements, any "tests" are high-level and set the stage for further consideration.
+* On to the risk analysis (prompt 2), it does a good job of breaking down the risks and identifying the top three. An interesting thing is how the models seem to highlight more "physical" issues, like concurrency and problems related to distributed systems. When creating the manual test set, my focus was on areas of the data that overlap and have seems. Was that because of my biases? What biases might the models represent?
+* With the requirements, it gave a thoughtful breakdown of how they impact thinking on test cases, including design techniques that might apply.
+* The initial test case generation got thrown into a canvas, but it seems a bit shallow - a handful of test cases, a data generation script, an orable script, and exploratory charters.
+* The data generation script imports itertools, but recommends (in a note) the use of another tool, such as PICT, to do full pairwise testing. Does this script, then create a large set of tests?
+* (It would be great to see one take an approach more like the original, manual process where test design also laid out the input file for PICT, then a script that reaed the output from that process, called to the oracle and assembled the entire test case!)
+* The review and refinement step (prompt 5) simply modified the canvas! This is an interesting approach, actually more like what I might do.
+* This put comments to accept or decline in the chat canvas. Applying began to add test cases.
+* It also caught a bug (typo) in its own data generation code.
+* The final review (prompt 6), also applied it's results to the canvas.
 
 ---
 
 _Music for this experiment by:_
 
-* _[]()_
+* _[Silly Wizard](https://open.spotify.com/artist/2qo4xct4APsg3LSerdPACx?si=xS8ibIPiRHCjkjo7aqJN_w)_
 
 ## Conclusion
+
+The time it took to complete each experiment with the models became shorter and shorter as it progressed. This bodes well for future use. There will still be work to do in terms of filling the parameters for the prompt and to format the output into runnable tests. The data generation and oracle code will likely also need additional work. But, over time I expect that refinement to the prompts will help--as well we using tools like Copilot to assist in building the assets.
 
 One thing I did not do through each of these experiments was to interact with the model. Where some responses were close, but not right, it might have benefitted from refinement and clarification. Although I want the prompts to stand on their own, they'll only be as good as the data I put into them - and if I'm not clear, I should be prepared to provide clarification.
 
