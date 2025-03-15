@@ -161,6 +161,9 @@ For the sake of available time, I'm skipping the o1 model. If I have time later,
 * This put comments to accept or decline in the chat canvas. Applying began to add test cases.
 * It also caught a bug (typo) in its own data generation code.
 * The final review (prompt 6), also applied it's results to the canvas.
+* Reviewing the Exploratory Testing charters, they aren't really what I would want as output. This is the least important of the exercise, but the tendency is toward non-functional types of testing, as opposed to a robust, unscripted walk to highlight particular functional risks.
+* The data generation file generates 70,400 test cases, by far the most expansive set. This is still leaving our certain boundary values and equivalence classes - but are they ones that matter? Unsure. Certainly, this why it recommended using PICT.
+* With the number of test cases generated, this was by far the best result in terms of coverage. That said, there is still significant work in gluing it all together. Additionally, without a strategy to break up the large number of tests, Playwright simply was unable to execute the test cases - overrunning the Node heap. Whatever model is ultimately chosen, this will need to be addressed.
 
 ---
 

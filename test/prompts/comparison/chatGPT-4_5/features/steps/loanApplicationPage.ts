@@ -1,5 +1,4 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { DataTable } from 'playwright-bdd';
 import { Fixture, Given, When, Then } from 'playwright-bdd/decorators';
 import { BorrowerInfoPage } from './borrowerInfoPage';
 import { PurchaseInfoPage } from './purchaseInfoPage';
@@ -27,28 +26,26 @@ export @Fixture('loanApplicationPage') class LoanApplicationPage {
         this.loanApprovalPage = new LoanApprovalPage(page);
     }
 
+    @Given('loan application processing system is running')
     async goto() {
         await this.page.goto('/');
         await expect(this.page).toHaveTitle(this.pageTitle);
     }
 
-    async fillLoanApplication(data: DataTable) {
-        const values = data.rowsHash();
-        const purchasePrice = String((Math.round((Number(values['loanAmount']) / (Number(values['ltv']) / 100)) * 100) / 100).toFixed(2));
-        const downPayment = String(Number(purchasePrice) - Number(values['loanAmount']));
-        const loanTerm = values['loanPeriod'] + ' years';
-        await this.borrowerInfoPage.inputBorrowerInformation(values['borrowerFirstName'], values['borrowerLastName'], values['borrowerFICO']);
-        await this.borrowerInfoPage.inputCoborrowerInformation(values['coBorrowerFirstName'], values['coBorrowerLastName'], values['coBorrowerFICO']);
-        await this.purchaseInfoPage.inputPurchaseInformation(values['propertyType'], values['zipCode'], purchasePrice, downPayment);
-        await this.loanInfoPage.inputLoanInformation(values['loanType'], values['loanAmount'], loanTerm);
+    @When('borrower FICO is {string}, Co-borrower FICO is {string}, property type is {string}, LTV is {string}%, loan amount is USD {string}, loan type {string}, loan period is {string} years')
+    async fillLoanApplication(borrowerFICO: string, coBorrowerFICO: string, propertyType: string, ltv: string, loanAmount: string, loanType: string, loanPeriod: string) {
+        const purchasePrice = String((Math.round((Number(loanAmount) / (Number(ltv) / 100)) * 100) / 100).toFixed(0));
+        const downPayment = String(Number(purchasePrice) - Number(loanAmount));
+        const loanTerm = loanPeriod + ' years';
+        await this.borrowerInfoPage.inputBorrowerInformation('BFirstName', 'BLastName', borrowerFICO);
+        await this.borrowerInfoPage.inputCoborrowerInformation('CFirstName', 'CLastName', coBorrowerFICO);
+        await this.purchaseInfoPage.inputPurchaseInformation(propertyType, '12345', purchasePrice, downPayment);
+        await this.loanInfoPage.inputLoanInformation(loanType, loanAmount, loanTerm);
         await this.submitForApproval();
     }
 
+    @When('borrower submits the loan application')
     async submitForApproval() {
         await this.submitButton.click();
-    }
-
-    async verifyAlertMessage(alertMessage: string) {
-        await expect(this.page).toHaveScreenshot(alertMessage);
     }
 }
