@@ -16,17 +16,14 @@ export @Fixture('loanApprovalPage') class LoanApprovalPage {
         this.loanProgramTitleLabel = page.getByText('Your Loan Program Is:');
     }
     
-    @Then('the loan application should be approved')
     async verifyApproval() {
         await expect(this.approvalLabel).toBeVisible();
     }
 
-    @Then('the loan application should be denied')
     async verifyDenial() {
         await expect(this.denialLabel).toBeVisible();
     }
 
-    @Then('the interest rate should be {string}')
     async verifyInterestRate(interestRate: string) {
         if (interestRate === 'NA') {
             await expect(this.interestRateLabel).not.toBeVisible();
@@ -36,7 +33,6 @@ export @Fixture('loanApprovalPage') class LoanApprovalPage {
         await expect(this.interestRateLabel).toContainText(interestRate);
     }
 
-    @Then('the loan program should be {string}')
     async verifyLoanProgram(loanProgram: string) {
         if (loanProgram === 'NA') {
             await expect(this.loanProgramTitleLabel).not.toBeVisible();
@@ -46,7 +42,6 @@ export @Fixture('loanApprovalPage') class LoanApprovalPage {
         await expect(this.page.getByText(`${loanProgram}`)).toBeVisible();
     }
 
-    @Then('the interest rate should be a valid percentage')
     async verifyInterestRateValidPercentage() {
         let interestRateValue = await this.interestRateLabel.innerText();
         await expect(interestRateValue).toMatch(/^[0-9]+(\.[0-9]{1,2})?%$/);

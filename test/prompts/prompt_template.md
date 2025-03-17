@@ -6,19 +6,6 @@ Give your prompt a descriptive title that reflects its purpose.
 
 ---
 
-## **Overview:**
-
-Provide a brief description of the prompt, including its primary use case and what outcomes it generates.
-
-* **Discipline:** `{{prompt_domain}}`
-* **Task:** `{{task_name}}`
-* **Goals:**
-  * `{{subtask_1}}`
-  * `{{subtask_1}}`
-  * `{{subtask_1}}`
-
----
-
 ## **Prompt Structure:**
 
 Copy the full prompt text here, with placeholders for any parameters that can be customized. Use clear and consistent notation for parameters (e.g., `{{parameter_name}}`).
@@ -30,12 +17,12 @@ Example:
 
 ## **Parameters:**
 
-| **Parameter Name** | **Description**                               | **Type**     | **Example Values**                    |
-|--------------------|-----------------------------------------------|--------------|---------------------------------------|
-| `{{parameter_name}}`| Describe the purpose of this parameter        | Text/Number/Other | Example input for this parameter      |
-| `{{feature_1}}`    | First feature of the product                  | Text         | "User-friendly interface"             |
-| `{{feature_2}}`    | Second feature of the product                 | Text         | "Cross-platform compatibility"        |
-| `{{feature_3}}`    | Third feature of the product                  | Text         | "Advanced analytics capabilities"     |
+| **Parameter Name**   | **Description**                               |
+|----------------------|-----------------------------------------------|
+| `{{parameter_name}}` | Describe the purpose of this parameter        |
+| `{{feature_1}}`      | First feature of the product                  |
+| `{{feature_2}}`      | Second feature of the product                 |
+| `{{feature_3}}`      | Third feature of the product                  |
 
 ---
 

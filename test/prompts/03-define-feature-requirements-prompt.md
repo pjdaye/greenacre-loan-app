@@ -1,75 +1,50 @@
 # **Title:** Detailed Feature Requirements & Acceptance Criteria
 
-## **Overview:**
-
-Provide the Generative AI with information about the business context of the application, its users, the feature to be tested, and the requirement(s) of the new feature.
-
-* **Task:** Review Feature Requirements
-* **Goals:**
-  * Input Epic
-  * Input User Stories
-  * Update Error Hypotheses
-
 ---
 
 ## **Prompt Structure:**
 
-"Review the following feature requirements for the `{{product_feature}}` feature of the `{{product_under_test}}`, delimited by triple quotes. Analyze the Epic and User Stories to extract the critical features and acceptance criteria. Identify key functional areas, potential edge cases, and any conditions that may present risks or require special attention during testing. Provide a concise summary that outlines the main components to be validated and highlights areas that may need further risk-based test design.
+"Review the following feature requirements for the {{product_feature}} feature of the {{product_under_test}}, delimited by triple quotes. Analyze the Epic and User Stories to extract critical features, acceptance criteria, and potential edge cases. Identify key functional areas and risk points. Provide a concise summary outlining the main components to be validated, highlighting any areas that may require special risk-based testing.
 
 """
-`{{feature_requirements}}`
-""""
+{{feature_requirements}}
+"""
+
+Summarize the critical elements, edge cases, and risk areas."
 
 Example:
-"Review the following feature requirements for the Loan Application feature of the Greenacre Loan Application, delimited by triple quotes. Analyze the Epic and User Stories to extract the critical features and acceptance criteria. Identify key functional areas, potential edge cases, and any conditions that may present risks or require special attention during testing. Provide a concise summary that outlines the main components to be validated and highlights areas that may need further risk-based test design.
+"Review the following requirements for the Loan Application feature of the Greenacre Loan Application:
 
 """
 
 ## Epic
 
-* As a loan applicant, I want to submit the necessary data so that I can get a loan approval.
+* As a loan applicant, I want to submit data to obtain a loan decision.
 
-## User Stories
+## User Stories\n\n### Submit for Approval (Back-end)
 
-### Submit for Approval (Back-end)
+* Criteria include valid FICO ranges, Loan Amount between USD 50,000 and 1,000,000, etc.
 
-* As a borrower, I want to submit my data so that I can get a loan approval.
+### Acceptance Criteria
 
-#### Acceptance Criteria (Story 1)
-
-* The following data points are used to determine approval, program, and interest rate:
-  * Borrower FICO (valid values: 300-850)
-  * Co-Borrower FICO (valid values: 300-850, or none)
-  * Property Type (SFR, Condo, Townhouse, Multi-Family, Commercial)
-  * Loan-to-Value (LTV) as a percentage (0%-100%)
-  * Loan Amount (valid values: USD 50,000 - 1,000,000)
-  * Loan Type (Fixed, Adjustable)
-  * Loan Period (10, 15, 30, 40)
-* Backend API will return three values: Approval, Program, and Rate.
-* Rules for evaluating applications and determining approval based on multiple loan programs (Conventional, FHA, Jumbo) are provided.
-
-#### Loan Program Rulesets
-
-* Detailed criteria for Conventional, FHA, and Jumbo loans are specified.
+* The system uses given parameters to determine Approval, Program, and Rate.
 
 ### Display Approval (Front-end)
 
-* As a borrower, I want to see the results of my loan application so that I can make purchasing decisions.
+* Approved loans display appropriate messages and formatting.
+"""
 
-#### Acceptance Criteria (Story 2)
-
-* Return values must be parsed and displayed correctly with specified UI components and formatting.
-""""
+Summarize the critical elements, edge cases, and risk areas."
 
 ---
 
 ## **Parameters:**
 
-| **Parameter Name**         | **Description**                                    | **Type** | **Example Values**                   |
-|----------------------------|----------------------------------------------------|----------|--------------------------------------|
-| `{{product_feature}}`      | The name of the feature (usually the Epic Title)   | Text     | "Loan Application Processing"        |
-| `{{product_under_test}}`   | The name of the product under test                 | Text     | "the Greenacre Loan Application app" |
-| `{{feature_requirements}}` | Describe the feature under test (epic and stories) | Text     | "As a ... I want ... so that ... "   |
+| **Parameter Name**       | **Description**                                    |
+|--------------------------|----------------------------------------------------|
+| {{product_feature}}      | The name of the feature (usually the Epic Title)   |
+| {{product_under_test}}   | The name of the product under test                 |
+| {{feature_requirements}} | Describe the feature under test (epic and stories) |
 
 ---
 

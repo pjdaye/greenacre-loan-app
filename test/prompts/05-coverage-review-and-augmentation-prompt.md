@@ -1,38 +1,31 @@
 # **Title:** Coverage Review & Augmentation
 
-## **Overview:**
-
-Prompt to review test coverage and augment the test cases generated.
-
-* **Discipline:** Generate Test Cases
-* **Task:** Review Test Cases
-* **Goals:**
-  * Review and Refine Test Cases
-* **Task:** Test Coverage
-
 ---
 
 ## **Prompt Structure:**
 
-"Review the initial draft of test assets generated for the `{{product_feature}}` feature of the `{{product_under_test}}`. Based on the provided context, error hypotheses, and feature requirements, identify any gaps or missing scenarios in the test suite. Consider whether all critical functional flows, edge cases, and risk areas have been adequately addressed, and if established test design techniques (such as pairwise testing or boundary analysis) have been applied.
+"Review the initial draft of test assets generated for the {{product_feature}} feature of the {{product_under_test}}. Identify any gaps or missing scenarios in terms of functional flows, edge cases, and risk areas. Compare the generated test cases against the detailed feature requirements and the original context.
 
-For each gap identified, suggest one or two additional BDD test cases in the Given/When/Then format, along with any modifications to the test data or oracle instructions as needed. Also, recommend any improvements to ensure comprehensive coverage and proper risk prioritization."
+For each gap, suggest one or two additional BDD test cases in Given/When/Then format, and recommend modifications to the data generation or oracle instructions if necessary. Also, note any redundant or overlapping test steps that should be consolidated."
 
 Example:
-"Review the initial test suite for the Loan Application feature of the Greenacre Loan Application. If the current test cases do not fully address boundary values for the Borrower FICO score, provide an additional test case such as:
+"Upon reviewing the initial tests for the Loan Application feature, you notice that boundary conditions for the Borrower FICO score are underrepresented. Suggest an additional test case such as:
 
-* Given a Borrower FICO score of 299 (below the valid range), when the application is submitted, then the system should reject the application with an appropriate error message.
+Scenario: Invalid Borrower FICO below minimum
+  Given a borrower with a FICO score of 299
+  When the application is submitted
+  Then the system should reject the application
 
-Similarly, identify any missing combinatorial scenarios or exploratory charters and suggest additions to ensure comprehensive coverage and prioritized risk management."
+Also, highlight that the data generation script should merge overlapping boundary sets (e.g., between different loan programs) and remove duplicates."
 
 ---
 
 ## **Parameters:**
 
-| **Parameter Name**       | **Description**                                  | **Type** | **Example Values**                   |
-|--------------------------|--------------------------------------------------|----------|--------------------------------------|
-| `{{product_feature}}`    | The name of the feature (usually the Epic Title) | Text     | "Loan Application Processing"        |
-| `{{product_under_test}}` | The name of the product under test               | Text     | "the Greenacre Loan Application app" |
+| **Parameter Name**     | **Description**                                  |
+|------------------------|--------------------------------------------------|
+| {{product_feature}}    | The name of the feature (usually the Epic Title) |
+| {{product_under_test}} | The name of the product under test               |
 
 ---
 

@@ -27,13 +27,11 @@ export @Fixture('loanApplicationPage') class LoanApplicationPage {
         this.loanApprovalPage = new LoanApprovalPage(page);
     }
 
-    @Given('I am on the loan application page')
     async goto() {
         await this.page.goto('/');
         await expect(this.page).toHaveTitle(this.pageTitle);
     }
 
-    @When('I submit a loan application with the following details:')
     async fillLoanApplication(data: DataTable) {
         const values = data.rowsHash();
         const purchasePrice = String((Math.round((Number(values['loanAmount']) / (Number(values['ltv']) / 100)) * 100) / 100).toFixed(2));
@@ -50,7 +48,6 @@ export @Fixture('loanApplicationPage') class LoanApplicationPage {
         await this.submitButton.click();
     }
 
-    @Then('an alert is displayed with message {string}')
     async verifyAlertMessage(alertMessage: string) {
         await expect(this.page).toHaveScreenshot(alertMessage);
     }

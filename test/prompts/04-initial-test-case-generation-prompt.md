@@ -1,54 +1,60 @@
 # **Title:** Initial Test Case Generation
 
-## **Overview:**
-
-Prompt to create test cases and/or test data for use in covering a product feature with the appropriate tests.
-
-* **Discipline:** Generate Test Cases
-* **Task:** Define Format
-* **Goals:**
-  * Define Test Inputs
-  * Define Test Case Output
-
 ---
 
 ## **Prompt Structure:**
 
-"Using the provided context, error hypotheses, and detailed feature requirements & acceptance criteria, generate an initial draft of test assets for the `{{product_feature}}` feature of the `{{product_under_test}}`. Your output should include the following sections:
+"Using the provided context, error hypotheses, and feature requirements, generate an initial draft of test assets for the {{product_feature}} feature of the {{product_under_test}}. Your output should include:
 
-1. **BDD Gherkin Test Cases:** Generate 3–5 test cases covering key scenarios—including valid flows, edge cases, and error conditions—in the Given/When/Then format. Ensure these cases reference test design techniques where applicable.
+1. **BDD Gherkin Test Cases:** Create {{range_of_number}} scenarios with clear, descriptive names that follow the Given/When/Then format. Use Examples and Data Tables where appropriate. For instance, incorporate a table for input parameters, ensuring off-by-one values are included where needed.
 
-2. **Test Data Generation Instructions:** Provide a script or code outline that generates test data using techniques such as equivalence partitioning, boundary value analysis, and pairwise combinatorial testing. The script should account for constraints (e.g., only whole, positive numbers) and output a reduced, manageable test data set.
+2. **Test Data Generation Instructions:** Provide a script or code outline that generates test data using techniques such as equivalence partitioning, boundary value analysis (include off-by-one values), and pairwise testing. Use PICT as the default method (with sample input file instructions), and optionally note a built-in Python alternative.
 
-3. **Oracle for Expected Results:** Describe and include a code snippet or pseudocode that acts as an oracle. This script should either pre-compute expected results based on input parameters (e.g., FICO score, Loan Amount) or dynamically validate the outputs of the test cases during execution.
+3. **Oracle for Expected Results:** Include a code snippet or pseudocode that either pre-computes expected outcomes or dynamically validates test results based on the generated test data.
 
-4. **Exploratory Testing Charter:** Provide 2–3 exploratory testing charters focused on areas where manual investigation may uncover additional risks or gaps in automated testing.
+4. **Exploratory Testing Charters:** Provide 2–3 charters in bullet form, following this template:
+    * **Target:** [what to explore]
+    * **Techniques/Resources:** [methods/tools]
+    * **Expected Outcome:** [what risks/information to uncover]
 
-Focus on creating a concise yet comprehensive draft that covers the core functional areas and identified risks."
+Focus on creating a concise yet comprehensive draft that covers core functional areas and identified risks."
 
 Example:
-"Using the provided context, error hypotheses, and detailed feature requirements & acceptance criteria, generate an initial draft of test assets for the Loan Application feature of the Greenacre Loan Application. Your output should include the following sections:
+"Scenario: Valid Loan Application with Boundary FICO Values
+  Given a borrower with the following attributes:
+      | Attribute          | Value        |
+      | Borrower FICO      | 299          |
+      | Co-Borrower FICO   | 0            |
+      | Loan Amount        | 500000       |
+      | Loan Type          | Fixed        |
+    When the loan application is submitted
+    Then the system should reject the application due to invalid FICO score
 
-1. **BDD Gherkin Test Cases:** For example:
-    * Given valid input data for a conventional loan, when the applicant submits the application, then the system should approve the loan with the appropriate loan program.
-    * Given an invalid Borrower FICO score (e.g., 299), when the applicant submits the application, then the system should reject the application with an error message.
+    Examples:
+      | Borrower FICO | Co-Borrower FICO | Loan Amount | Expected Outcome     |
+      | 299           | 0                | 500000      | Application Rejected |
+      | 300           | 0                | 500000      | Application Approved |
+      | 851           | 0                | 500000      | Application Rejected |
 
-2. **Test Data Generation Instructions:** Provide a Python code snippet that implements equivalence partitioning and boundary value analysis to generate test inputs. For instance, outline a function that generates FICO score values between 300 and 850 using both valid ranges and boundary conditions, while merging these into a set for pairwise testing.
+Test Data Generation Instructions: Provide a PICT input file that outlines combinations for FICO, Loan Amount, etc., and include a note on merging overlapping boundary values. Optionally, offer a Python snippet as an alternative.
+  
+Oracle:
+ Provide pseudocode that takes input values (e.g., FICO score, Loan Amount) and returns expected values (Approval, Program, Rate), handling edge cases appropriately.
+  
+Exploratory Testing Charters:
 
-3. **Oracle for Expected Results:** Provide pseudocode or a Python function that takes generated inputs (such as FICO score, Loan Amount, etc.) and returns expected values for Loan Approval, Loan Program, and Interest Rate. The script should also include logic to handle cases where the loan is rejected (e.g., returning NA for certain fields).
-
-4. **Exploratory Testing Charter:** Include charters like:
-    * "Explore the application's behavior when receiving unexpected data formats to uncover input validation issues."
-    * "Investigate the UI response when multiple error conditions occur simultaneously.""
+* Explore the loan application submission process under high concurrency to uncover performance bottlenecks.
+* Investigate UI behavior when multiple input errors occur simultaneously."
 
 ---
 
 ## **Parameters:**
 
-| **Parameter Name**             | **Description**                                    | **Type** | **Example Values**                                                        |
-|--------------------------------|----------------------------------------------------|----------|---------------------------------------------------------------------------|
-| `{{product_feature}}`          | The name of the feature (usually the Epic Title)   | Text     | "Loan Application Processing"                                             |
-| `{{product_under_test}}`       | The name of the product under test                 | Text     | "the Greenacre Loan Application app"                                      |
+| **Parameter Name**     | **Description**                                  |
+|------------------------|--------------------------------------------------|
+| {{range_of_number}}    | Range of numbers, i.e. 3-5, for number of tests  |
+| {{product_feature}}    | The name of the feature (usually the Epic Title) |
+| {{product_under_test}} | The name of the product under test               |
 
 ---
 
