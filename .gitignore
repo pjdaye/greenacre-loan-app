@@ -1,5 +1,7 @@
 test/utilities/__pycache__/
+node_modules/
 
 .fake
 .ionide
+.stryker-tmp/
 .vscode/

@@ -1,1 +1,11 @@
-{}
+{
+  "scripts": {
+    "mutation:client": "stryker run stryker.client.conf.js",
+    "mutation:server": "stryker run stryker.server.conf.js",
+    "mutation": "stryker run"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^8.7.1",
+    "@stryker-mutator/typescript-checker": "^8.7.1"
+  }
+}

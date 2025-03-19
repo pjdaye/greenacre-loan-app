@@ -60,9 +60,10 @@ Exploratory Testing Charters:
 
 ## **Instructions for Use:**
 
-1. **Identify Parameters:** Locate the placeholders in the prompt marked with `{{brackets}}`. These are the parameters that you need to customize.
+1. **Identify Parameters:** Locate the placeholders in the prompt marked with {{brackets}}. These are the parameters that you need to customize.
 2. **Customize Values:** Replace the placeholder parameters with the appropriate values for your use case. Refer to the "Parameters" section for more details.
 3. **Run the Prompt:** Once customized, input the prompt into the Generative AI tool to get the desired outcome.
+4. Check that the generated Gherkin tests are clear and include Scenario names, Examples, and Data Tables. Verify that the test data generation and Oracle scripts incorporate off-by-one values and handle overlapping boundaries appropriately.
 
 ---
 

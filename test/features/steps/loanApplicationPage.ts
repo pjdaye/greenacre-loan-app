@@ -32,22 +32,28 @@ export @Fixture('loanApplicationPage') class LoanApplicationPage {
         await expect(this.page).toHaveTitle(this.pageTitle);
     }
 
+    @Given('a borrower with the following attributes:')
     async fillLoanApplication(data: DataTable) {
         const values = data.rowsHash();
-        const purchasePrice = String((Math.round((Number(values['loanAmount']) / (Number(values['ltv']) / 100)) * 100) / 100).toFixed(2));
-        const downPayment = String(Number(purchasePrice) - Number(values['loanAmount']));
-        const loanTerm = values['loanPeriod'] + ' years';
-        await this.borrowerInfoPage.inputBorrowerInformation(values['borrowerFirstName'], values['borrowerLastName'], values['borrowerFICO']);
-        await this.borrowerInfoPage.inputCoborrowerInformation(values['coBorrowerFirstName'], values['coBorrowerLastName'], values['coBorrowerFICO']);
-        await this.purchaseInfoPage.inputPurchaseInformation(values['propertyType'], values['zipCode'], purchasePrice, downPayment);
-        await this.loanInfoPage.inputLoanInformation(values['loanType'], values['loanAmount'], loanTerm);
+        const purchasePrice = String((Math.round((Number(values['Loan Amount']) / (Number(values['LTV']) / 100)) * 100) / 100).toFixed(2));
+        const downPayment = String(Number(purchasePrice) - Number(values['Loan Amount']));
+        const loanTerm = values['Loan Period'] + ' years';
+        
+        await this.goto();
+
+        await this.borrowerInfoPage.inputBorrowerInformation('BFirstName', 'BLastName', values['Borrower FICO']);
+        await this.borrowerInfoPage.inputCoborrowerInformation('CFirstName', 'CLastName', values['Co-Borrower FICO']);
+        await this.purchaseInfoPage.inputPurchaseInformation(values['Property Type'], '33123', purchasePrice, downPayment);
+        await this.loanInfoPage.inputLoanInformation(values['Loan Type'], values['Loan Amount'], loanTerm);
         await this.submitForApproval();
     }
 
+    @When('the loan application is submitted')
     async submitForApproval() {
         await this.submitButton.click();
     }
 
+    @Then('an alert is displayed with message {string}')
     async verifyAlertMessage(alertMessage: string) {
         await expect(this.page).toHaveScreenshot(alertMessage);
     }

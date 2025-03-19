@@ -5,8 +5,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const testDir = defineBddConfig({
-  // featuresRoot: 'features',
-  featuresRoot: 'prompts/comparison/chatGPT-4_5/features',
+  featuresRoot: 'features',
 });
 
 /**

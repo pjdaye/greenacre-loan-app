@@ -15,35 +15,24 @@ export @Fixture('loanApprovalPage') class LoanApprovalPage {
         this.interestRateLabel = page.getByText('%');
         this.loanProgramTitleLabel = page.getByText('Your Loan Program Is:');
     }
-    
-    async verifyApproval() {
-        await expect(this.approvalLabel).toBeVisible();
-    }
 
-    async verifyDenial() {
-        await expect(this.denialLabel).toBeVisible();
-    }
-
-    async verifyInterestRate(interestRate: string) {
-        if (interestRate === 'NA') {
-            await expect(this.interestRateLabel).not.toBeVisible();
-            return
+    @Then('the application result is {string} with {string}')
+    async verifyApproval(approval: string, loanProgram: string) {
+        if (approval === 'Approved') {
+            await expect(this.approvalLabel).toBeVisible();
+        } else {
+            await expect(this.denialLabel).toBeVisible();
         }
-        
-        await expect(this.interestRateLabel).toContainText(interestRate);
+
+        await this.verifyLoanProgram(loanProgram);
     }
 
     async verifyLoanProgram(loanProgram: string) {
-        if (loanProgram === 'NA') {
+        if (loanProgram === 'N/A') {
             await expect(this.loanProgramTitleLabel).not.toBeVisible();
             return
         }
-        
-        await expect(this.page.getByText(`${loanProgram}`)).toBeVisible();
-    }
 
-    async verifyInterestRateValidPercentage() {
-        let interestRateValue = await this.interestRateLabel.innerText();
-        await expect(interestRateValue).toMatch(/^[0-9]+(\.[0-9]{1,2})?%$/);
+        await expect(this.page.getByText(`${loanProgram}`)).toBeVisible();
     }
 }
