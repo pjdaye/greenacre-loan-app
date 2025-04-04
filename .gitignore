@@ -3,5 +3,4 @@ node_modules/
 
 .fake
 .ionide
-.stryker-tmp/
 .vscode/
