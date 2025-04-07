@@ -10,7 +10,7 @@ This application was the featured example for the following conference presentat
 
 * **Crafting Excellence: Optimizing Test Case Design with Domain Analysis** (STAREAST 2024)
   * Test data was scripted and test cases developed using Black Box testing techniques
-* **Vision to Velocity: Accelerating Agile Testing with Generative AI** (Agile + DevOps USA 2024)
+* **Vision to Velocity: Accelerating Agile Testing with Generative AI** (Agile + DevOps USA 2024, updated for STAREAST 2025)
   * Test case generation was done using Generative AI (ChatGPT)
   * Added a folder with the prompt templates used
 
