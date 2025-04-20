@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app/server
+    command: node index.js
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app/client
+    command: npm start
+    ports:
+      - "3000:3000"
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.tests
+    working_dir: /app/test
+    command: npx playwright test
+    depends_on:
+      - backend
+      - frontend
