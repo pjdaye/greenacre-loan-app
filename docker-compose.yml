@@ -4,7 +4,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.api
     working_dir: /app/server
     command: node index.js
     ports:
@@ -13,7 +13,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.web
     working_dir: /app/client
     command: npm start
     ports:
