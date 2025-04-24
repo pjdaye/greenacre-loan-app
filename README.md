@@ -24,7 +24,7 @@ This application was the featured example for the following conference presentat
 ## Installation
 
 1. Clone the repository
-2. Install dependecies:
+2. Install dependencies:
     * Client: ```cd client && npm install```
     * Server: ```cd server && npm install```
     * Test: ```cd test && npm install```
