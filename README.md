@@ -11,8 +11,8 @@ This application was the featured example for the following conference presentat
 * **Crafting Excellence: Optimizing Test Case Design with Domain Analysis** (STAREAST 2024)
   * Test data was scripted and test cases developed using Black Box testing techniques
 * **Vision to Velocity: Accelerating Agile Testing with Generative AI** (Agile + DevOps USA 2024, updated for STAREAST 2025)
-  * Test case generation was done using Generative AI (ChatGPT)
-  * Added a folder with the prompt templates used
+  * Test case generation was done using Generative AI
+  * Added a [prompt library](./prompt-library/)
 
 ![Greenacre Loan Approval App](./docs/images/greenacre-desktop.png)
 
@@ -23,7 +23,7 @@ This application was the featured example for the following conference presentat
 
 ## Installation
 
-1. Clone the repository: ```git clone [repo-url]```
+1. Clone the repository
 2. Install dependecies:
     * Client: ```cd client && npm install```
     * Server: ```cd server && npm install```
