@@ -1,0 +1,105 @@
+| Borrower FICO | Co-Borrower FICO | Property Type | Loan Amount | LTV | Loan Type | Loan Period | Approval | Loan Program |
+| 851 | 300 | Commercial | 49999 | 100.01 | Fixed | 10 | Denial | N/A |
+| 580 | 619 | Condominium | 417999 | 80.0 | Adjustable | 15 | Denial | N/A |
+| 850 | 519 | Townhouse | 500000 | 79.99 | Fixed | 40 | Denial | N/A |
+| 619 | 520 | Commercial | 418001 | 80.01 | Adjustable | 30 | Denial | N/A |
+| 300 | 299 | Multi-Family Unit | 418000 | 100.0 | Fixed | 30 | Denial | N/A |
+| 849 | 299 | Single Family | 50000 | 99.99 | Adjustable | 10 | Denial | N/A |
+| 850 | 619 | Condominium | 1000000 | 99.99 | Fixed | 30 | Denial | N/A |
+| 850 | 620 | Townhouse | 49999 | 100.0 | Adjustable | 15 | Denial | N/A |
+| 620 | 519 | Single Family | 50000 | 80.01 | Fixed | 15 | Approved | FHA |
+| 299 | 299 | Multi-Family Unit | 1000000 | 100.01 | Adjustable | 40 | Denial | N/A |
+| 619 | 299 | Condominium | 418001 | 79.99 | Fixed | 15 | Denial | N/A |
+| 661 | 520 | Townhouse | 418000 | 80.0 | Fixed | 10 | Denial | N/A |
+| 619 | None | Single Family | 417999 | 100.0 | Adjustable | 40 | Denial | N/A |
+| 659 | 520 | Condominium | 50000 | 79.99 | Adjustable | 40 | Approved | Conventional |
+| 621 | 300 | Single Family | 500000 | 80.0 | Adjustable | 30 | Denial | N/A |
+| 849 | 619 | Commercial | 418000 | 80.01 | Fixed | 40 | Denial | N/A |
+| 301 | 299 | Multi-Family Unit | 417999 | 80.01 | Fixed | 10 | Denial | N/A |
+| 849 | 519 | Townhouse | 417999 | 100.01 | Adjustable | 30 | Denial | N/A |
+| 300 | 519 | Townhouse | 418001 | 99.99 | Adjustable | 10 | Denial | N/A |
+| 301 | 300 | Multi-Family Unit | 418000 | 99.99 | Adjustable | 15 | Denial | N/A |
+| 851 | 299 | Commercial | 1000000 | 80.0 | Adjustable | 15 | Denial | N/A |
+| 850 | 520 | Condominium | 500000 | 100.01 | Fixed | 10 | Denial | N/A |
+| 661 | 850 | Single Family | 49999 | 99.99 | Adjustable | 40 | Denial | N/A |
+| 299 | 850 | Single Family | 418000 | 79.99 | Fixed | 10 | Denial | N/A |
+| 660 | 619 | Multi-Family Unit | 50000 | 100.0 | Fixed | 10 | Denial | N/A |
+| 620 | 619 | Multi-Family Unit | 49999 | 79.99 | Adjustable | 30 | Approved | Conventional |
+| 850 | 300 | Multi-Family Unit | 418001 | 80.01 | Adjustable | 40 | Denial | N/A |
+| 300 | 619 | Single Family | 500000 | 100.01 | Fixed | 15 | Denial | N/A |
+| 851 | 619 | Townhouse | 500000 | 80.01 | Fixed | 30 | Denial | N/A |
+| 620 | None | Townhouse | 1000000 | 80.0 | Fixed | 10 | Denial | N/A |
+| 580 | 519 | Commercial | 1000000 | 100.0 | Fixed | 30 | Denial | N/A |
+| 299 | 519 | Multi-Family Unit | 50000 | 80.0 | Fixed | 30 | Denial | N/A |
+| 620 | 300 | Condominium | 500000 | 100.0 | Adjustable | 40 | Denial | N/A |
+| 621 | 519 | Commercial | 417999 | 99.99 | Fixed | 40 | Denial | N/A |
+| 619 | 300 | Townhouse | 1000000 | 79.99 | Fixed | 10 | Denial | N/A |
+| 299 | None | Condominium | 49999 | 80.01 | Fixed | 15 | Denial | N/A |
+| 849 | 620 | Multi-Family Unit | 418001 | 80.0 | Fixed | 40 | Approved | Jumbo |
+| 660 | 519 | Condominium | 418000 | 100.01 | Adjustable | 15 | Denial | N/A |
+| 299 | 520 | Commercial | 500000 | 99.99 | Adjustable | 15 | Denial | N/A |
+| 659 | 850 | Single Family | 418001 | 100.01 | Fixed | 15 | Denial | N/A |
+| 301 | None | Commercial | 50000 | 79.99 | Adjustable | 30 | Denial | N/A |
+| 580 | 299 | Townhouse | 500000 | 100.01 | Fixed | 10 | Denial | N/A |
+| 851 | 519 | Single Family | 417999 | 79.99 | Fixed | 40 | Denial | N/A |
+| 659 | 519 | Multi-Family Unit | 49999 | 80.0 | Adjustable | 10 | Denial | N/A |
+| 301 | 620 | Single Family | 500000 | 100.01 | Adjustable | 40 | Denial | N/A |
+| 619 | 620 | Multi-Family Unit | 50000 | 99.99 | Fixed | 10 | Denial | N/A |
+| 850 | 299 | Townhouse | 50000 | 80.0 | Adjustable | 40 | Denial | N/A |
+| 660 | 300 | Single Family | 1000000 | 80.01 | Adjustable | 30 | Denial | N/A |
+| 659 | None | Multi-Family Unit | 500000 | 99.99 | Adjustable | 30 | Denial | N/A |
+| 849 | 850 | Condominium | 500000 | 100.0 | Fixed | 30 | Denial | N/A |
+| 300 | 300 | Commercial | 417999 | 80.01 | Fixed | 40 | Denial | N/A |
+| 621 | 619 | Multi-Family Unit | 418001 | 100.0 | Fixed | 10 | Denial | N/A |
+| 851 | None | Multi-Family Unit | 50000 | 100.01 | Adjustable | 15 | Denial | N/A |
+| 299 | 300 | Townhouse | 418001 | 100.0 | Fixed | 30 | Denial | N/A |
+| 619 | 619 | Townhouse | 418000 | 100.01 | Adjustable | 40 | Denial | N/A |
+| 300 | None | Condominium | 50000 | 79.99 | Fixed | 15 | Approved | FHA |
+| 659 | 300 | Townhouse | 1000000 | 80.01 | Fixed | 15 | Denial | N/A |
+| 851 | 850 | Townhouse | 50000 | 99.99 | Fixed | 30 | Approved | FHA |
+| 849 | 520 | Multi-Family Unit | 1000000 | 79.99 | Adjustable | 15 | Denial | N/A |
+| 580 | None | Multi-Family Unit | 418001 | 79.99 | Fixed | 40 | Denial | N/A |
+| 621 | 620 | Condominium | 1000000 | 79.99 | Fixed | 15 | Denial | N/A |
+| 661 | 619 | Commercial | 50000 | 79.99 | Fixed | 15 | Denial | N/A |
+| 850 | 850 | Commercial | 417999 | 80.0 | Fixed | 10 | Denial | N/A |
+| 620 | 850 | Commercial | 1000000 | 99.99 | Adjustable | 40 | Denial | N/A |
+| 660 | None | Townhouse | 418000 | 99.99 | Adjustable | 40 | Denial | N/A |
+| 299 | 620 | Commercial | 417999 | 80.01 | Adjustable | 30 | Denial | N/A |
+| 851 | 520 | Condominium | 418000 | 100.0 | Fixed | 15 | Approved | FHA |
+| 850 | None | Single Family | 418000 | 100.0 | Fixed | 15 | Approved | FHA |
+| 661 | 300 | Condominium | 500000 | 80.01 | Fixed | 30 | Denial | N/A |
+| 580 | 300 | Single Family | 50000 | 99.99 | Adjustable | 10 | Denial | N/A |
+| 659 | 620 | Commercial | 418000 | 100.0 | Fixed | 15 | Denial | N/A |
+| 661 | 519 | Multi-Family Unit | 417999 | 100.0 | Fixed | 30 | Denial | N/A |
+| 659 | 299 | Single Family | 49999 | 99.99 | Adjustable | 15 | Denial | N/A |
+| 620 | 299 | Single Family | 418001 | 100.01 | Adjustable | 10 | Denial | N/A |
+| 299 | 619 | Multi-Family Unit | 418000 | 80.0 | Adjustable | 30 | Denial | N/A |
+| 661 | None | Single Family | 418001 | 100.01 | Adjustable | 10 | Denial | N/A |
+| 661 | 299 | Commercial | 1000000 | 99.99 | Adjustable | 40 | Denial | N/A |
+| 621 | None | Townhouse | 418000 | 100.01 | Fixed | 40 | Denial | N/A |
+| 621 | 850 | Multi-Family Unit | 49999 | 80.01 | Fixed | 15 | Denial | N/A |
+| 301 | 619 | Condominium | 418001 | 80.0 | Fixed | 30 | Denial | N/A |
+| 580 | 620 | Commercial | 418000 | 80.01 | Fixed | 10 | Denial | N/A |
+| 660 | 520 | Commercial | 417999 | 80.0 | Adjustable | 10 | Denial | N/A |
+| 300 | 620 | Townhouse | 49999 | 80.0 | Fixed | 30 | Denial | N/A |
+| 580 | 850 | Multi-Family Unit | 49999 | 100.0 | Adjustable | 15 | Denial | N/A |
+| 661 | 620 | Condominium | 1000000 | 100.01 | Adjustable | 40 | Denial | N/A |
+| 620 | 520 | Single Family | 417999 | 79.99 | Fixed | 10 | Approved | Conventional |
+| 621 | 520 | Townhouse | 50000 | 80.0 | Fixed | 10 | Approved | Conventional |
+| 301 | 519 | Townhouse | 1000000 | 100.0 | Adjustable | 15 | Denial | N/A |
+| 620 | 620 | Condominium | 418000 | 80.0 | Adjustable | 30 | Denial | N/A |
+| 300 | 520 | Single Family | 49999 | 99.99 | Adjustable | 40 | Denial | N/A |
+| 659 | 619 | Multi-Family Unit | 417999 | 80.01 | Fixed | 30 | Denial | N/A |
+| 660 | 620 | Condominium | 500000 | 79.99 | Fixed | 30 | Approved | Jumbo |
+| 580 | 520 | Condominium | 50000 | 80.0 | Adjustable | 10 | Denial | N/A |
+| 621 | 299 | Condominium | 50000 | 79.99 | Fixed | 10 | Denial | N/A |
+| 849 | None | Condominium | 49999 | 79.99 | Adjustable | 40 | Approved | Conventional |
+| 619 | 519 | Townhouse | 500000 | 80.0 | Fixed | 15 | Denial | N/A |
+| 619 | 850 | Condominium | 49999 | 100.01 | Fixed | 15 | Denial | N/A |
+| 851 | 620 | Townhouse | 418001 | 80.0 | Adjustable | 10 | Denial | N/A |
+| 301 | 520 | Townhouse | 49999 | 80.01 | Adjustable | 40 | Denial | N/A |
+| 660 | 850 | Condominium | 418001 | 80.01 | Adjustable | 40 | Denial | N/A |
+| 660 | 299 | Townhouse | 49999 | 79.99 | Fixed | 10 | Denial | N/A |
+| 300 | 850 | Townhouse | 1000000 | 79.99 | Adjustable | 30 | Denial | N/A |
+| 301 | 850 | Multi-Family Unit | 50000 | 80.0 | Adjustable | 10 | Denial | N/A |
+| 849 | 300 | Condominium | 418000 | 100.01 | Fixed | 15 | Denial | N/A |

@@ -1,5 +1,5 @@
 test/utilities/__pycache__/
+node_modules/
 
 .fake
 .ionide
-.vscode/

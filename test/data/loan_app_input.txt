@@ -1,0 +1,7 @@
+BorrowerFICO:   299,300,301,580,619,620,621,659,660,661,849,850,851
+CoBorrowerFICO: none,299,300,519,520,619,620,850
+PropertyType:   SFR,Condo,Townhouse,MultiFamily,Commercial
+LoanAmount:     49999,50000,417999,418000,418001,500000,1000000
+LTV:            79.99,80,80.01,99.99,100,100.01
+LoanType:       Fixed,Adjustable
+LoanPeriod:     10,15,30,40
