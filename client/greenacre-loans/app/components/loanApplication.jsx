@@ -4,8 +4,6 @@ import styles from '../page.module.css';
 import { useState } from 'react';
 import LoanApproval from './loanApproval';
 
-// const baseUrl = process.env.REACT_APP_API_URL;
-
 const LoanApplication = () => {
   const [formData, setFormData] = useState({
     borrowerFirstName: '',
