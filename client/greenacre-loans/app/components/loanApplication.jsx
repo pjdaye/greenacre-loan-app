@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import LoanApproval from './loanApproval';
+'use client'
 
-// const baseUrl = process.env.REACT_APP_API_URL;
+import '../globals.css';
+import { useState } from 'react';
+import LoanApproval from './loanApproval';
 
 const LoanApplication = () => {
   const [formData, setFormData] = useState({
@@ -213,43 +214,43 @@ const LoanApplication = () => {
           </div>
         </div>
         <div className="d-flex gap-3 mx-3 mb-3">
-          <button type="submit" name="submit" className="w-50 bg-money-green text-white py-1 px-3 rounded-1">
+          <button type="submit" name="submit" className={`w-50 bgMoneyGreen text-white py-1 px-3 rounded-1`}>
             Submit Loan
           </button>
-          <button type="button" name="cancel" className="w-50 bg-cancel-red text-white py-1 px-3 rounded-1" onClick={clearForm}>
+          <button type="button" name="cancel" className={`w-50 bgCancelRed text-white py-1 px-3 rounded-1`} onClick={clearForm}>
             Cancel
           </button>
         </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-9">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-9">
               {Object.keys(approvalData).length > 0 ? (
                 <LoanApproval data={approvalData} />
               ) : (
-                <div class="col-sm-9">
+                <div className="col-sm-9">
                   <div className="approvalData">
                   </div>
                 </div>
               )}
             </div>
-            <div class="col-sm-3">
-              <div class="row align-items-right m-3">
-                <button className="w-100 bg-action-teal text-white py-2 rounded-1" disabled>
+            <div className="col-sm-3">
+              <div className="row align-items-right m-3">
+                <button className={`w-100 bgActionTeal text-white py-2 rounded-1`} disabled>
                   Save Info
                 </button>
               </div>
-              <div class="row m-3">
-                <button className="w-100 bg-action-teal text-white py-2 rounded-1" disabled>
+              <div className="row m-3">
+                <button className={`w-100 bgActionTeal text-white py-2 rounded-1`} disabled>
                   Load Info
                 </button>
               </div>
-              <div class="row m-3">
-                <button className="w-100 bg-action-teal text-white py-2 rounded-1" disabled>
+              <div className="row m-3">
+                <button className={`w-100 bgActionTeal text-white py-2 rounded-1`} disabled>
                   Print
                 </button>
               </div>
-              <div class="row m-3">
-                <button className="w-100 bg-action-teal text-white py-2 rounded-1" disabled>
+              <div className="row m-3">
+                <button className={`w-100 bgActionTeal text-white py-2 rounded-1`} disabled>
                   Help?
                 </button>
               </div>

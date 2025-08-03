@@ -15,6 +15,7 @@ export @Fixture('loanApplicationPage') class LoanApplicationPage {
     readonly purchaseInfoPage: PurchaseInfoPage;
     readonly loanInfoPage: LoanInfoPage;
     readonly loanApprovalPage: LoanApprovalPage;
+    readonly nextJSButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -25,6 +26,7 @@ export @Fixture('loanApplicationPage') class LoanApplicationPage {
         this.purchaseInfoPage = new PurchaseInfoPage(page);
         this.loanInfoPage = new LoanInfoPage(page);
         this.loanApprovalPage = new LoanApprovalPage(page);
+        this.nextJSButton = page.getByRole('button', { name: 'Open Next.js Dev Tools' });
     }
 
     async goto() {
@@ -55,6 +57,6 @@ export @Fixture('loanApplicationPage') class LoanApplicationPage {
 
     @Then('an alert is displayed with message {string}')
     async verifyAlertMessage(alertMessage: string) {
-        await expect(this.page).toHaveScreenshot(alertMessage);
+        await expect(this.page).toHaveScreenshot(alertMessage, { animations: 'disabled', mask: [this.nextJSButton] });
     }
 }
