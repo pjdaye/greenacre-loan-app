@@ -38,7 +38,7 @@ const LoanApproval = (props) => {
         )
     } else if (props.data && !props.data.approval) {
         return (
-            <div name="approvalPanel" className="container" style={{ "fontFamily": 'Segoe UI' }}>
+            <div id="approvalPanel" className="container" style={{ "fontFamily": 'Segoe UI' }}>
                 <div className="row">
                     <h3 className="fs-1 fw-semibold mb-1">Loan Approval</h3>
                 </div>
