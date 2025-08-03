@@ -1,6 +1,6 @@
 'use client'
 
-import styles from '../page.module.css';
+import '../globals.css';
 import { useState } from 'react';
 import LoanApproval from './loanApproval';
 
@@ -214,10 +214,10 @@ const LoanApplication = () => {
           </div>
         </div>
         <div className="d-flex gap-3 mx-3 mb-3">
-          <button type="submit" name="submit" className={`w-50 ${styles.bgMoneyGreen} text-white py-1 px-3 rounded-1`}>
+          <button type="submit" name="submit" className={`w-50 bgMoneyGreen text-white py-1 px-3 rounded-1`}>
             Submit Loan
           </button>
-          <button type="button" name="cancel" className={`w-50 ${styles.bgCancelRed} text-white py-1 px-3 rounded-1`} onClick={clearForm}>
+          <button type="button" name="cancel" className={`w-50 bgCancelRed text-white py-1 px-3 rounded-1`} onClick={clearForm}>
             Cancel
           </button>
         </div>
@@ -235,22 +235,22 @@ const LoanApplication = () => {
             </div>
             <div className="col-sm-3">
               <div className="row align-items-right m-3">
-                <button className={`w-100 ${styles.bgActionTeal} text-white py-2 rounded-1`} disabled>
+                <button className={`w-100 bgActionTeal text-white py-2 rounded-1`} disabled>
                   Save Info
                 </button>
               </div>
               <div className="row m-3">
-                <button className={`w-100 ${styles.bgActionTeal} text-white py-2 rounded-1`} disabled>
+                <button className={`w-100 bgActionTeal text-white py-2 rounded-1`} disabled>
                   Load Info
                 </button>
               </div>
               <div className="row m-3">
-                <button className={`w-100 ${styles.bgActionTeal} text-white py-2 rounded-1`} disabled>
+                <button className={`w-100 bgActionTeal text-white py-2 rounded-1`} disabled>
                   Print
                 </button>
               </div>
               <div className="row m-3">
-                <button className={`w-100 ${styles.bgActionTeal} text-white py-2 rounded-1`} disabled>
+                <button className={`w-100 bgActionTeal text-white py-2 rounded-1`} disabled>
                   Help?
                 </button>
               </div>
