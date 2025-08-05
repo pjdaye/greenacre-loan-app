@@ -57,6 +57,6 @@ export @Fixture('loanApplicationPage') class LoanApplicationPage {
 
     @Then('an alert is displayed with message {string}')
     async verifyAlertMessage(alertMessage: string) {
-        await expect(this.page).toHaveScreenshot(alertMessage, { animations: 'disabled', mask: [this.nextJSButton] });
+        await expect(this.page.getByText(alertMessage)).toBeVisible();
     }
 }

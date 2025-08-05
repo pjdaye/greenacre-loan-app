@@ -22,6 +22,7 @@ const LoanApplication = () => {
   });
 
   const [approvalData, setApprovalData] = useState([]);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -33,6 +34,32 @@ const LoanApplication = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Basic client-side validation
+    let formErrors = {};
+    if (!formData.borrowerFirstName) formErrors.borrowerFirstName = "Borrower's first name is required.";
+    if (!formData.borrowerLastName) formErrors.borrowerLastName = "Borrower's last name is required.";
+    if (!formData.borrowerFico || formData.borrowerFico < 300 || formData.borrowerFico > 850) {
+      formErrors.borrowerFico = "Borrower's FICO score must be between 300 and 850.";
+    }
+    if (formData.coborrowerFico && (formData.coborrowerFico < 300 || formData.coborrowerFico > 850)) {
+      formErrors.coborrowerFico = "Co-borrower's FICO score must be between 300 and 850.";
+    }
+    if (!formData.propertyType) formErrors.propertyType = "Property type is required.";
+    if (!formData.purchasePrice) formErrors.purchasePrice = "Purchase price is required.";
+    if (!formData.zipCode || !/^\d{5}$/.test(formData.zipCode)) {
+      formErrors.zipCode = "Zip code must be a 5-digit number.";
+    }
+    if (!formData.downPayment) formErrors.downPayment = "Down payment is required.";
+    if (!formData.loanType) formErrors.loanType = "Loan type is required.";
+    if (!formData.loanAmount || formData.loanAmount < 50000 || formData.loanAmount > 1000000) formErrors.loanAmount = "Loan amount must be between 50000 and 1000000.";
+    if (!formData.term) formErrors.term = "Loan term is required.";
+
+    setErrors(formErrors);
+
+    if (Object.keys(formErrors).length > 0) {
+      return; // Don't submit the form if there are errors
+    }
 
     const jsonFormData = JSON.stringify(formData);
 
@@ -69,10 +96,11 @@ const LoanApplication = () => {
     });
     setApprovalData({
     });
+    setErrors({});
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} noValidate>
       <div className="LoanApplication" style={{ fontFamily: 'Segoe UI' }}>
         <div className="border border-black p-4">
           <div className="mb-3">
@@ -194,6 +222,7 @@ const LoanApplication = () => {
               </select>
               <input
                 name="loanAmount"
+                type="number"
                 className="border border-dark rounded-1 p-2 w-50"
                 placeholder="Loan Amount"
                 min="50000"
@@ -257,6 +286,16 @@ const LoanApplication = () => {
             </div>
           </div>
         </div>
+        {Object.keys(errors).length > 0 && (
+          <div className="error-summary fw-semibold">
+            <p>Please fix the following errors:</p>
+            <ul>
+              {Object.entries(errors).map(([field, message]) => (
+                <li key={field}>{message}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </form>
   );
