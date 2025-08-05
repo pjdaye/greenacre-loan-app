@@ -47,7 +47,7 @@ const LoanApplication = () => {
     }
     if (!formData.propertyType) formErrors.propertyType = "Property type is required.";
     if (!formData.purchasePrice) formErrors.purchasePrice = "Purchase price is required.";
-    if (!formData.zipCode || formData.zipCode < 10000 || formData.zipCode > 99999) {
+    if (!formData.zipCode || !/^\d{5}$/.test(formData.zipCode)) {
       formErrors.zipCode = "Zip code must be a 5-digit number.";
     }
     if (!formData.downPayment) formErrors.downPayment = "Down payment is required.";
