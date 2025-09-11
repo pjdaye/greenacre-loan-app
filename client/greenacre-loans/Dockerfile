@@ -1,10 +1,10 @@
 # Dockerfile for client (Next.js)
-FROM node:20-alpine
+FROM node:22-alpine
 
 WORKDIR /app
 
 # Update Alpine packages and fix vulnerabilities
-RUN apk update && apk upgrade
+RUN apk update && apk upgrade && apk add curl
 
 COPY . .
 

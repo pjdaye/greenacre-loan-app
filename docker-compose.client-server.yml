@@ -8,7 +8,8 @@ services:
       - BACKEND_PORT=8080
       - BACKEND_HOST=server
     depends_on:
-      - server
+      server:
+        condition: service_healthy
   server:
     build: ./server
     ports:
@@ -16,3 +17,8 @@ services:
     environment:
       - PORT=8080
       - URL=http://server
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5

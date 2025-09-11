@@ -2,6 +2,34 @@
 
 This project is a migration of the Greenacre Loan App from a React Create App project to a Next.js framework. Below are the updated instructions for working with this project.
 
+## Docker Setup
+
+This application can be run using Docker for easy deployment and development.
+
+### Prerequisites
+
+* Docker and Docker Compose installed on your system
+
+### Running with Docker
+
+To run the client application with Docker:
+
+```bash
+# From the project root directory
+docker compose -f docker-compose.client-server.yml up --build -d
+```
+
+The application will be available at <http://localhost:3000>.
+
+### Docker Environment Variables
+
+The Docker setup includes environment variables for backend communication:
+
+* `BACKEND_HOST`: Server container hostname (defaults to `server`)
+* `BACKEND_PORT`: Server port (defaults to `8080`)
+
+## Local Development
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -33,8 +61,8 @@ Make sure to run `npm run build` first.
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+* [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
