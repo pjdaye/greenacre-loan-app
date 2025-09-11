@@ -24,6 +24,8 @@ services:
       retries: 5
   test:
     build: ./test
+    environment:
+      - GREENACRE_URL=http://client:3000
     depends_on:
       - client
       - server
