@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/apply",
-        destination: "http://server:8080/apply", // Hardcoded for Docker
+        destination: `http://${process.env.BACKEND_HOST || "server"}:${process.env.BACKEND_PORT || 8080}/apply`,
       },
     ];
   }

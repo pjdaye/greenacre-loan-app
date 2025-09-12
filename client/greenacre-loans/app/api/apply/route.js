@@ -1,7 +1,7 @@
 // API route to proxy requests to the backend server
-export async function POST(request: Request) {
+export async function POST(requests) {
   try {
-    const body = await request.json();
+    const body = await requests.json();
 
     const backendUrl = process.env.BACKEND_HOST
       ? `http://${process.env.BACKEND_HOST}:${process.env.BACKEND_PORT || 8080}/apply`
