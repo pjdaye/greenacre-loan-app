@@ -5,15 +5,15 @@ import dotenv from 'dotenv';
 import Loan from './process-application.js';
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
-const URL = process.env.URL;
+const PORT = process.env.PORT || 8080;
+const URL = process.env.URL || 'http://localhost';
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
 app.listen(PORT, () => {
-    console.log(`Greenacre API is listening on: ${URL}:${PORT}.`);
+    console.log(`Greenacre API is listening on: ${URL}:${PORT}`);
 });
 
 app.get('/health', (req, res) => {

@@ -63,7 +63,7 @@ const LoanApplication = () => {
 
     const jsonFormData = JSON.stringify(formData);
 
-    fetch('/apply', {
+    fetch('/api/apply', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

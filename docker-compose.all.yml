@@ -1,0 +1,32 @@
+services:
+  client:
+    build: ./client/greenacre-loans
+    ports:
+      - "3000:3000"
+    environment:
+      - BACKEND_PORT=8080
+      - BACKEND_HOST=server
+    depends_on:
+      server:
+        condition: service_healthy
+  server:
+    build: ./server
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - URL=http://server
+      - PRIME_RATE=7.0
+      - STEP_RATE=0.125
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  test:
+    build: ./test
+    environment:
+      - GREENACRE_URL=http://client:3000
+    depends_on:
+      - client
+      - server
