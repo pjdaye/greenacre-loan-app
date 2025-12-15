@@ -10,15 +10,15 @@
   "author": "Philip Daye",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.56.1",
-    "@types/node": "^24.2.0"
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.2"
   },
   "dependencies": {
-    "dotenv": "^17.2.1",
+    "dotenv": "^17.2.3",
     "greenacre-loan-app": "file:",
-    "playwright": "^1.56.1",
-    "playwright-bdd": "^8.1.0",
+    "playwright": "^1.57.0",
+    "playwright-bdd": "^8.4.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.9.3"
   }
 }
