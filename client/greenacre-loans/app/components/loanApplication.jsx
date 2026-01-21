@@ -63,7 +63,12 @@ const LoanApplication = () => {
 
     const jsonFormData = JSON.stringify(formData);
 
-    fetch('/api/apply', {
+    // Construct backend URL from environment variables for local development
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_HOST 
+      ? `${process.env.NEXT_PUBLIC_BACKEND_HOST}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/apply`
+      : '/api/apply'; // Fallback to API route for Docker
+
+    fetch(backendUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
