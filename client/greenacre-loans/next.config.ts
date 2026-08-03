@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: process.cwd(),
+  },
   async rewrites() {
     return [
       {
@@ -8,7 +11,7 @@ const nextConfig: NextConfig = {
         destination: `http://${process.env.BACKEND_HOST || "server"}:${process.env.BACKEND_PORT || 8080}/apply`,
       },
     ];
-  }
+  },
 };
 
 export default nextConfig;
