@@ -14,7 +14,7 @@
     "@types/node": "^26.1.0"
   },
   "dependencies": {
-    "dotenv": "^17.2.3",
+    "dotenv": "^18.0.5",
     "greenacre-loan-app": "file:",
     "playwright": "^1.62.0",
     "playwright-bdd": "^9.0.0",
