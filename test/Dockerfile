@@ -1,5 +1,5 @@
 # Dockerfile for test (Playwright)
-FROM mcr.microsoft.com/playwright:v1.62.0-jammy
+FROM mcr.microsoft.com/playwright:v1.63.0-jammy
 WORKDIR /tests
 RUN apt-get update && apt-get upgrade -y
 COPY . .
